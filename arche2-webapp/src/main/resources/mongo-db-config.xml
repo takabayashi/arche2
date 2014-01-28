@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/data/mongo
+    	http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
+
+	<mongo:mongo id="mongo" host="ds027769.mongolab.com" port="27769" />
+	
+	<bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
+		<constructor-arg name="username" value="admin" />
+		<constructor-arg name="password" value="admin@123" />
+	</bean>
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo" />
+		<constructor-arg ref="userCredentials" />
+		<constructor-arg value="arche2db" />
+	</bean>
+
+	<mongo:repositories base-package="br.com.ipt.arche2.*" />
+
+</beans>

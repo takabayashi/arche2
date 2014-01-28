@@ -1,0 +1,30 @@
+<web-app id="fiat-sales-force-core" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>Arche2</display-name>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>Resteasy</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Resteasy</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>
