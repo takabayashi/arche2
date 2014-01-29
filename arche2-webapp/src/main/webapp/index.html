@@ -1,44 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="US-ASCII">
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<head>
+		<meta charset="utf-8">
+		<!-- Ext js file -->
+		<link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css">
+		<script type="text/javascript" src="extjs/ext-all-dev.js"></script>
+		
+		<!--  App files -->
+		<link rel="stylesheet" type="text/css" href="resources/css/app.css">
+		<script type="text/javascript" src="app/app.js"></script>
+		
+	</head>
 
-<title>Teste</title>
-</head>
-<body>
-Teste 123 
-
-<button onclick="javascript:vai();">vai</button>
-<button onclick="javascript:vai2();">vai2</button>
-</body>
-
-<script type="text/javascript">
-function vai(){
-	$.ajax({
-		  type: "post",
-		  url: "http://localhost:8080/arche2-webapp/rest/usuarios/novo",
-		  data: JSON.stringify({"nome":"Daniel", "sobrenome": "Takabayashi", "email":"daniel@gmail.com"}),
-		  success: function(data){
-			  console.log(JSON.stringify(data));
-		  },
-		  dataType: "json",
-		  contentType: "application/json"
-		});	
-}
-
-function vai2(){
-	$.ajax({
-		  type: "get",
-		  url: "http://localhost:8080/arche2-webapp/rest/usuarios/all",
-		  data: {},
-		  success: function(data){
-			  console.log(JSON.stringify(data));
-		  },
-		  dataType: "json",
-		  contentType: "application/json"
-		});	
-}
-</script>
+	<body>
+	</body>
+		
 </html>
