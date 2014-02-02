@@ -1,18 +1,16 @@
-package br.com.ipt.arche2.entity;
+package br.com.ipt.arche2.ornfm.entity;
 
 import org.springframework.data.annotation.Id;
 
 import br.com.ipt.arche2.util.JsonUtils;
 
-public class Medida {
+public class Metodo {
 	@Id
 	private String id;
 	
 	private String nome;
 	
-	private String entidade;
-	
-	private String valor;
+	private String algoritmo;
 
 	public String getId() {
 		return id;
@@ -30,22 +28,14 @@ public class Medida {
 		this.nome = nome;
 	}
 
-	public String getEntidade() {
-		return entidade;
+	public String getAlgoritmo() {
+		return algoritmo;
 	}
 
-	public void setEntidade(String entidade) {
-		this.entidade = entidade;
+	public void setAlgoritmo(String algoritmo) {
+		this.algoritmo = algoritmo;
 	}
-
-	public String getValor() {
-		return valor;
-	}
-
-	public void setValor(String valor) {
-		this.valor = valor;
-	}
-
+	
 	@Override
 	public String toString() {
 		return JsonUtils.object2JsonString(this);

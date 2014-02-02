@@ -13,29 +13,30 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.ipt.arche2.ornfm.entity.Medida;
-import br.com.ipt.arche2.repository.MedidaRepository;
+import br.com.ipt.arche2.ornfm.entity.RNF;
+import br.com.ipt.arche2.ornfm.entity.RNFMensuravel;
+import br.com.ipt.arche2.repository.RNFRepository;
 
 @Component
-@Path("/rest/medida")
-public class MedidaService {
+@Path("/rest/rnf")
+public class RNFService {
 	@Autowired
-	protected MedidaRepository repository;
+	protected RNFRepository repository;
 	
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response create(Medida medida){
-		repository.save(medida);
-		return Response.status(200).entity(medida).build();
+	public Response create(RNFMensuravel rnf){
+		repository.save(rnf);
+		return Response.status(200).entity(rnf).build();
 	}
 	
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response all(){
-		List<Medida> lista = repository.findAll();
+		List<RNF> lista = repository.findAll();
 		
 		return Response.status(200).entity(lista).build();
 	}
@@ -44,16 +45,16 @@ public class MedidaService {
 	@Path("/update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response update(Medida medida){
-		repository.save(medida);
-		return Response.status(200).entity(medida).build();
+	public Response update(RNFMensuravel rnf){
+		repository.save(rnf);
+		return Response.status(200).entity(rnf).build();
 	}
 	
 	@POST
 	@Path("/delete")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response delete(Medida medida){
-		repository.delete(medida);
+	public Response delete(RNFMensuravel rnf){
+		repository.delete(rnf);
 		return Response.status(200).build();
 	}
 

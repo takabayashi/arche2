@@ -1,10 +1,8 @@
 package br.com.ipt.arche2.entity;
 
-import java.io.Serializable;
-
 import org.springframework.data.annotation.Id;
 
-public class Usuario implements Serializable{
+public class Usuario{
 	@Id
 	private String id;
 	
@@ -14,8 +12,6 @@ public class Usuario implements Serializable{
 	
 	private String email;
 	
-	
-
 	public String getEmail() {
 		return email;
 	}

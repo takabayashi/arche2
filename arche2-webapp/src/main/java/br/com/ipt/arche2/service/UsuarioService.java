@@ -13,29 +13,31 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.ipt.arche2.ornfm.entity.Medida;
-import br.com.ipt.arche2.repository.MedidaRepository;
+import br.com.ipt.arche2.entity.Usuario;
+import br.com.ipt.arche2.repository.UsuarioRepository;
 
 @Component
-@Path("/rest/medida")
-public class MedidaService {
+@Path("/rest/usuario")
+public class UsuarioService {
 	@Autowired
-	protected MedidaRepository repository;
+	protected UsuarioRepository repository;
 	
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response create(Medida medida){
-		repository.save(medida);
-		return Response.status(200).entity(medida).build();
+	public Response create(Usuario usuario){
+		usuario.setId(null);
+		
+		repository.save(usuario);
+		return Response.status(200).entity(usuario).build();
 	}
 	
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response all(){
-		List<Medida> lista = repository.findAll();
+		List<Usuario> lista = repository.findAll();
 		
 		return Response.status(200).entity(lista).build();
 	}
@@ -44,16 +46,16 @@ public class MedidaService {
 	@Path("/update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response update(Medida medida){
-		repository.save(medida);
-		return Response.status(200).entity(medida).build();
+	public Response update(Usuario usuario){
+		repository.save(usuario);
+		return Response.status(200).entity(usuario).build();
 	}
 	
 	@POST
 	@Path("/delete")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response delete(Medida medida){
-		repository.delete(medida);
+	public Response delete(Usuario usuario){
+		repository.delete(usuario);
 		return Response.status(200).build();
 	}
 
