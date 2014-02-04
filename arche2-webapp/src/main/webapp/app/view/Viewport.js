@@ -4,7 +4,10 @@ Ext.define('Arche2.view.Viewport', {
  
     requires: [
         'Arche2.view.usuario.Grid',
-        'Arche2.view.usuario.Formulario'
+        'Arche2.view.usuario.Formulario',
+        'Arche2.view.medida.Grid',
+        'Arche2.view.entidade.Grid',
+        'Arche2.view.metodo.Grid'
     ],
  
     initComponent: function() {
@@ -13,7 +16,7 @@ Ext.define('Arche2.view.Viewport', {
         Ext.apply(me, {
             items: [
                 {
-                    xtype: 'usuariogrid'
+                    xtype: 'entidadegrid'
                 }
             ]
         });

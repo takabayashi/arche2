@@ -4,7 +4,10 @@ Ext.application({
     name: 'Arche2',
  
     controllers: [
-        'Usuarios'
+        'Usuarios',
+        'Medidas',
+        'Entidades',
+        'Metodos'
     ],
  
     autoCreateViewport: true
