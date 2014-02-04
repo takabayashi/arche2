@@ -5,6 +5,9 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
+import br.com.ipt.arche2.ornfm.entity.Caracteristica;
+import br.com.ipt.arche2.ornfm.entity.SubCaracteristica;
+
 public class RestEasyResourceRegister extends Application{
 
 	 @Override
@@ -17,6 +20,8 @@ public class RestEasyResourceRegister extends Application{
 	        classes.add(RNFService.class);
 	        classes.add(DecisaoProjetoService.class);
 	        classes.add(UsuarioService.class);
+	        classes.add(Caracteristica.class);
+	        classes.add(SubCaracteristica.class);
 	        return classes;
 	    }
 	

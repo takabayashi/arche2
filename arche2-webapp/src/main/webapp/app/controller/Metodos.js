@@ -9,7 +9,7 @@ Ext.define('Arche2.controller.Metodos', {
  
     refs: [{
             ref: 'metodoGrid',
-            selector: 'grid'
+            selector: 'grid#metodogrid'
         }],
  
     init: function() {
@@ -34,7 +34,7 @@ Ext.define('Arche2.controller.Metodos', {
  
     deleteMetodo: function(button) {
     	var grid = this.getMetodoGrid();
-        var record = grid.getSelectionModel().getSelection()[0];
+        var record = grid.getSelectionModel().getSelection();
         var store = this.getMetodosStore();
     	
     	if (record) {

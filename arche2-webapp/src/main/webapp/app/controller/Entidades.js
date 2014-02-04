@@ -9,7 +9,7 @@ Ext.define('Arche2.controller.Entidades', {
  
     refs: [{
             ref: 'entidadeGrid',
-            selector: 'grid'
+            selector: 'grid#entidadegrid'
         }],
  
     init: function() {
@@ -34,7 +34,7 @@ Ext.define('Arche2.controller.Entidades', {
  
     deleteEntidade: function(button) {
     	var grid = this.getEntidadeGrid();
-        var record = grid.getSelectionModel().getSelection()[0];
+        var record = grid.getSelectionModel().getSelection();
         var store = this.getEntidadesStore();
     	
     	if (record) {

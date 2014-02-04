@@ -9,7 +9,7 @@ Ext.define('Arche2.controller.Medidas', {
  
     refs: [{
             ref: 'medidaGrid',
-            selector: 'grid'
+            selector: 'grid#medidagrid'
         }],
  
     init: function() {
@@ -34,7 +34,7 @@ Ext.define('Arche2.controller.Medidas', {
  
     deleteMedida: function(button) {
     	var grid = this.getMedidaGrid();
-        var record = grid.getSelectionModel().getSelection()[0];
+        var record = grid.getSelectionModel().getSelection();
         var store = this.getMedidasStore();
     	
     	if (record) {

@@ -7,7 +7,9 @@ Ext.application({
         'Usuarios',
         'Medidas',
         'Entidades',
-        'Metodos'
+        'Metodos',
+        'Caracteristicas',
+        'SubCaracteristicas'
     ],
  
     autoCreateViewport: true

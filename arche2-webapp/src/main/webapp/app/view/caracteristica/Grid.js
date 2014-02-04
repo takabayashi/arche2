@@ -1,13 +1,12 @@
-var entidadeRowEditing = Ext.create('Ext.grid.plugin.RowEditing');
+var caracteristicaRowEditing = Ext.create('Ext.grid.plugin.RowEditing');
 
-Ext.define('Arche2.view.entidade.Grid' ,{
+Ext.define('Arche2.view.caracteristica.Grid' ,{
 	extend: 'Ext.grid.Panel',
-	alias : 'widget.entidadegrid',
+	alias : 'widget.caracteristicagrid',
    	requires: ['Ext.toolbar.Paging'],
-   	store: 'Entidades',
+   	store: 'Caracteristicas',
     frame: false,
-    minHeight: 200,
-    plugins: [entidadeRowEditing],
+    plugins: [caracteristicaRowEditing],
     
     columns: [{
         text: 'Nome',
@@ -30,12 +29,5 @@ Ext.define('Arche2.view.entidade.Grid' ,{
             iconCls: 'icon-delete',
             action: 'delete'
         }]
-    },{
-        xtype: 'pagingtoolbar',
-        dock:'bottom',
-        store: 'Entidades',
-        displayInfo: true,
-        displayMsg: 'Mostrando Entidades {0} - {1} de {2}',
-        emptyMsg: "Nenhuma entidade encontrada."
     }]
 });

@@ -4,13 +4,9 @@ Ext.define('Arche2.view.metodo.Grid' ,{
 	extend: 'Ext.grid.Panel',
 	alias : 'widget.metodogrid',
    	requires: ['Ext.toolbar.Paging'],
-   	iconCls: 'icon-grid',
-   	title : 'Metodos de Medida',
-	store: 'Metodos',
-
-    width: 400,
-    height: 200,
+   	store: 'Metodos',
     frame: false,
+    minHeight: 200,
     plugins: [metodoRowEditing],
     
     columns: [{
@@ -42,5 +38,12 @@ Ext.define('Arche2.view.metodo.Grid' ,{
             iconCls: 'icon-delete',
             action: 'delete'
         }]
+    },{
+        xtype: 'pagingtoolbar',
+        dock:'bottom',
+        store: 'Metodos',
+        displayInfo: true,
+        displayMsg: 'Mostrando Metodos {0} - {1} de {2}',
+        emptyMsg: "Nenhum metodo encontrada."
     }]
 });

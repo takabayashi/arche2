@@ -4,13 +4,9 @@ Ext.define('Arche2.view.medida.Grid' ,{
 	extend: 'Ext.grid.Panel',
 	alias : 'widget.medidagrid',
    	requires: ['Ext.toolbar.Paging'],
-   	iconCls: 'icon-grid',
-   	title : 'Medidas',
-	store: 'Medidas',
-
-    width: 400,
-    height: 200,
+   	store: 'Medidas',
     frame: false,
+    minHeight: 200,
     plugins: [medidaRowEditing],
     
     columns: [{
@@ -23,23 +19,35 @@ Ext.define('Arche2.view.medida.Grid' ,{
         }
     }, {
         header: 'Entidade',
-        width: 120,
+        width: 300,
         sortable: true,
         dataIndex: 'entidade',
         field: {
-            xtype: 'combo'
+            xtype: 'combo',
+            store: Ext.create('Arche2.store.Entidades'),
+            queryMode: 'local',
+            typeAhead:true,
+            forceSelection: true,
+            displayField: 'nome',
+            valueField: 'nome'
         }
     },{
         header: 'Método',
-        width: 120,
+        width: 400,
         sortable: true,
         dataIndex: 'metodo',
         field: {
-            xtype: 'combo'
+            xtype: 'combo',
+            store: Ext.create('Arche2.store.Metodos'),
+            queryMode: 'local',
+            typeAhead:true,
+            forceSelection: true,
+            displayField: 'nome',
+            valueField: 'nome'
         }
     },{
         text: 'Valor',
-        width: 40,
+        width: 100,
         sortable: true,
         dataIndex: 'valor',
         field: {
@@ -60,5 +68,12 @@ Ext.define('Arche2.view.medida.Grid' ,{
             action: 'delete'
             
         }]
+    },{
+        xtype: 'pagingtoolbar',
+        dock:'bottom',
+        store: 'Medidas',
+        displayInfo: true,
+        displayMsg: 'Mostrando Medidas {0} - {1} de {2}',
+        emptyMsg: "Nenhuma medida encontrada."
     }]
 });
