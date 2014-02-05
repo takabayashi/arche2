@@ -4,13 +4,10 @@ Ext.define('Arche2.view.Viewport', {
     renderTo: Ext.getBody(),
  
     requires: [
-        'Arche2.view.usuario.Grid',
-        'Arche2.view.usuario.Formulario',
-        'Arche2.view.medida.Grid',
-        'Arche2.view.entidade.Grid',
-        'Arche2.view.metodo.Grid',
-        'Arche2.view.caracteristica.Grid',
-        'Arche2.view.subcaracteristica.Grid'
+        'Arche2.view.geral.TabPanel',
+        'Arche2.view.geral.Formulario',
+        'Arche2.view.sugestao.Grid',
+        'Arche2.view.decisao.Formulario'
     ],
  
     initComponent: function() {
@@ -29,46 +26,44 @@ Ext.define('Arche2.view.Viewport', {
                 title: 'Requisitos Não Funcionais',
                 width: '20%',
                 resizable: true,
+                collapsed: true,
                 items: []
             }, {
+                region: 'east',
+                collapsible: true,
+                title: 'Cadastros de Apoio',
+                width: '100%',
+                resizable: true,
+               	collapsed: true,
+                items: [{
+                   	xtype: 'geraltabpanel'
+                  }]
+            },{
                 region: 'south',
                 html: '<p>Desenvolvido por Daniel Martins Takabayashi para o Instituto de Pesquisas Tecnológicas de São Paulo - IPT (05/2014)</p>',
                 minHeight: 40
             }, {
                 region: 'center',
-                xtype: 'tabpanel', 
-                activeTab: 0,      
-                items: [{
-                    title: 'Medidas',
-                    items: [{
-                    	xtype: 'medidagrid',
-                    	itemId: 'medidagrid'
-                    }]
-                },{
-                    title: 'Entidades de medidas',
-                    items: [{
-                    	xtype: 'entidadegrid',
-                    	itemId: 'entidadegrid'
-                    }]
-                },{
-                    title: 'Métodos de medidas',
-                    items: [{
-                    	xtype: 'metodogrid',
-                    	itemId: 'metodogrid'
-                    }]
-                },{
-                    title: 'Caracteristicas',
-                    items: [{
-                    	xtype: 'caracteristicagrid',
-                    	itemId: 'caracteristicagrid'
-                    }]
-                },{
-                    title: 'SubCaracteristicas',
-                    items: [{
-                    	xtype: 'subcaracteristicagrid',
-                    	itemId: 'subcaracteristicagrid'
-                    }]
-                }]
+                xtype: 'panel',
+                autoHeight: true,
+                autoWidth: true,
+                layout: {
+                	type: 'table',
+                	columns: 1
+                },
+                items:[{
+                	xtype: 'panel',
+                	layout: 'table',
+                	columns: 2,
+                	items: [{
+	            			xtype: 'geralform',
+	            			heigth: '100%'
+	            		},{
+	            			xtype: 'decisaoform'
+	            		}]
+                	  },{
+                    	  xtype: 'sugestaogrid'
+                      }]
             }]
         });
  

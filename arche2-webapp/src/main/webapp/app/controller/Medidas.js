@@ -23,11 +23,10 @@ Ext.define('Arche2.controller.Medidas', {
         });
     },
  
-    addMedida: function(grid, record) {
-    	var store = this.getMedidasStore();
+    addMedida: function(record) {
+    	var grid = this.getMedidaGrid();
     	var medida = Ext.create('Arche2.model.Medida');
-    	
-    	store.insert(0, medida);
+    	grid.store.insert(0, medida);
     	
         medidaRowEditing.startEdit(0, 0);
     },
@@ -35,10 +34,9 @@ Ext.define('Arche2.controller.Medidas', {
     deleteMedida: function(button) {
     	var grid = this.getMedidaGrid();
         var record = grid.getSelectionModel().getSelection();
-        var store = this.getMedidasStore();
-    	
+        
     	if (record) {
-            store.remove(record);
+            grid.store.remove(record);
         }
     	
     }

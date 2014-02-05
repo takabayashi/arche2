@@ -9,7 +9,9 @@ Ext.application({
         'Entidades',
         'Metodos',
         'Caracteristicas',
-        'SubCaracteristicas'
+        'SubCaracteristicas',
+        'Funcoes',
+        'Sugestoes'
     ],
  
     autoCreateViewport: true

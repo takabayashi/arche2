@@ -5,8 +5,10 @@ Ext.define('Arche2.view.medida.Grid' ,{
 	alias : 'widget.medidagrid',
    	requires: ['Ext.toolbar.Paging'],
    	store: 'Medidas',
+   	stateful: true,
     frame: false,
     minHeight: 200,
+    collapsible: true,
     plugins: [medidaRowEditing],
     
     columns: [{
@@ -68,12 +70,5 @@ Ext.define('Arche2.view.medida.Grid' ,{
             action: 'delete'
             
         }]
-    },{
-        xtype: 'pagingtoolbar',
-        dock:'bottom',
-        store: 'Medidas',
-        displayInfo: true,
-        displayMsg: 'Mostrando Medidas {0} - {1} de {2}',
-        emptyMsg: "Nenhuma medida encontrada."
     }]
 });
