@@ -5,7 +5,7 @@ Ext.define('Arche2.controller.Sugestoes', {
  
     models: ['Sugestao'],
  
-    views: ['sugestao.Grid'],
+    views: ['caso.SugestaoGrid'],
  
     refs: [{
             ref: 'sugestaoGrid',

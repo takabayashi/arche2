@@ -1,5 +1,6 @@
 package br.com.ipt.arche2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -14,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.ipt.arche2.entity.Caso;
+import br.com.ipt.arche2.entity.Sugestao;
+import br.com.ipt.arche2.ornfm.entity.RNFMensuravel;
 import br.com.ipt.arche2.repository.CasoRepository;
 
 @Component
@@ -31,13 +34,20 @@ public class CasoService {
 		return Response.status(200).entity(caso).build();
 	}
 	
-	@GET
-	@Path("/all")
+	@POST
+	@Path("/similares")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response all(){
-		List<Caso> lista = repository.findAll();
+	public Response similares(RNFMensuravel rnf){
+		List<Caso> listaCasos = repository.findAll();
 		
-		return Response.status(200).entity(lista).build();
+		List<Sugestao> sugestoes = new ArrayList<Sugestao>();
+		///aplica a lógica para devolver apenas os casos similares
+		for (Caso caso : listaCasos) {
+			float similaridade = 98.05f;
+			sugestoes.add(new Sugestao(caso, similaridade));
+		}
+		
+		return Response.status(200).entity(sugestoes).build();
 	}
 	
 	@POST
@@ -54,6 +64,15 @@ public class CasoService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response delete(Caso caso){
 		repository.delete(caso);
+		return Response.status(200).build();
+	}
+	
+	@GET
+	@Path("/deleteAll")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response delete(){
+		repository.deleteAll();
+		
 		return Response.status(200).build();
 	}
 

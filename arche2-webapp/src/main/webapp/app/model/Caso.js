@@ -5,5 +5,6 @@ Ext.define('Arche2.model.Caso', {
         useNull: true
     }],
 
-    hasOne: {model: 'Decisao', name: 'decisao'}
+    hasOne: {model: 'Decisao', name: 'decisao'},
+    hasOne: {model: 'RNF', name: 'rnf'}
 });

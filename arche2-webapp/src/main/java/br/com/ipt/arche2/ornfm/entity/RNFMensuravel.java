@@ -1,15 +1,27 @@
 package br.com.ipt.arche2.ornfm.entity;
 
+import java.util.List;
+
 
 public class RNFMensuravel extends RNF{
-	private Medida medida;
+	private List<Medida> medidas;
 
-	public Medida getMedida() {
-		return medida;
+	private Funcao funcao;
+
+	public Funcao getFuncao() {
+		return funcao;
 	}
 
-	public void setMedida(Medida medida) {
-		this.medida = medida;
+	public void setFuncao(Funcao funcao) {
+		this.funcao = funcao;
+	}
+
+	public List<Medida> getMedidas() {
+		return medidas;
+	}
+
+	public void setMedidas(List<Medida> medidas) {
+		this.medidas = medidas;
 	}
 	
 }

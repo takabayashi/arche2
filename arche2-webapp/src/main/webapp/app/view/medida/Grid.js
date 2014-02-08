@@ -53,7 +53,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
         sortable: true,
         dataIndex: 'valor',
         field: {
-            xtype: 'textfield'
+            xtype: 'numberfield'
         }
     }],
     

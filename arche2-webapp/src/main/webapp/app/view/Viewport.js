@@ -5,9 +5,9 @@ Ext.define('Arche2.view.Viewport', {
  
     requires: [
         'Arche2.view.geral.TabPanel',
-        'Arche2.view.geral.Formulario',
-        'Arche2.view.sugestao.Grid',
-        'Arche2.view.decisao.Formulario'
+        'Arche2.view.caso.SugestaoGrid',
+        'Arche2.view.caso.FormularioProblema',
+        'Arche2.view.caso.FormularioSolucao'
     ],
  
     initComponent: function() {
@@ -48,22 +48,24 @@ Ext.define('Arche2.view.Viewport', {
                 autoHeight: true,
                 autoWidth: true,
                 layout: {
-                	type: 'table',
-                	columns: 1
+                	type: 'border'
                 },
                 items:[{
                 	xtype: 'panel',
-                	layout: 'table',
-                	columns: 2,
+                	region: 'center',
+                	layout: 'card',
+                	id: 'wizardPanel',
                 	items: [{
-	            			xtype: 'geralform',
-	            			heigth: '100%'
+	            			xtype: 'problemaform'
 	            		},{
-	            			xtype: 'decisaoform'
+	            			xtype: 'solucaoform'
 	            		}]
-                	  },{
-                    	  xtype: 'sugestaogrid'
-                      }]
+                	},{
+                		region: 'south',
+                		xtype: 'sugestaogrid',
+                		id: 'sugestaogrid',
+                		height: 150,
+                    }]
             }]
         });
  

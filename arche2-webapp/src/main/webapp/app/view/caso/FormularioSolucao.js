@@ -24,17 +24,15 @@ var tiposDecisoes = Ext.create('Ext.data.Store', {
     ]
 });
 
-Ext.define('Arche2.view.decisao.Formulario', {
+Ext.define('Arche2.view.caso.FormularioSolucao', {
     extend: 'Ext.form.Panel',
-    alias : 'widget.decisaoform',
+    alias : 'widget.solucaoform',
 
     bodyPadding: 50,
     url: '',
-    title: 'Decisao Arquitetural - Solução', 
+    title: 'Decisao Arquitetural (Solução)', 
     layout: 'anchor',
-    height: 600,
-    id: 'decisaoform',
-    disabled: true,
+    id: 'solucaoform',
     
     defaults: {
         anchor: '100%'
@@ -107,10 +105,10 @@ Ext.define('Arche2.view.decisao.Formulario', {
             },
             {
                 xtype: 'textarea',
-                name : 'riscos',
-                id : 'riscos',
+                name : 'risco',
+                id : 'risco',
                 rows: 3,
-                fieldLabel: 'Riscos',
+                fieldLabel: 'Risco',
                 emptyText: 'Faça uma breve descrição dos riscos que envolvem essa decisão arquitetural...'
             },
             {
@@ -122,26 +120,24 @@ Ext.define('Arche2.view.decisao.Formulario', {
                 emptyText: 'Faça uma breve descrição do escopo que envolve essa decisão...'
             },
             {
-                xtype: 'textfield',
+                xtype: 'numberfield',
                 name : 'custo',
                 id : 'custo',
-                fieldLabel: 'Custo',
-                emptyText: 'R$ 00'
+                fieldLabel: 'Custo $'
             }
         ]
     }],
 
     buttons: [{
         text: 'Limpar',
-        handler: function() {
-
-        }
+        action: 'limpar'
     },{
-    	text: 'Incluir Nova Decisão',
-    	id: 'novaDecisaoButton',
+        text: 'Cancelar',
+        action: 'cancelar'
+    },{
+    	text: 'Salvar Novo Caso',
+        formBind: true,
+        disabled: true,
         action: 'addNovoCaso'
-    },{
-    	text: 'Alterar Decisão',
-        action: 'updateDecisao'
     }]
 });

@@ -42,6 +42,28 @@ Ext.define('Arche2.view.geral.TabPanel' ,{
         	xtype: 'funcaogrid',
         	itemId: 'funcaogrid'
         }]
+    },{
+    	title: 'Controles Gerais',
+        items: [{
+        	xtype: 'button',
+        	text: 'Resetar Casos',
+            handler: function(){
+            	Ext.Ajax.request({
+            	    url: 'rest/caso/deleteAll',
+            	    headers: { 'Content-Type': 'application/json;charset=utf-8', 'Accept': 'application/json'},
+                    method: 'GET',
+                    
+            	    success: function(response, opts) {
+            	    	Ext.Msg.alert('Sucesso', 'Todos os casos foram exlcuidos da Base...');
+
+            	    },
+            	    failure: function(response, opts) {
+            	        console.log('server-side failure with status code ' + response.status);
+            	        Ext.Msg.alert('Erro', 'Olhe o log, pois lagum erro ocorreu!!!');
+            	    }
+            	});
+            }
+        }]
     }]	
 
 });

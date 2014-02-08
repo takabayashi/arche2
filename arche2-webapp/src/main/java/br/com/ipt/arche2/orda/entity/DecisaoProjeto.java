@@ -2,14 +2,9 @@ package br.com.ipt.arche2.orda.entity;
 
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
-
 import br.com.ipt.arche2.util.JsonUtils;
 
 public class DecisaoProjeto {
-	@Id
-	private String id;
-	
 	private String resumo;
 	private String racional;
 	private String escopo;
@@ -25,14 +20,6 @@ public class DecisaoProjeto {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getResumo() {
