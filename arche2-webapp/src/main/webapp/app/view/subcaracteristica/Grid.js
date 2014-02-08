@@ -6,7 +6,6 @@ Ext.define('Arche2.view.subcaracteristica.Grid' ,{
    	requires: ['Ext.toolbar.Paging'],
    	store: 'SubCaracteristicas',
     frame: false,
-    minHeight: 200,
     plugins: [subCaracteristicaRowEditing],
     
     columns: [{
@@ -44,12 +43,5 @@ Ext.define('Arche2.view.subcaracteristica.Grid' ,{
             iconCls: 'icon-delete',
             action: 'delete'
         }]
-    },{
-        xtype: 'pagingtoolbar',
-        dock:'bottom',
-        store: 'SubCaracteristicas',
-        displayInfo: true,
-        displayMsg: 'Mostrando SubCaracteristicas {0} - {1} de {2}',
-        emptyMsg: "Nenhuma Subcaracteristica encontrada."
     }]
 });

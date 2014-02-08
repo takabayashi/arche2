@@ -6,7 +6,6 @@ Ext.define('Arche2.view.funcao.Grid' ,{
    	requires: ['Ext.toolbar.Paging'],
    	store: 'Funcoes',
     frame: false,
-    minHeight: 200,
     plugins: [funcaoRowEditing],
     
     columns: [{
@@ -38,12 +37,5 @@ Ext.define('Arche2.view.funcao.Grid' ,{
             iconCls: 'icon-delete',
             action: 'delete'
         }]
-    },{
-        xtype: 'pagingtoolbar',
-        dock:'bottom',
-        store: 'Funcoes',
-        displayInfo: true,
-        displayMsg: 'Mostrando Funcoes {0} - {1} de {2}',
-        emptyMsg: "Nenhuma funcao encontrada."
     }]
 });

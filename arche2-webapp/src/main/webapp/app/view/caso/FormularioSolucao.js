@@ -56,7 +56,8 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 title: 'Resumo do Requisito Funcional Atendido',
                 collapsible: true,
                 id: 'resumoFormDecisao',
-                html: getMessage('arche2.default.resumo')
+                html: getMessage('arche2.default.resumo'),
+                margin: '10 0 20 0 0'
             },    
             {
             	xtype: 'combo',

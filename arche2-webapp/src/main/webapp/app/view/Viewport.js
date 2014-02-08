@@ -55,6 +55,7 @@ Ext.define('Arche2.view.Viewport', {
                 	region: 'center',
                 	layout: 'card',
                 	id: 'wizardPanel',
+                	
                 	items: [{
 	            			xtype: 'problemaform'
 	            		},{

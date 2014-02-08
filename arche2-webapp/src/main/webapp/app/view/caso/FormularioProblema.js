@@ -103,6 +103,7 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
         title: 'Resumo',
         collapsible: true,
         id: 'resumo',
+        margin: '10 0 10 0 0',
         html: getMessage('arche2.default.resumo')
     }],
 

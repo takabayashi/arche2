@@ -6,7 +6,6 @@ Ext.define('Arche2.view.metodo.Grid' ,{
    	requires: ['Ext.toolbar.Paging'],
    	store: 'Metodos',
     frame: false,
-    minHeight: 200,
     plugins: [metodoRowEditing],
     
     columns: [{
@@ -38,12 +37,5 @@ Ext.define('Arche2.view.metodo.Grid' ,{
             iconCls: 'icon-delete',
             action: 'delete'
         }]
-    },{
-        xtype: 'pagingtoolbar',
-        dock:'bottom',
-        store: 'Metodos',
-        displayInfo: true,
-        displayMsg: 'Mostrando Metodos {0} - {1} de {2}',
-        emptyMsg: "Nenhum metodo encontrada."
     }]
 });

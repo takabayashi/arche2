@@ -5,7 +5,6 @@ Ext.define('Arche2.view.entidade.Grid' ,{
 	alias : 'widget.entidadegrid',
    	requires: ['Ext.toolbar.Paging'],
    	store: 'Entidades',
-    frame: false,
     plugins: [entidadeRowEditing],
     
     columns: [{
@@ -29,12 +28,5 @@ Ext.define('Arche2.view.entidade.Grid' ,{
             iconCls: 'icon-delete',
             action: 'delete'
         }]
-    },{
-        xtype: 'pagingtoolbar',
-        dock:'bottom',
-        store: 'Entidades',
-        displayInfo: true,
-        displayMsg: 'Mostrando Entidades {0} - {1} de {2}',
-        emptyMsg: "Nenhuma entidade encontrada."
     }]
 });

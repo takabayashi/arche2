@@ -7,7 +7,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
    	store: 'Medidas',
    	stateful: true,
     frame: false,
-    minHeight: 200,
+    height: 150,
     collapsible: true,
     plugins: [medidaRowEditing],
     
