@@ -10,6 +10,8 @@ Ext.define('Arche2.view.geral.Formulario', {
     url: '',
     title: 'Requisitos não Funcionais Mensuraveis - Problema', 
     layout: 'anchor',
+    height: 600,
+    id: 'geralform',
     
     defaults: {
         anchor: '100%'
@@ -70,12 +72,6 @@ Ext.define('Arche2.view.geral.Formulario', {
         store: [],
         margin: '10 0 10 0 0'
     },{
-        
-    	xtype: 'medidagrid',
-    	id: 'medidagrid',
-    	title: 'Medidas'
-
-    },{
     	xtype: 'combo',
     	fieldLabel: 'Função:',
     	name: 'funcao',
@@ -88,8 +84,21 @@ Ext.define('Arche2.view.geral.Formulario', {
         forceSelection: true,
         allowBlank: false,
         emptyText: 'Função de Medição...',
-        margin: '10 0 10 0 0'
+        margin: '10 0 10 0 0',
+        listeners:{
+            scope: this,
+            'select': function(combo, records, eOpts){
+            	Ext.getCmp('medidagrid').setDisabled(false);
+            }
+        }
         
+    },{
+        
+    	xtype: 'medidagrid',
+    	id: 'medidagrid',
+    	title: 'Medidas',
+    	disabled: true
+
     },{
         xtype: 'fieldset',
         title: 'Resumo',
@@ -125,20 +134,38 @@ Ext.define('Arche2.view.geral.Formulario', {
         		var caracteristica = Ext.getCmp('caracteristica').getValue();
                 var subcaracteristica = Ext.getCmp('subcaracteristica').getValue();
                 var funcao = Ext.getCmp('funcao').getValue();
-        	}
+                
+                var rnf = {};
+                rnf.caracteristica = caracteristica;
+                rnf.subcaracteristica = subcaracteristica;
+                rnf.funcao = funcao;
+                rnf.resumo = Ext.getCmp('resumo').html;
+                
+                var lista = [];
+        		for(var i=0; i<medidas.length; i++){
+        			lista.push({nome : medidas[i].data.nome, valeo: medidas[i].data.valor, entidade: medidas[i].data.entidade, metodo: medidas[i].data.entidade});
+        		}
+        		rnf.medidas = lista;
+                
+        		window.rnf = rnf;
+                
+                //atualiza o texto da decisão
+                Ext.getCmp('resumoFormDecisao').update(Ext.getCmp('resumo'));
+                
+                //reseta o proximo formulario
+                Ext.getCmp('decisaoform').getForm().reset();
+                
+                //desbloqueia o proximo formulario
+                Ext.getCmp('decisaoform').setDisabled(false);
+                Ext.getCmp('geralform').setDisabled(true);
+                
+                Ext.getCmp('novaDecisaoButton').setDisabled(false);
+                
+            }
         	
         	//tenta encontrar alguma solucao similar
         	
         	//nao encontra e cria um novo caso (Problema + Solução)
-        	
-        	
-        }
-    }, {
-        text: 'Incluir Novo Problema',
-        formBind: true,
-        disabled: true,
-        handler: function() {
-        	
         	
         	
         }

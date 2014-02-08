@@ -17,7 +17,7 @@ public class RestEasyResourceRegister extends Application{
 	        classes.add(ExampleService.class);
 	        classes.add(EntidadeService.class);
 	        classes.add(MetodoService.class);
-	        classes.add(RNFService.class);
+	        classes.add(CasoService.class);
 	        classes.add(DecisaoProjetoService.class);
 	        classes.add(UsuarioService.class);
 	        classes.add(Caracteristica.class);

@@ -11,7 +11,8 @@ Ext.application({
         'Caracteristicas',
         'SubCaracteristicas',
         'Funcoes',
-        'Sugestoes'
+        'Sugestoes',
+        'Casos'
     ],
  
     autoCreateViewport: true

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
+import br.com.ipt.arche2.util.JsonUtils;
+
 public class DecisaoProjeto {
 	@Id
 	private String id;
@@ -89,4 +91,8 @@ public class DecisaoProjeto {
 		this.historicos = historicos;
 	}
 
+	@Override
+	public String toString() {
+		return JsonUtils.object2JsonString(this);
+	}
 }

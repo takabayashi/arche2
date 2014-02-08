@@ -13,30 +13,29 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.ipt.arche2.ornfm.entity.RNF;
-import br.com.ipt.arche2.ornfm.entity.RNFMensuravel;
-import br.com.ipt.arche2.repository.RNFRepository;
+import br.com.ipt.arche2.entity.Caso;
+import br.com.ipt.arche2.repository.CasoRepository;
 
 @Component
-@Path("/rest/rnf")
-public class RNFService {
+@Path("/rest/caso")
+public class CasoService {
 	@Autowired
-	protected RNFRepository repository;
+	protected CasoRepository repository;
 	
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response create(RNFMensuravel rnf){
-		repository.save(rnf);
-		return Response.status(200).entity(rnf).build();
+	public Response create(Caso caso){
+		repository.save(caso);
+		return Response.status(200).entity(caso).build();
 	}
 	
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response all(){
-		List<RNF> lista = repository.findAll();
+		List<Caso> lista = repository.findAll();
 		
 		return Response.status(200).entity(lista).build();
 	}
@@ -45,16 +44,16 @@ public class RNFService {
 	@Path("/update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response update(RNFMensuravel rnf){
-		repository.save(rnf);
-		return Response.status(200).entity(rnf).build();
+	public Response update(Caso caso){
+		repository.save(caso);
+		return Response.status(200).entity(caso).build();
 	}
 	
 	@POST
 	@Path("/delete")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response delete(RNFMensuravel rnf){
-		repository.delete(rnf);
+	public Response delete(Caso caso){
+		repository.delete(caso);
 		return Response.status(200).build();
 	}
 

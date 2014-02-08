@@ -32,7 +32,7 @@ Ext.define('Arche2.view.Viewport', {
                 region: 'east',
                 collapsible: true,
                 title: 'Cadastros de Apoio',
-                width: '100%',
+                width: '50%',
                 resizable: true,
                	collapsed: true,
                 items: [{

@@ -21,7 +21,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
         }
     }, {
         header: 'Entidade',
-        width: 300,
+        width: 150,
         sortable: true,
         dataIndex: 'entidade',
         field: {
@@ -35,7 +35,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
         }
     },{
         header: 'Método',
-        width: 400,
+        width: 150,
         sortable: true,
         dataIndex: 'metodo',
         field: {
@@ -49,7 +49,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
         }
     },{
         text: 'Valor',
-        width: 100,
+        width: 70,
         sortable: true,
         dataIndex: 'valor',
         field: {
