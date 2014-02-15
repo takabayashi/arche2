@@ -3,10 +3,10 @@ Ext.define('Arche2.model.Medida', {
     fields: [{
         name: 'id',
         useNull: true
-    }, 'nome', 'entidade', 'metodo', 'valor'],
+    }, 'tipo', 'entidade', 'metodo', 'valor'],
     validations: [{
         type: 'length',
-        field: 'nome',
+        field: 'tipo',
         min: 1
     }, {
         type: 'length',

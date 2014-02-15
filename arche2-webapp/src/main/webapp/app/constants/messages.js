@@ -1,5 +1,5 @@
 var MESSAGES = {
-	'arche2.template.resumo':'O sistema deverá ter {0} de {1} ({2}) {3}',
+	'arche2.template.resumo':'O {0} do sistema deverá ser de {1} ({2}) {3}',
 	'arche2.default.resumo': '<p>Nenhuma medida foi indicada...</p>'
 };
 

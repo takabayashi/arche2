@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 
 import br.com.ipt.arche2.util.JsonUtils;
 
-public class Entidade {
+public class TipoMedida {
 	@Id
 	private String id;
 	

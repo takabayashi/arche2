@@ -12,12 +12,18 @@ Ext.define('Arche2.view.medida.Grid' ,{
     plugins: [medidaRowEditing],
     
     columns: [{
-        text: 'Nome',
+        text: 'Tipo',
         flex: 1,
         sortable: true,
-        dataIndex: 'nome',
+        dataIndex: 'tipo',
         field: {
-            xtype: 'textfield'
+            xtype: 'combo',
+            store: Ext.create('Arche2.store.TipoMedidas'),
+            queryMode: 'remote',
+            typeAhead:true,
+            forceSelection: true,
+            displayField: 'nome',
+            valueField: 'nome'
         }
     }, {
         header: 'Entidade',
@@ -27,7 +33,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
         field: {
             xtype: 'combo',
             store: Ext.create('Arche2.store.Entidades'),
-            queryMode: 'local',
+            queryMode: 'remote',
             typeAhead:true,
             forceSelection: true,
             displayField: 'nome',
@@ -41,7 +47,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
         field: {
             xtype: 'combo',
             store: Ext.create('Arche2.store.Metodos'),
-            queryMode: 'local',
+            queryMode: 'remote',
             typeAhead:true,
             forceSelection: true,
             displayField: 'nome',

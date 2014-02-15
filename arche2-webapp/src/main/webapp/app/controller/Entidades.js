@@ -14,16 +14,16 @@ Ext.define('Arche2.controller.Entidades', {
  
     init: function() {
         this.control({
-            'entidadegrid button[action=add]': {
-                click: this.addEntidade
+            'entidadegrid button[action=adicionar]': {
+                click: this.adicionar
             },
-            'entidadegrid button[action=delete]': {
-                click: this.deleteEntidade
+            'entidadegrid button[action=deletar]': {
+                click: this.deletar
             }
         });
     },
  
-    addEntidade: function(grid, record) {
+    adicionar: function(grid, record) {
     	var store = this.getEntidadesStore();
     	var entidade = Ext.create('Arche2.model.Entidade');
     	
@@ -32,7 +32,7 @@ Ext.define('Arche2.controller.Entidades', {
         entidadeRowEditing.startEdit(0, 0);
     },
  
-    deleteEntidade: function(button) {
+    deletar: function(button) {
     	var grid = this.getEntidadeGrid();
         var record = grid.getSelectionModel().getSelection();
         var store = this.getEntidadesStore();

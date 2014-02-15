@@ -1,20 +1,21 @@
-var entidadeRowEditing = Ext.create('Ext.grid.plugin.RowEditing');
+var tipoMedidaRowEditing = Ext.create('Ext.grid.plugin.RowEditing');
 
-Ext.define('Arche2.view.entidade.Grid' ,{
+Ext.define('Arche2.view.tipomedida.Grid' ,{
 	extend: 'Ext.grid.Panel',
-	alias : 'widget.entidadegrid',
+	alias : 'widget.tipomedidagrid',
    	requires: ['Ext.toolbar.Paging'],
-   	store: 'Entidades',
-    plugins: [entidadeRowEditing],
+   	store: 'TipoMedidas',
+    frame: false,
+    plugins: [tipoMedidaRowEditing],
     
     columns: [{
-        text: 'Entidade Pai',
+        text: 'Medida Pai',
         flex: 1,
         sortable: true,
         dataIndex: 'pai',
         field: {
             xtype: 'combo',
-            store: Ext.create('Arche2.store.Entidades'), 
+            store: Ext.create('Arche2.store.TipoMedidas'), 
             queryMode: 'remote',
             typeAhead:true,
             forceSelection: true,

@@ -97,7 +97,7 @@ Ext.define('Arche2.controller.Casos', {
             
             var lista = [];
     		for(var i=0; i<medidas.length; i++){
-    			lista.push({nome : medidas[i].data.nome, valor: medidas[i].data.valor, entidade: medidas[i].data.entidade, metodo: medidas[i].data.entidade});
+    			lista.push({tipo : medidas[i].data.tipo, valor: medidas[i].data.valor, entidade: medidas[i].data.entidade, metodo: medidas[i].data.entidade});
     		}
     		rnf.medidas = lista;
             
@@ -209,7 +209,7 @@ Ext.define('Arche2.controller.Casos', {
     	//prepara o text descritivo
     	var rnf = window.listaSugestoes[record.data.casoId].rnf;
     	for(var i=0; i<rnf.medidas.length; i++){
-    		var texto = getMessage("arche2.template.resumo", rnf.medidas[i].nome, rnf.medidas[i].valor, rnf.medidas[i].entidade, rnf.funcao);
+    		var texto = getMessage("arche2.template.resumo", rnf.medidas[i].tipo, rnf.medidas[i].valor, rnf.medidas[i].entidade, rnf.funcao);
     		var htmlTexto = "<h1>" + rnf.nome + "</h1>";
     		htmlTexto += "<h2>" + rnf.subcaracteristica.nome + "</h2>";
     		htmlTexto += "<p>" + texto + "</p>";

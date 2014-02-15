@@ -8,7 +8,7 @@ public class Medida {
 	@Id
 	private String id;
 	
-	private String nome;
+	private String tipo;
 	
 	private String entidade;
 	
@@ -24,12 +24,12 @@ public class Medida {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getEntidade() {

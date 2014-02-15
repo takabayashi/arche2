@@ -12,7 +12,8 @@ Ext.application({
         'SubCaracteristicas',
         'Funcoes',
         'Sugestoes',
-        'Casos'
+        'Casos',
+        'TipoMedidas'
     ],
  
     autoCreateViewport: true

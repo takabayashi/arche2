@@ -1,4 +1,4 @@
-Ext.define('Arche2.model.Entidade', {
+Ext.define('Arche2.model.TipoMedida', {
     extend: 'Ext.data.Model',
     fields: [{
         name: 'id',

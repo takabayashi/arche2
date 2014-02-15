@@ -35,7 +35,7 @@ Ext.define('Arche2.store.Funcoes', {
                     record.set('id', returnObj['id']);
                 }
                 
-                Ext.Msg.alert(name, Ext.String.format("{0} funcao: {1} id {2}", name, record.get('nome'), record.get('id')));
+                console.log(name, Ext.String.format("{0} funcao: {1} id {2}", name, record.get('nome'), record.get('id')));
             }
         }
     });

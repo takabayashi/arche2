@@ -18,7 +18,7 @@ Ext.define('Arche2.store.Medidas', {
     	var resumoHtml = '';
 		
 		for(var i=0; i<medidas.length; i++){
-			resumoHtml += '<p>' + getMessage('arche2.template.resumo',[medidas[i].data.nome, medidas[i].data.valor, medidas[i].data.entidade, funcao] ) + '</p>';
+			resumoHtml += '<p>' + getMessage('arche2.template.resumo',[medidas[i].data.tipo, medidas[i].data.valor, medidas[i].data.entidade, funcao] ) + '</p>';
 		}
 		
 		Ext.getCmp('resumo').update(resumoHtml);
