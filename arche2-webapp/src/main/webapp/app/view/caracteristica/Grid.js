@@ -1,4 +1,10 @@
-var caracteristicaRowEditing = Ext.create('Ext.grid.plugin.RowEditing');
+var caracteristicaRowEditing = Ext.create('Ext.grid.plugin.RowEditing',{
+	listeners:{
+		canceledit: function( editor, context, eOpts ){
+			context.grid.store.remove(context.record);
+		}
+	}
+});
 
 Ext.define('Arche2.view.caracteristica.Grid' ,{
 	extend: 'Ext.grid.Panel',

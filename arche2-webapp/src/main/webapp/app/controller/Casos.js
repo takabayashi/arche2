@@ -91,7 +91,7 @@ Ext.define('Arche2.controller.Casos', {
             
             var rnf = {};
             rnf.nome = caracteristica;
-            rnf.subcaracteristica = rnf.subcaracteristica = {}, rnf.subcaracteristica.nome = subcaracteristica;
+            rnf.subcaracteristica = rnf.subcaracteristica = {}, rnf.subcaracteristica = subcaracteristica;
             rnf.funcao = {}, rnf.funcao.nome = funcao;
             //rnf.resumo = Ext.getCmp('resumo').html;
             
@@ -211,7 +211,7 @@ Ext.define('Arche2.controller.Casos', {
     	for(var i=0; i<rnf.medidas.length; i++){
     		var texto = getMessage("arche2.template.resumo", rnf.medidas[i].tipo, rnf.medidas[i].valor, rnf.medidas[i].entidade, rnf.funcao);
     		var htmlTexto = "<h1>" + rnf.nome + "</h1>";
-    		htmlTexto += "<h2>" + rnf.subcaracteristica.nome + "</h2>";
+    		htmlTexto += "<h2>" + rnf.subcaracteristica + "</h2>";
     		htmlTexto += "<p>" + texto + "</p>";
     		
     		Ext.getCmp('resumoFormDecisao').update(htmlTexto);

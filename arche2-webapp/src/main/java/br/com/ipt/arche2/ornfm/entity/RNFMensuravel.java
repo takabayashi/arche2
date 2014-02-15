@@ -3,11 +3,31 @@ package br.com.ipt.arche2.ornfm.entity;
 import java.util.List;
 
 
-public class RNFMensuravel extends RNF{
-	private List<Medida> medidas;
+public class RNFMensuravel {
+	public List<Medida> medidas;
 
-	private Funcao funcao;
+	public Funcao funcao;
 
+	public String nome;
+	
+	public String subcaracteristica;
+	
+	public String getSubcaracteristica() {
+		return subcaracteristica;
+	}
+
+	public void setSubcaracteristica(String subcaracteristica) {
+		this.subcaracteristica = subcaracteristica;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	public Funcao getFuncao() {
 		return funcao;
 	}

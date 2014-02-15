@@ -1,4 +1,10 @@
-var funcaoRowEditing = Ext.create('Ext.grid.plugin.RowEditing');
+var funcaoRowEditing = Ext.create('Ext.grid.plugin.RowEditing',{
+	listeners:{
+		canceledit: function( editor, context, eOpts ){
+			context.grid.store.remove(context.record);
+		}
+	}
+});
 
 Ext.define('Arche2.view.funcao.Grid' ,{
 	extend: 'Ext.grid.Panel',

@@ -26,6 +26,7 @@ Ext.define('Arche2.controller.Entidades', {
     adicionar: function(grid, record) {
     	var store = this.getEntidadesStore();
     	var entidade = Ext.create('Arche2.model.Entidade');
+    	entidade.set('limiteValorSuperior', 1);
     	
     	store.insert(0, entidade);
     	

@@ -1,4 +1,10 @@
-var medidaRowEditing = Ext.create('Ext.grid.plugin.RowEditing');
+var medidaRowEditing = Ext.create('Ext.grid.plugin.RowEditing',{
+	listeners:{
+		canceledit: function( editor, context, eOpts ){
+			context.grid.store.remove(context.record);
+		}
+	}
+});
 
 Ext.define('Arche2.view.medida.Grid' ,{
 	extend: 'Ext.grid.Panel',
@@ -59,7 +65,11 @@ Ext.define('Arche2.view.medida.Grid' ,{
         sortable: true,
         dataIndex: 'valor',
         field: {
-            xtype: 'numberfield'
+            xtype: 'numberfield',
+            minValue: 0,
+            maxValue: 100, 
+            value: 0
+            	
         }
     }],
     

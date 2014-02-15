@@ -44,7 +44,18 @@ public class CasoService {
 		///aplica a lógica para devolver apenas os casos similares
 		for (Caso caso : listaCasos) {
 			float similaridade = 98.05f;
-			sugestoes.add(new Sugestao(caso, similaridade));
+			
+			/**
+			 *  Aqui inicia a lógica para calculo de similaridades
+			 */
+			
+			
+			
+			//verifica se a similaridade é maior que o indicado
+			if(similaridade >= 50){
+				//encontrou um caso similar
+				sugestoes.add(new Sugestao(caso, similaridade));
+			}
 		}
 		
 		return Response.status(200).entity(sugestoes).build();

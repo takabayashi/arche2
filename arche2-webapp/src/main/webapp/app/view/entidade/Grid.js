@@ -1,4 +1,10 @@
-var entidadeRowEditing = Ext.create('Ext.grid.plugin.RowEditing');
+var entidadeRowEditing = Ext.create('Ext.grid.plugin.RowEditing',{
+	listeners:{
+		canceledit: function( editor, context, eOpts ){
+			context.grid.store.remove(context.record);
+		}
+	}
+});
 
 Ext.define('Arche2.view.entidade.Grid' ,{
 	extend: 'Ext.grid.Panel',
@@ -28,6 +34,22 @@ Ext.define('Arche2.view.entidade.Grid' ,{
         dataIndex: 'nome',
         field: {
             xtype: 'textfield'
+        }
+    },{
+        text: 'Valor minimo',
+        dataIndex: 'limiteValorInferior',
+        field: {
+            xtype: 'numberfield',
+            value: 0,
+            minValue: 0
+        }
+    },{
+        text: 'Valor máximo',
+        dataIndex: 'limiteValorSuperior',
+        field: {
+            xtype: 'numberfield',
+            value: 100,
+            minValue: 1
         }
     }],
     

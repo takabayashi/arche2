@@ -2,15 +2,13 @@ package br.com.ipt.arche2.ornfm.entity;
 
 import org.springframework.data.annotation.Id;
 
-import br.com.ipt.arche2.util.JsonUtils;
-
 public class Funcao {
 	@Id
-	private String id;
+	public String id;
 	
-	private String nome;
+	public String nome;
 	
-	private String algoritmo;
+	public String algoritmo;
 	
 	public String getId() {
 		return id;
@@ -38,7 +36,32 @@ public class Funcao {
 
 	@Override
 	public String toString() {
-		return JsonUtils.object2JsonString(this);
+		return this.nome;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Funcao other = (Funcao) obj;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
 	}
 
 }

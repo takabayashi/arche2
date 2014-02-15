@@ -3,5 +3,5 @@ Ext.define('Arche2.model.Entidade', {
     fields: [{
         name: 'id',
         useNull: true
-    }, 'nome', 'pai']
+    }, 'nome', 'pai', {name: 'limiteValorInferior', type: 'int'}, {name: 'limiteValorSuperior', type: 'int'}]
 });
