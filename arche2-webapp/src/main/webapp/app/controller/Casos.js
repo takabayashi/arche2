@@ -47,66 +47,54 @@ Ext.define('Arche2.controller.Casos', {
     },
  
     addNovoCaso: function(button) {
-    	var decisao = {};
-    	decisao.tipo = Ext.getCmp('tipo').getValue();
-    	decisao.resumo = Ext.getCmp('resumoDecisao').getValue();
-    	decisao.estado = Ext.getCmp('estado').getValue();
-    	decisao.racional = Ext.getCmp('racional').getValue();
-    	decisao.risco = Ext.getCmp('risco').getValue();
-    	decisao.escopo = Ext.getCmp('escopo').getValue();
-    	decisao.custo = Ext.getCmp('custo').getValue();
-    	
-    	//prepara o historico
-    	var acao = Ext.getCmp('historico').getValue() == "" ? "Decisão Inicial":"Decisão Adaptada";
-    	
-    	decisao.historico = "06/10/2014 - " + getMessage("arche2.default.username") + " - "+ acao +"\n" + Ext.getCmp('historico').getValue();
-    	
-    	var novoCaso = {};
-    	novoCaso.rnf = window.rnf;
-    	novoCaso.decisao = decisao;
-    	
-    	console.log(JSON.stringify(novoCaso));
-    	
-    	var that = this;
-    	
-    	Ext.Ajax.request({
-    	    url: 'rest/caso/create',
-    	    headers: { 'Content-Type': 'application/json;charset=utf-8', 'Accept': 'application/json'},
-    	    jsonData: JSON.stringify(novoCaso),
-            method: 'POST',
-            
-    	    success: function(response, opts) {
-    	    	Ext.Msg.alert('Sucesso', 'Novo Caso registrado com sucesso!!!');
-    	    	
-    	    	that.cancelarFormularioSolucao(button);
-    	    },
-    	    failure: function(response, opts) {
-    	        console.log('server-side failure with status code ' + response.status);
-    	        Ext.Msg.alert('Erro', 'Olhe o log, pois lagum erro ocorreu!!!');
-    	    }
-    	});
+    	if(Ext.getCmp('medidagrid').getStore().data.items.length > 0){
+	    	var decisao = {};
+	    	decisao.tipo = Ext.getCmp('tipo').getValue();
+	    	decisao.resumo = Ext.getCmp('resumoDecisao').getValue();
+	    	decisao.estado = Ext.getCmp('estado').getValue();
+	    	decisao.racional = Ext.getCmp('racional').getValue();
+	    	decisao.risco = Ext.getCmp('risco').getValue();
+	    	decisao.escopo = Ext.getCmp('escopo').getValue();
+	    	decisao.custo = Ext.getCmp('custo').getValue();
+	    	
+	    	//prepara o historico
+	    	var acao = Ext.getCmp('historico').getValue() == "" ? "Decisão Inicial":"Decisão Adaptada";
+	    	
+	    	decisao.historico = "06/10/2014 - " + getMessage("arche2.default.username") + " - "+ acao +"\n" + Ext.getCmp('historico').getValue();
+	    	
+	    	this.updateRNF();
+	            	
+	    	var novoCaso = {};
+	    	novoCaso.rnf = window.rnf;
+	    	novoCaso.decisao = decisao;
+	    	
+	    	console.log(JSON.stringify(novoCaso));
+	    	
+	    	var that = this;
+	    	
+	    	Ext.Ajax.request({
+	    	    url: 'rest/caso/create',
+	    	    headers: { 'Content-Type': 'application/json;charset=utf-8', 'Accept': 'application/json'},
+	    	    jsonData: JSON.stringify(novoCaso),
+	            method: 'POST',
+	            
+	    	    success: function(response, opts) {
+	    	    	Ext.Msg.alert('Sucesso', 'Novo Caso registrado com sucesso!!!');
+	    	    	
+	    	    	that.cancelarFormularioSolucao(button);
+	    	    },
+	    	    failure: function(response, opts) {
+	    	        console.log('server-side failure with status code ' + response.status);
+	    	        Ext.Msg.alert('Erro', 'Olhe o log, pois lagum erro ocorreu!!!');
+	    	    }
+	    	});
+    	}
     },
     
     sugerirSolucao: function(button){
     	if(Ext.getCmp('medidagrid').getStore().data.items.length > 0){
-    		var medidas = Ext.getCmp('medidagrid').getStore().data.items;
-    		var caracteristica = Ext.getCmp('caracteristica').getValue();
-            var subcaracteristica = Ext.getCmp('subcaracteristica').getValue();
-            var funcao = Ext.getCmp('funcao').getValue();
-            
-            var rnf = {};
-            rnf.nome = caracteristica;
-            rnf.subcaracteristica = rnf.subcaracteristica = {}, rnf.subcaracteristica = subcaracteristica;
-            rnf.funcao = {}, rnf.funcao.nome = funcao;
-            //rnf.resumo = Ext.getCmp('resumo').html;
-            
-            var lista = [];
-    		for(var i=0; i<medidas.length; i++){
-    			lista.push({tipo : medidas[i].data.tipo, valor: medidas[i].data.valor, entidade: medidas[i].data.entidade, metodo: medidas[i].data.entidade});
-    		}
-    		rnf.medidas = lista;
-            
-    		window.rnf = rnf;
+    		
+            this.updateRNF();
             
     		//busca os casos similares e caso nao encontre nenhum, permite o cadastro de 
     		this.buscarCasosSimilares();
@@ -142,11 +130,16 @@ Ext.define('Arche2.controller.Casos', {
     },
     
     startNovoCaso : function(button){
-		//atualiza o texto da decisão
-        Ext.getCmp('resumoFormDecisao').update(Ext.getCmp('resumo'));
-        
-        //desbloqueia o proximo formulario
-        Ext.getCmp('wizardPanel').getLayout().setActiveItem('solucaoform');
+    	if(Ext.getCmp('medidagrid').getStore().data.items.length > 0){
+			//atualiza o texto da decisão
+	        Ext.getCmp('resumoFormDecisao').update(Ext.getCmp('resumo'));
+	        
+	        //desbloqueia o proximo formulario
+	        Ext.getCmp('wizardPanel').getLayout().setActiveItem('solucaoform');
+	        
+    	}else{
+    		Ext.Msg.alert('Medidas', 'Ao menos uma medida deve ser informada');
+    	}
     },
     
     buscarCasosSimilares : function(){
@@ -214,13 +207,35 @@ Ext.define('Arche2.controller.Casos', {
     	
     	//prepara o text descritivo
     	var rnf = window.listaSugestoes[record.data.casoId].rnf;
+    	var htmlTexto = "<h1>" + rnf.nome + "</h1>";
+		htmlTexto += "<h2>" + rnf.subcaracteristica + "</h2>";
+		
     	for(var i=0; i<rnf.medidas.length; i++){
-    		var texto = getMessage("arche2.template.resumo", rnf.medidas[i].tipo, rnf.medidas[i].valor, rnf.medidas[i].entidade, rnf.funcao);
-    		var htmlTexto = "<h1>" + rnf.nome + "</h1>";
-    		htmlTexto += "<h2>" + rnf.subcaracteristica + "</h2>";
+    		var texto = getMessage("arche2.template.resumo", [rnf.medidas[i].tipo, rnf.medidas[i].valor, rnf.medidas[i].entidade, rnf.funcao.nome]);
     		htmlTexto += "<p>" + texto + "</p>";
-    		
-    		Ext.getCmp('resumoFormDecisao').update(htmlTexto);
     	}
+    	
+    	Ext.getCmp('resumoFormDecisao').update(htmlTexto);
+    },
+    
+    updateRNF : function(){
+    	var medidas = Ext.getCmp('medidagrid').getStore().data.items;
+		var caracteristica = Ext.getCmp('caracteristica').getValue();
+        var subcaracteristica = Ext.getCmp('subcaracteristica').getValue();
+        var funcao = Ext.getCmp('funcao').getValue();
+        
+    	var rnf = {};
+        rnf.nome = caracteristica;
+        rnf.subcaracteristica = rnf.subcaracteristica = {}, rnf.subcaracteristica = subcaracteristica;
+        rnf.funcao = {}, rnf.funcao.nome = funcao;
+        //rnf.resumo = Ext.getCmp('resumo').html;
+        
+        var lista = [];
+		for(var i=0; i<medidas.length; i++){
+			lista.push({tipo : medidas[i].data.tipo, valor: medidas[i].data.valor, entidade: medidas[i].data.entidade, metodo: medidas[i].data.entidade});
+		}
+		rnf.medidas = lista;
+        
+		window.rnf = rnf;
     }
 });
