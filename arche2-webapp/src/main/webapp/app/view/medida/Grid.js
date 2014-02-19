@@ -67,7 +67,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
         field: {
             xtype: 'numberfield',
             minValue: 0,
-            maxValue: 100, 
+            maxValue: 1000000000, 
             value: 0
             	
         }

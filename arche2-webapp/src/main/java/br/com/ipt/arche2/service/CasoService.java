@@ -161,7 +161,10 @@ public class CasoService {
 	@POST
 	@Path("/delete")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response delete(Caso caso){
+	public Response delete(String id){
+		Caso caso = new Caso();
+		caso.setId(id);
+		
 		repository.delete(caso);
 		return Response.status(200).build();
 	}

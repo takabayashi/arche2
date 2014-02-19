@@ -25,6 +25,9 @@ Ext.define('Arche2.controller.Casos', {
             'solucaoform button[action=addNovoCaso]': {
                 click: this.addNovoCaso
             },
+            'solucaoform button[action=deleteCaso]': {
+                click: this.deleteCaso
+            },
             'problemaform button[action=sugerirSolucao]': {
                 click: this.sugerirSolucao
             },
@@ -82,6 +85,9 @@ Ext.define('Arche2.controller.Casos', {
 	    	    	Ext.Msg.alert('Sucesso', 'Novo Caso registrado com sucesso!!!');
 	    	    	
 	    	    	that.cancelarFormularioSolucao(button);
+	    	    	
+	    	    	//atualiza a lista de casos similares
+			    	that.buscarCasosSimilares();
 	    	    },
 	    	    failure: function(response, opts) {
 	    	        console.log('server-side failure with status code ' + response.status);
@@ -203,6 +209,7 @@ Ext.define('Arche2.controller.Casos', {
         
     	var decisao = window.listaSugestoes[record.data.casoId].decisao;
     	
+    	Ext.getCmp('idCaso').setValue(record.data.casoId);
     	Ext.getCmp('tipo').setValue(decisao.tipo);
     	Ext.getCmp('resumoDecisao').setValue(decisao.resumo);
     	Ext.getCmp('estado').setValue(decisao.estado);
@@ -244,5 +251,35 @@ Ext.define('Arche2.controller.Casos', {
 		rnf.medidas = lista;
         
 		window.rnf = rnf;
+    },
+    
+    deleteCaso : function(){
+    	var that = this;
+    	
+		Ext.Msg.show({
+			title:'Atenção',
+			msg: 'Vc realmente deseja excluir o caso selecionado?',
+			buttons: Ext.Msg.OKCANCEL,
+			icon: Ext.Msg.QUESTION,
+    	    fn: function(bt){
+    	    	Ext.Ajax.request({
+    	    		url: 'rest/caso/delete',
+				    headers: { 'Content-Type': 'application/json;charset=utf-8', 'Accept': 'application/json'},
+				    jsonData: Ext.getCmp('idCaso').getValue(),
+				    method: 'POST',
+				    
+				    success: function(response, opts) {
+				    	console.log('Caso excluido com sucesso!!!');
+				    	
+				    	//atualiza a lista de casos similares
+				    	that.buscarCasosSimilares();
+				    },
+		    	    failure: function(response, opts) {
+		    	        console.log('server-side failure with status code ' + response.status);
+		    	        Ext.Msg.alert('Erro', 'Olhe o log, pois lagum erro ocorreu!!!');
+		    	    }
+				}); 
+    	     }
+	     });
     }
 });

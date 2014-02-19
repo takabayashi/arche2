@@ -57,16 +57,19 @@ Ext.define('Arche2.view.Viewport', {
                 	id: 'wizardPanel',
                 	
                 	items: [{
-	            			xtype: 'problemaform'
+	            			xtype: 'problemaform',
+	            			overflowY: 'auto'
 	            		},{
-	            			xtype: 'solucaoform'
+	            			xtype: 'solucaoform',
+	            			overflowY: 'auto'
 	            		}]
                 	},{
                 		region: 'south',
                 		xtype: 'sugestaogrid',
                 		id: 'sugestaogrid',
+                		resizable: true,
                 		collapsed: true,
-                		height: 150,
+                		height: 200,
                     }]
             }]
         });

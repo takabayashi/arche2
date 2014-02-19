@@ -58,7 +58,15 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 id: 'resumoFormDecisao',
                 html: getMessage('arche2.default.resumo'),
                 margin: '10 0 20 0 0'
-            },    
+            },
+            {
+            	xtype: 'textfield',
+                name : 'idCaso',
+                id: 'idCaso',
+                fieldLabel: 'idCaso',
+                hidden:true,
+                allowBlank: true
+            },
             {
             	xtype: 'combo',
                 name : 'tipo',
@@ -147,6 +155,9 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
     },{
         text: 'Cancelar',
         action: 'cancelar'
+    },{
+    	text: 'Excluir Caso Atual',
+        action: 'deleteCaso'
     },{
     	text: 'Salvar Novo Caso',
         formBind: true,
