@@ -13,7 +13,8 @@ Ext.application({
         'Funcoes',
         'Sugestoes',
         'Casos',
-        'TipoMedidas'
+        'TipoMedidas',
+        'Pesos'
     ],
  
     autoCreateViewport: true

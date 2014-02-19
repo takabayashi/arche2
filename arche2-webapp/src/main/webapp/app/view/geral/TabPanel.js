@@ -9,6 +9,7 @@ Ext.define('Arche2.view.geral.TabPanel' ,{
 			'Arche2.view.caracteristica.Grid',
 			'Arche2.view.subcaracteristica.Grid',
 			'Arche2.view.funcao.Grid',
+			'Arche2.view.tipomedida.Grid',
 			'Arche2.view.tipomedida.Grid'
 	           ],
 	activeTab: 0,
@@ -48,6 +49,12 @@ Ext.define('Arche2.view.geral.TabPanel' ,{
         items: [{
         	xtype: 'tipomedidagrid',
         	itemId: 'tipomedidagrid'
+        }]
+    },{
+        title: 'Pesos de Similaridade',
+        items: [{
+        	xtype: 'pesogrid',
+        	itemId: 'pesogrid'
         }]
     },{
     	title: 'Controles Gerais',

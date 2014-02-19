@@ -11,7 +11,7 @@ import br.com.ipt.arche2.ornfm.entity.RNFMensuravel;
 import br.com.ipt.arche2.repository.EntidadeRepository;
 
 @Component
-public class NumericSimilarityAlgorithm implements LocalSimilarity {
+public class NumericSimilarityAlgorithm extends GenericAlgorithm implements LocalSimilarity {
 	
 	@Autowired
 	protected static EntidadeRepository entidadeRepository;

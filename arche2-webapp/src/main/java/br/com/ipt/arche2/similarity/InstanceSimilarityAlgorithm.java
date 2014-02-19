@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 import br.com.ipt.arche2.ornfm.entity.RNFMensuravel;
 
 @Component
-public class InstanceSimilarityAlgorithm implements LocalSimilarity {
+public class InstanceSimilarityAlgorithm extends GenericAlgorithm implements LocalSimilarity {
+	
 	@Override
 	public float calculate(RNFMensuravel rnf1, RNFMensuravel rnf2) {
 		// TODO Auto-generated method stub
@@ -18,8 +19,6 @@ public class InstanceSimilarityAlgorithm implements LocalSimilarity {
 	
 	public float similaridadeSemantica(Object o1, Object o2){
 		//pesos utilizados nas medidas
-		float w1 = 0.5f; //TODO obter as similaridades do banco de dados
-		float w2 = 0.5f;
 		
 		//primeiro obtem a quantidade de atributos compartilhados
 		float atributosCompartilhados = getTotalAtributosSimilares(o1, o2);
