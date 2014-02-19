@@ -23,7 +23,7 @@ Ext.define('Arche2.store.Medidas', {
     		var funcao = Ext.getCmp('funcao').getValue();
     		
     		for(var i=0; i<medidas.length; i++){
-    			htmlTexto += '<p>' + getMessage('arche2.template.resumo',[medidas[i].data.tipo, medidas[i].data.valor, medidas[i].data.entidade, funcao] ) + '</p>';
+    			htmlTexto += '<p>' + getMessage('arche2.template.resumo',[medidas[i].data.tipo, medidas[i].data.valor, medidas[i].data.entidade, funcao, medidas[i].data.metodo] ) + '</p>';
     		}
     	}
     	

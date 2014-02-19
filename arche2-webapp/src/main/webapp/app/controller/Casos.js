@@ -225,7 +225,7 @@ Ext.define('Arche2.controller.Casos', {
 		htmlTexto += "<h2>" + rnf.subcaracteristica + "</h2>";
 		
     	for(var i=0; i<rnf.medidas.length; i++){
-    		var texto = getMessage("arche2.template.resumo", [rnf.medidas[i].tipo, rnf.medidas[i].valor, rnf.medidas[i].entidade, rnf.funcao.nome]);
+    		var texto = getMessage("arche2.template.resumo", [rnf.medidas[i].tipo, rnf.medidas[i].valor, rnf.medidas[i].entidade, rnf.funcao.nome, rnf.medidas[i].metodo]);
     		htmlTexto += "<p>" + texto + "</p>";
     	}
     	
