@@ -56,7 +56,7 @@ Ext.define('Arche2.view.geral.TabPanel' ,{
         	xtype: 'pesogrid',
         	itemId: 'pesogrid'
         }]
-    },{
+    }/**,{
     	title: 'Controles Gerais',
         items: [{
         	xtype: 'button',
@@ -78,6 +78,6 @@ Ext.define('Arche2.view.geral.TabPanel' ,{
             	});
             }
         }]
-    }]	
+    }*/]	
 
 });

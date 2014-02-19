@@ -143,6 +143,9 @@ Ext.define('Arche2.controller.Casos', {
 	        //desbloqueia o proximo formulario
 	        Ext.getCmp('wizardPanel').getLayout().setActiveItem('solucaoform');
 	        
+	    	//desabilita botao de exclusao
+	    	Ext.getCmp('deleteCasoButton').disable();
+	        
     	}else{
     		Ext.Msg.alert('Medidas', 'Ao menos uma medida deve ser informada');
     	}
@@ -230,6 +233,9 @@ Ext.define('Arche2.controller.Casos', {
     	}
     	
     	Ext.getCmp('resumoFormDecisao').update(htmlTexto);
+    	
+    	//habilita botao de exclusao
+    	Ext.getCmp('deleteCasoButton').enable();
     },
     
     updateRNF : function(){

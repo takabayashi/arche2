@@ -157,7 +157,9 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
         action: 'cancelar'
     },{
     	text: 'Excluir Caso Atual',
-        action: 'deleteCaso'
+        action: 'deleteCaso',
+        id: 'deleteCasoButton', 
+        disabled: true
     },{
     	text: 'Salvar Novo Caso',
         formBind: true,
