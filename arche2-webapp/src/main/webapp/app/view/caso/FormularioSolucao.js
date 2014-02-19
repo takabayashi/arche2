@@ -77,7 +77,7 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 xtype: 'textarea',
                 name : 'resumoDecisao',
                 id: 'resumoDecisao',
-                rows: 3,
+                rows: 2,
                 fieldLabel: 'Resumo',
                 emptyText: 'Faça uma breve descrição da solução, focando o requisito não funcional realizado...'
                
@@ -100,7 +100,7 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 xtype: 'textarea',
                 name : 'racional',
                 id: 'racional',
-                rows: 8,
+                rows: 3,
                 fieldLabel: 'Racional',
                 emptyText: 'Faça uma breve descrição do racional realizado. Aqui deve ser registrado os porquês da solução proposta, ou implementada...'
             },
@@ -108,7 +108,7 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 xtype: 'textarea',
                 name : 'risco',
                 id : 'risco',
-                rows: 3,
+                rows: 2,
                 fieldLabel: 'Risco',
                 emptyText: 'Faça uma breve descrição dos riscos que envolvem essa decisão arquitetural...'
             },
@@ -125,6 +125,15 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 name : 'custo',
                 id : 'custo',
                 fieldLabel: 'Custo $'
+            },
+            {
+                xtype: 'textarea',
+                name : 'historico',
+                readOnly: true,
+                allowBlank: true,
+                id : 'historico',
+                rows: 2,
+                fieldLabel: 'Histórico'
             }
         ]
     }],

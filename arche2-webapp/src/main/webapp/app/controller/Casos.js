@@ -56,6 +56,11 @@ Ext.define('Arche2.controller.Casos', {
     	decisao.escopo = Ext.getCmp('escopo').getValue();
     	decisao.custo = Ext.getCmp('custo').getValue();
     	
+    	//prepara o historico
+    	var acao = Ext.getCmp('historico').getValue() == "" ? "Decisão Inicial":"Decisão Adaptada";
+    	
+    	decisao.historico = "06/10/2014 - " + getMessage("arche2.default.username") + " - "+ acao +"\n" + Ext.getCmp('historico').getValue();
+    	
     	var novoCaso = {};
     	novoCaso.rnf = window.rnf;
     	novoCaso.decisao = decisao;
@@ -205,6 +210,7 @@ Ext.define('Arche2.controller.Casos', {
     	Ext.getCmp('risco').setValue(decisao.risco);
     	Ext.getCmp('escopo').setValue(decisao.escopo);
     	Ext.getCmp('custo').setValue(decisao.custo);
+    	Ext.getCmp('historico').setValue(decisao.historico);
     	
     	//prepara o text descritivo
     	var rnf = window.listaSugestoes[record.data.casoId].rnf;

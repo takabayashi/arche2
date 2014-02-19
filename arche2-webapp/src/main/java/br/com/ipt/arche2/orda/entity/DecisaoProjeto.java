@@ -1,7 +1,5 @@
 package br.com.ipt.arche2.orda.entity;
 
-import java.util.List;
-
 import br.com.ipt.arche2.util.JsonUtils;
 
 public class DecisaoProjeto {
@@ -12,8 +10,16 @@ public class DecisaoProjeto {
 	private float custo;
 	private String risco;
 	private String tipo;
-	private List<Historico> historicos;
+	private String historico;
 	
+	public String getHistorico() {
+		return historico;
+	}
+
+	public void setHistorico(String historico) {
+		this.historico = historico;
+	}
+
 	public String getTipo() {
 		return tipo;
 	}
@@ -68,14 +74,6 @@ public class DecisaoProjeto {
 
 	public void setRisco(String risco) {
 		this.risco = risco;
-	}
-
-	public List<Historico> getHistoricos() {
-		return historicos;
-	}
-
-	public void setHistoricos(List<Historico> historicos) {
-		this.historicos = historicos;
 	}
 
 	@Override
