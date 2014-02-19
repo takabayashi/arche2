@@ -16,7 +16,15 @@ Ext.define('Arche2.view.caso.SugestaoGrid' ,{
             xtype: 'textfield'
         }
     },{
-        text: 'Casos Similares',
+        text: '% Similaridade',
+        width: 100,
+        sortable: true,
+        dataIndex: 'similaridade',
+        field: {
+            xtype: 'textfield'
+        }
+    },{
+        text: 'Resumo do Caso',
         flex: 1,
         sortable: true,
         dataIndex: 'casoResumo',
@@ -24,10 +32,10 @@ Ext.define('Arche2.view.caso.SugestaoGrid' ,{
             xtype: 'textfield'
         }
     },{
-        text: '% Similaridade',
+        text: 'Data de Cadastro',
         width: 100,
         sortable: true,
-        dataIndex: 'similaridade',
+        dataIndex: 'casoDataCadastro',
         field: {
             xtype: 'textfield'
         }

@@ -3,7 +3,7 @@ Ext.define('Arche2.model.Caso', {
     fields: [{
         name: 'id',
         useNull: true
-    }],
+    }, 'dataCadastro', 'dataUltimaAlteracao'],
 
     hasOne: {model: 'Decisao', name: 'decisao'},
     hasOne: {model: 'RNF', name: 'rnf'}

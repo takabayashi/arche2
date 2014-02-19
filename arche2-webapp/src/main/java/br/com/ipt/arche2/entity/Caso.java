@@ -14,6 +14,26 @@ public class Caso{
 	
 	private RNFMensuravel rnf;
 	
+	private String dataCadastro;
+	
+	private String dataUltimaAlteracao;
+	
+	public String getDataUltimaAlteracao() {
+		return dataUltimaAlteracao;
+	}
+
+	public void setDataUltimaAlteracao(String dataUltimaAlteracao) {
+		this.dataUltimaAlteracao = dataUltimaAlteracao;
+	}
+
+	public String getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(String dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
 	public String getId() {
 		return id;
 	}

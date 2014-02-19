@@ -110,12 +110,14 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 id : 'risco',
                 rows: 2,
                 fieldLabel: 'Risco',
+                allowBlank: true,
                 emptyText: 'Faça uma breve descrição dos riscos que envolvem essa decisão arquitetural...'
             },
             {
                 xtype: 'textarea',
                 name : 'escopo',
                 id : 'escopo',
+                allowBlank: true,
                 rows: 2,
                 fieldLabel: 'Escopo',
                 emptyText: 'Faça uma breve descrição do escopo que envolve essa decisão...'
@@ -124,6 +126,7 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 xtype: 'numberfield',
                 name : 'custo',
                 id : 'custo',
+                value: 0,
                 fieldLabel: 'Custo $'
             },
             {

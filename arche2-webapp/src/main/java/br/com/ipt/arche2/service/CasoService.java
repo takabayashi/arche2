@@ -1,6 +1,8 @@
 package br.com.ipt.arche2.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -46,6 +48,21 @@ public class CasoService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response create(Caso caso){
+		
+		//formata a data de cadastro
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		caso.setDataCadastro(format.format(new Date()));
+		
+		//inclui a data do histórico
+		String historico = caso.getDecisao().getHistorico();
+		
+		if(historico.isEmpty()){
+			historico = " - Criação inicial";
+		}
+		
+		historico = caso.getDataCadastro() + historico;
+		caso.getDecisao().setHistorico(historico);
+		
 		repository.save(caso);
 		return Response.status(200).entity(caso).build();
 	}
@@ -61,16 +78,14 @@ public class CasoService {
 		List<Sugestao> sugestoes = new ArrayList<Sugestao>();
 		///aplica a lógica para devolver apenas os casos similares
 		for (Caso caso : listaCasos) {
-			float similaridade = 98.05f;
+			float similaridade = 1f;
 			
 			/**
 			 *  Aqui inicia a lógica para calculo de similaridades
 			 */
 			
-			
-			
 			//verifica se a similaridade é maior que o indicado
-			if(similaridade >= 50){
+			if(similaridade >= similaridadeMinimaCasos){
 				//encontrou um caso similar
 				sugestoes.add(new Sugestao(caso, similaridade));
 			}
@@ -134,6 +149,11 @@ public class CasoService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response update(Caso caso){
+		//inclui a data de alteracao do cadastro
+		//formata a data de cadastro
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		caso.setDataUltimaAlteracao(format.format(new Date()));
+				
 		repository.save(caso);
 		return Response.status(200).entity(caso).build();
 	}
