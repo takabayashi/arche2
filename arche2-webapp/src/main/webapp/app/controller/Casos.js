@@ -159,6 +159,9 @@ Ext.define('Arche2.controller.Casos', {
                 if(sugestoes.length == 0){
                 	//nao encontrou nenhum caso similar
                 	Ext.Msg.alert('Nada', 'Nenhum caso com similaridade significatica foi encontrado!!!');
+                	
+                	//fecha o painel de sugestoes encontradas
+    				Ext.getCmp('sugestaogrid').collapse();
 
     			}else{
     				//casos foram encontrados, portanto mostra na grid de casos similares
@@ -180,6 +183,9 @@ Ext.define('Arche2.controller.Casos', {
     					
     					sugestaoStore.add(sugestao);
     				}
+    				
+    				//abre o painel de sugestoes encontradas
+    				Ext.getCmp('sugestaogrid').expand();
     			}
 
     	    },

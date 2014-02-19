@@ -65,6 +65,7 @@ Ext.define('Arche2.view.Viewport', {
                 		region: 'south',
                 		xtype: 'sugestaogrid',
                 		id: 'sugestaogrid',
+                		collapsed: true,
                 		height: 150,
                     }]
             }]
