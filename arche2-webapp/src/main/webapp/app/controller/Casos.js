@@ -252,7 +252,7 @@ Ext.define('Arche2.controller.Casos', {
         
         var lista = [];
 		for(var i=0; i<medidas.length; i++){
-			lista.push({tipo : medidas[i].data.tipo, valor: medidas[i].data.valor, entidade: medidas[i].data.entidade, metodo: medidas[i].data.entidade});
+			lista.push({tipo : medidas[i].data.tipo, valor: medidas[i].data.valor, entidade: medidas[i].data.entidade, metodo: medidas[i].data.metodo});
 		}
 		rnf.medidas = lista;
         

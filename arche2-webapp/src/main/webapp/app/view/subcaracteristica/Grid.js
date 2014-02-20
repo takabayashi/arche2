@@ -1,7 +1,9 @@
 var subCaracteristicaRowEditing = Ext.create('Ext.grid.plugin.RowEditing',{
 	listeners:{
 		canceledit: function( editor, context, eOpts ){
-			context.grid.store.remove(context.record);
+			if(!context.record.data.id){
+				context.grid.store.remove(context.record);
+			}
 		}
 	}
 });
@@ -22,7 +24,7 @@ Ext.define('Arche2.view.subcaracteristica.Grid' ,{
         field: {
             xtype: 'combo',
             store: Ext.create('Arche2.store.Caracteristicas'),
-            queryMode: 'local',
+            queryMode: 'remote',
             typeAhead:true,
             forceSelection: true,
             displayField: 'nome',

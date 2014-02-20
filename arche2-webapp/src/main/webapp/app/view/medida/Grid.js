@@ -1,7 +1,9 @@
 var medidaRowEditing = Ext.create('Ext.grid.plugin.RowEditing',{
 	listeners:{
 		canceledit: function( editor, context, eOpts ){
-			context.grid.store.remove(context.record);
+			if(!context.record.data.id){
+				context.grid.store.remove(context.record);
+			}
 		}
 	}
 });
