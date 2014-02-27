@@ -1,25 +1,21 @@
 package br.com.ipt.arche2.similarity;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import br.com.ipt.arche2.ornfm.entity.RNFMensuravel;
-
 @Component
 public class InstanceSimilarityAlgorithm extends GenericAlgorithm implements LocalSimilarity {
 	
 	@Override
-	public float calculate(RNFMensuravel rnf1, RNFMensuravel rnf2) {
-		// TODO Auto-generated method stub
-		return 0;
+	public float calculate(Object obj1, Object obj2) {
+		return this.similaridadeSemantica(obj1, obj2);
 	}
 	
 	public float similaridadeSemantica(Object o1, Object o2){
-		//pesos utilizados nas medidas
-		
 		//primeiro obtem a quantidade de atributos compartilhados
 		float atributosCompartilhados = getTotalAtributosSimilares(o1, o2);
 		
@@ -47,6 +43,9 @@ public class InstanceSimilarityAlgorithm extends GenericAlgorithm implements Loc
 				
 				if(value1 == value2 || value1.equals(value2)){
 					similaarAttrTotal ++;
+					
+				}else if(value1.getClass() == ArrayList.class){ //solucao para retirar da comparacao os atributos que sao lista
+					similaarAttrTotal ++;
 				}
 				
 			} catch (IllegalArgumentException | IllegalAccessException e) {
@@ -59,6 +58,4 @@ public class InstanceSimilarityAlgorithm extends GenericAlgorithm implements Loc
 	public int getQuantidadeAtributos(Object o){
 		return o.getClass().getDeclaredFields().length;
 	}
-	
-	
 }

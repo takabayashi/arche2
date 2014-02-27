@@ -2,56 +2,32 @@ package br.com.ipt.arche2.similarity;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.ipt.arche2.ornfm.entity.Entidade;
 import br.com.ipt.arche2.ornfm.entity.Medida;
-import br.com.ipt.arche2.ornfm.entity.RNFMensuravel;
-import br.com.ipt.arche2.repository.EntidadeRepository;
 
 @Component
 public class NumericSimilarityAlgorithm extends GenericAlgorithm implements LocalSimilarity {
 	
-	@Autowired
-	protected static EntidadeRepository entidadeRepository;
+	private List<Entidade> entidadesMedida;
 	
-	protected static List<Entidade> entidadesMedida;
-	
-	public float calculate(RNFMensuravel rnf1, RNFMensuravel rnf2) {
+	public float calculate(Object obj1, Object obj2) {
+		Medida medida1 = (Medida) obj1;
+		Medida medida2 = (Medida) obj2;
 		
-		//obtem os valores que deverão ser calculados
-		List<Medida> medidas1 = rnf1.getMedidas();
-		List<Medida> medidas2 = rnf1.getMedidas();
-		
-		entidadesMedida = entidadeRepository.findAll();
-		
-		float similaridadeTotal = 0f;
-		float maxNumericSimilarity = 0f;
-		
-		for (Medida medida1 : medidas1) {
-			//obtem os valores para efetuar o calculo de similaridade
-			float v1 = Float.valueOf(medida1.getValor());
-			float ub1 = Float.valueOf(entidadesMedida.get(entidadesMedida.indexOf(medida1.getEntidade())).getLimiteValorSuperior());
-			float lb1 = Float.valueOf(entidadesMedida.get(entidadesMedida.indexOf(medida1.getEntidade())).getLimiteValorInferior());
-					
-			for (Medida medida2 : medidas2) {
-				float v2 = Float.valueOf(medida2.getValor());
-				float ub2 = Float.valueOf(entidadesMedida.get(entidadesMedida.indexOf(medida2.getEntidade())).getLimiteValorSuperior());
-				float lb2 = Float.valueOf(entidadesMedida.get(entidadesMedida.indexOf(medida2.getEntidade())).getLimiteValorInferior());
+		float v1 = Float.valueOf(medida1.getValor());
+		float ub1 = Float.valueOf(entidadesMedida.get(entidadesMedida.indexOf(new Entidade(medida1.getEntidade()))).getLimiteValorSuperior());
+		float lb1 = Float.valueOf(entidadesMedida.get(entidadesMedida.indexOf(new Entidade(medida1.getEntidade()))).getLimiteValorInferior());
 				
-				//efetua o calculo de similaridade
-				float sim = linearFunctionNormalizado(v1, v2, ub1, lb1, ub2, lb2);
+		float v2 = Float.valueOf(medida2.getValor());
+		float ub2 = Float.valueOf(entidadesMedida.get(entidadesMedida.indexOf(new Entidade(medida2.getEntidade()))).getLimiteValorSuperior());
+		float lb2 = Float.valueOf(entidadesMedida.get(entidadesMedida.indexOf(new Entidade(medida2.getEntidade()))).getLimiteValorInferior());
 				
-				//verifica a maior similaridade
-				maxNumericSimilarity = maxNumericSimilarity < sim ? sim : maxNumericSimilarity;
-			}
+		//efetua o calculo de similaridade
+		float sim = linearFunctionNormalizado(v1, v2, ub1, lb1, ub2, lb2);
 			
-			///maxNumericSimilarity é a maior similaridade numerica
-		}
-		
-		
-		return maxNumericSimilarity;
+		return sim;
 	}
 	
 	public float linearFunction(float v1, float v2, float ub, float lb){
@@ -62,7 +38,12 @@ public class NumericSimilarityAlgorithm extends GenericAlgorithm implements Loca
 		//normalizando os numeros
 		return 1 - Math.abs(v1/ub1 - v2/ub2);
 	}
-	
 
+	public List<Entidade> getEntidadesMedida() {
+		return this.entidadesMedida;
+	}
 
+	public void setEntidadesMedida(List<Entidade> entidadesMedida) {
+		this.entidadesMedida = entidadesMedida;
+	}
 }

@@ -153,7 +153,7 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
         text: 'Limpar',
         action: 'limpar'
     },{
-        text: 'Cancelar',
+        text: 'Voltar',
         action: 'cancelar'
     },{
     	text: 'Excluir Caso Atual',

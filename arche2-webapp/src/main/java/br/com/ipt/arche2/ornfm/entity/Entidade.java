@@ -59,6 +59,15 @@ public class Entidade {
 		return this.getNome();
 	}
 
+	public Entidade(String nome) {
+		super();
+		this.nome = nome;
+	}
+	
+	public Entidade() {
+		super();
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

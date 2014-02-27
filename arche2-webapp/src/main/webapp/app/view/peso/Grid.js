@@ -14,7 +14,7 @@ Ext.define('Arche2.view.peso.Grid' ,{
    	requires: ['Ext.toolbar.Paging'],
    	store: 'Pesos',
     frame: false,
-    /*plugins: [pesoRowEditing],*/
+    plugins: [pesoRowEditing],
     
     columns: [{
         text: 'Nome do Peso',
@@ -34,7 +34,7 @@ Ext.define('Arche2.view.peso.Grid' ,{
         }
     }],
     
-    dockedItems: [/**{
+    dockedItems: [{
         xtype: 'toolbar',
         items: [{
             text: 'Adcionar',
@@ -43,7 +43,7 @@ Ext.define('Arche2.view.peso.Grid' ,{
         }, '-', {
             text: 'Excluir',
             iconCls: 'icon-delete',
-            action: 'deletarx'
+            action: 'deletar'
         }]
-    }*/]
+    }]
 });
