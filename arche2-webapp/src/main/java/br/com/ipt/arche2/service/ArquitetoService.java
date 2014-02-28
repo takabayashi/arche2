@@ -13,31 +13,31 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.ipt.arche2.entity.Usuario;
-import br.com.ipt.arche2.repository.UsuarioRepository;
+import br.com.ipt.arche2.entity.Arquiteto;
+import br.com.ipt.arche2.repository.ArquitetoRepository;
 
 @Component
-@Path("/rest/usuario")
-public class UsuarioService {
+@Path("/rest/arquiteto")
+public class ArquitetoService {
 	@Autowired
-	protected UsuarioRepository repository;
+	protected ArquitetoRepository repository;
 	
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response create(Usuario usuario){
-		usuario.setId(null);
+	public Response create(Arquiteto arquiteto){
+		arquiteto.setId(null);
 		
-		repository.save(usuario);
-		return Response.status(200).entity(usuario).build();
+		repository.save(arquiteto);
+		return Response.status(200).entity(arquiteto).build();
 	}
 	
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response all(){
-		List<Usuario> lista = repository.findAll();
+		List<Arquiteto> lista = repository.findAll();
 		
 		return Response.status(200).entity(lista).build();
 	}
@@ -46,16 +46,16 @@ public class UsuarioService {
 	@Path("/update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response update(Usuario usuario){
-		repository.save(usuario);
-		return Response.status(200).entity(usuario).build();
+	public Response update(Arquiteto arquiteto){
+		repository.save(arquiteto);
+		return Response.status(200).entity(arquiteto).build();
 	}
 	
 	@POST
 	@Path("/delete")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response delete(Usuario usuario){
-		repository.delete(usuario);
+	public Response delete(Arquiteto arquiteto){
+		repository.delete(arquiteto);
 		return Response.status(200).build();
 	}
 

@@ -3,6 +3,10 @@ Ext.define('Arche2.store.TipoMedidas', {
     model: 'Arche2.model.TipoMedida',
     autoLoad: true,
     autoSync: true,
+    sorters: {
+		property : 'nome',
+        direction: 'ASC'
+	},
     proxy: {
     	headers: { 'Content-Type': 'application/json;charset=utf-8', 'Accept': 'application/json'},
         type: 'ajax',

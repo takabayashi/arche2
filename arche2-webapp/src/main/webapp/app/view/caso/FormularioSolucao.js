@@ -156,12 +156,13 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
         text: 'Voltar',
         action: 'cancelar'
     },{
-    	text: 'Excluir Caso Atual',
+    	text: 'Excluir Solução Atual',
         action: 'deleteCaso',
         id: 'deleteCasoButton', 
-        disabled: true
+        disabled: true,
+        tooltip: MESSAGES['arche2.tooltip.excluirsolucao']
     },{
-    	text: 'Salvar Novo Caso',
+    	text: 'Salvar Nova Solução',
         formBind: true,
         disabled: true,
         action: 'addNovoCaso'

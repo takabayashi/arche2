@@ -1,10 +1,10 @@
-Ext.define('Arche2.store.Entidades', {
+Ext.define('Arche2.store.Arquitetos', {
     extend: 'Ext.data.Store',
-    model: 'Arche2.model.Entidade',
+    model: 'Arche2.model.Arquiteto',
     autoLoad: true,
     autoSync: true,
-    sorters: {
-		property : 'pai',
+	sorters: {
+		property : 'nome',
         direction: 'ASC'
 	},
         proxy: {
@@ -13,14 +13,14 @@ Ext.define('Arche2.store.Entidades', {
             paramsAsJson: true,
             
             api: {
-                create: 'rest/entidade/create',
-                read: 'rest/entidade/all',
-                update: 'rest/entidade/update',
-                destroy: 'rest/entidade/delete',
+                create: 'rest/arquiteto/create',
+                read: 'rest/arquiteto/all',
+                update: 'rest/arquiteto/update',
+                destroy: 'rest/arquiteto/delete',
             },
             reader: {
                 type: 'json',
-                root: 'entidades',
+                root: 'arquitetos',
                 successProperty: 'success'
             },
             writer: {
@@ -37,7 +37,7 @@ Ext.define('Arche2.store.Entidades', {
                     record.set('id', returnObj['id']);
                 }
                 
-                console.log(name, Ext.String.format("{0} entidade: {1} id {2}", name, record.get('nome'), record.get('id')));
+                console.log(name, Ext.String.format("{0} arquiteto: {1} id {2}", name, record.get('nome'), record.get('id')));
             }
         }
     });

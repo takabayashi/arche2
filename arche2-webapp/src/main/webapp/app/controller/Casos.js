@@ -260,6 +260,17 @@ Ext.define('Arche2.controller.Casos', {
     },
     
     deleteCaso : function(){
+    	if(!isAdmin){
+    		Ext.Msg.show({
+    			title:':-(',
+    			msg: 'Essa versão da aplicação não exclui casos...',
+    			buttons: Ext.Msg.CANCEL,
+    			icon: Ext.Msg.ERROR
+    		});
+    		
+    		return false;
+    	}
+    	
     	var that = this;
     	
 		Ext.Msg.show({
@@ -268,23 +279,25 @@ Ext.define('Arche2.controller.Casos', {
 			buttons: Ext.Msg.OKCANCEL,
 			icon: Ext.Msg.QUESTION,
     	    fn: function(bt){
-    	    	Ext.Ajax.request({
-    	    		url: 'rest/caso/delete',
-				    headers: { 'Content-Type': 'application/json;charset=utf-8', 'Accept': 'application/json'},
-				    jsonData: Ext.getCmp('idCaso').getValue(),
-				    method: 'POST',
-				    
-				    success: function(response, opts) {
-				    	console.log('Caso excluido com sucesso!!!');
-				    	
-				    	//atualiza a lista de casos similares
-				    	that.buscarCasosSimilares();
-				    },
-		    	    failure: function(response, opts) {
-		    	        console.log('server-side failure with status code ' + response.status);
-		    	        Ext.Msg.alert('Erro', 'Olhe o log, pois lagum erro ocorreu!!!');
-		    	    }
-				}); 
+    	    	if(bt == 'ok'){
+	    	    	Ext.Ajax.request({
+	    	    		url: 'rest/caso/delete',
+					    headers: { 'Content-Type': 'application/json;charset=utf-8', 'Accept': 'application/json'},
+					    jsonData: Ext.getCmp('idCaso').getValue(),
+					    method: 'POST',
+					    
+					    success: function(response, opts) {
+					    	console.log('Caso excluido com sucesso!!!');
+					    	
+					    	//atualiza a lista de casos similares
+					    	that.buscarCasosSimilares();
+					    },
+			    	    failure: function(response, opts) {
+			    	        console.log('server-side failure with status code ' + response.status);
+			    	        Ext.Msg.alert('Erro', 'Olhe o log, pois lagum erro ocorreu!!!');
+			    	    }
+					}); 
+    	    	}
     	     }
 	     });
     }

@@ -18,7 +18,7 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
 
     items: [{
     	xtype: 'combo',
-    	fieldLabel: 'Nome:',
+    	fieldLabel: 'Caracteristica:',
     	name: 'caracteristica',
     	id: 'caracteristica',
     	displayField: 'nome',
@@ -111,14 +111,16 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
         text: 'Limpar',
         action: 'limpar'
     }, {
-        text: 'Sugerir Solução',
+        text: 'Obter Solução',
         formBind: true,
         disabled: true,
-        action: 'sugerirSolucao'
+        action: 'sugerirSolucao',
+        tooltip: MESSAGES['arche2.tooltip.sugerirsolucao']
     }, {
-        text: 'Inserir Novo Caso',
+        text: 'Inserir Novo Solução',
         formBind: true,
         disabled: true,
-        action: 'startNovoCaso'
+        action: 'startNovoCaso',
+        tooltip: MESSAGES['arche2.tooltip.inserirsolucao']
     }]
 });

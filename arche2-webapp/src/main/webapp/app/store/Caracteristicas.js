@@ -5,6 +5,10 @@ Ext.define('Arche2.store.Caracteristicas', {
     autoSync: true,
     pageSize: 10,
     autoLoad: {start: 0, limit: 10},
+    sorters: {
+		property : 'nome',
+        direction: 'ASC'
+	},
         proxy: {
         	headers: { 'Content-Type': 'application/json;charset=utf-8', 'Accept': 'application/json'},
             type: 'ajax',

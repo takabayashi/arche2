@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,19 +10,17 @@
 		
 		<!--  App files -->
 		<link rel="stylesheet" type="text/css" href="resources/css/app.css">
-		<!-- <script type="text/javascript" src="app2/app-entidade.js"></script>
-		<script type="text/javascript" src="app2/app-medida.js"></script>
-		<script type="text/javascript" src="app2/app-metodo.js"></script> -->
+		
+		<script type="text/javascript" >
+			var arquiteto = '<%=request.getUserPrincipal().getName() %>';
+			var isAdmin = <%=request.isUserInRole("admin") %>;
+		</script>
+		
 		<script type="text/javascript" src="app.js"></script>
 		<script type="text/javascript" src="app/constants/messages.js"></script>
-		
 	</head>
 
 	<body>
-		<div id="usuarioPanel"></div>
-	    <div id="metodoPanel"></div>
-		<div id="medidaPanel"></div>
-		<div id="entidadePanel"></div>
 	</body>
 		
 </html>

@@ -2,15 +2,13 @@ Ext.define('Arche2.view.geral.TabPanel' ,{
 	extend: 'Ext.tab.Panel',
 	alias : 'widget.geraltabpanel',
 	requires: [
-			'Arche2.view.usuario.Grid',
-			'Arche2.view.usuario.Formulario',
 			'Arche2.view.entidade.Grid',
 			'Arche2.view.metodo.Grid',
 			'Arche2.view.caracteristica.Grid',
 			'Arche2.view.subcaracteristica.Grid',
 			'Arche2.view.funcao.Grid',
 			'Arche2.view.tipomedida.Grid',
-			'Arche2.view.tipomedida.Grid'
+			'Arche2.view.arquiteto.Grid'
 	           ],
 	activeTab: 0,
 
@@ -55,6 +53,12 @@ Ext.define('Arche2.view.geral.TabPanel' ,{
         items: [{
         	xtype: 'pesogrid',
         	itemId: 'pesogrid'
+        }]
+    },{
+        title: 'Arquitetos',
+        items: [{
+        	xtype: 'arquitetogrid',
+        	itemId: 'arquitetogrid'
         }]
     }/**,{
     	title: 'Controles Gerais',

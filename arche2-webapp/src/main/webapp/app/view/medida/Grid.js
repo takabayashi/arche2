@@ -26,7 +26,11 @@ Ext.define('Arche2.view.medida.Grid' ,{
         dataIndex: 'tipo',
         field: {
             xtype: 'combo',
-            store: Ext.create('Arche2.store.TipoMedidas'),
+            store: Ext.create('Arche2.store.TipoMedidas', {
+            	filters: [function(record, id){
+            		return (record.data.pai != null && record.data.pai.length > 1);
+            	}]
+            }),
             queryMode: 'remote',
             typeAhead:true,
             forceSelection: true,
@@ -40,7 +44,11 @@ Ext.define('Arche2.view.medida.Grid' ,{
         dataIndex: 'entidade',
         field: {
             xtype: 'combo',
-            store: Ext.create('Arche2.store.Entidades'),
+            store: Ext.create('Arche2.store.Entidades', {
+            	filters: [function(record, id){
+            		return (record.data.pai != null);
+            	}]
+            }),
             queryMode: 'remote',
             typeAhead:true,
             forceSelection: true,

@@ -16,10 +16,12 @@ Ext.define('Arche2.view.Viewport', {
         Ext.apply(me, {
         	items: [{
                 region: 'north',
-                html: '<h1>Arche 2 - Architect Expert</h1>',
                 autoHeight: true,
                 border: false,
-                margins: '10 10 10 10'
+                margins: '10 10 10 10',
+                items: [{
+                	html: MESSAGES['arche2.name'] + '<h3>' + MESSAGES['arche2.welcome'] + MESSAGES['arche2.default.username'] + (!isAdmin? '' : ' (admin)') + '</h3>' 
+                }]
             }, {
                 region: 'west',
                 collapsible: true,
@@ -35,6 +37,7 @@ Ext.define('Arche2.view.Viewport', {
                 width: '50%',
                 resizable: true,
                	collapsed: true,
+               	hidden: !isAdmin,
                 items: [{
                    	xtype: 'geraltabpanel'
                   }]

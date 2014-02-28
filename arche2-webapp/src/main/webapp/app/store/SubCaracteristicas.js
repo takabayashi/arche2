@@ -3,8 +3,10 @@ Ext.define('Arche2.store.SubCaracteristicas', {
     model: 'Arche2.model.SubCaracteristica',
     autoLoad: true,
     autoSync: true,
-    pageSize: 35,
-    autoLoad: {start: 0, limit: 35},
+    sorters: {
+		property : 'nome',
+        direction: 'ASC'
+	},
         proxy: {
         	headers: { 'Content-Type': 'application/json;charset=utf-8', 'Accept': 'application/json'},
             type: 'ajax',
