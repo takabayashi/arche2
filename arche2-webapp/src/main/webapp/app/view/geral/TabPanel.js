@@ -60,7 +60,7 @@ Ext.define('Arche2.view.geral.TabPanel' ,{
         	xtype: 'arquitetogrid',
         	itemId: 'arquitetogrid'
         }]
-    }/**,{
+    },{
     	title: 'Controles Gerais',
         items: [{
         	xtype: 'button',
@@ -82,6 +82,6 @@ Ext.define('Arche2.view.geral.TabPanel' ,{
             	});
             }
         }]
-    }*/]	
+    }]	
 
 });
