@@ -17,6 +17,20 @@ Ext.define('Arche2.view.tipomedida.Grid' ,{
     plugins: [tipoMedidaRowEditing],
     
     columns: [{
+        text: 'Requisito não Funcional',
+        flex: 1,
+        sortable: true,
+        dataIndex: 'subcaracteristica',
+        field: {
+            xtype: 'combo',
+            store: Ext.create('Arche2.store.SubCaracteristicas'), 
+            queryMode: 'remote',
+            typeAhead:true,
+            forceSelection: true,
+            displayField: 'nome',
+            valueField: 'nome'
+        }
+    },{
         text: 'Medida Pai',
         flex: 1,
         sortable: true,

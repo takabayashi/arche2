@@ -69,7 +69,32 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
         disabled: true,
         emptyText: 'Subcaracteristicas...',
         store: [],
-        margin: '10 0 10 0 0'
+        margin: '10 0 10 0 0',
+        listeners:{
+            scope: this,
+            'select': function(combo, records, eOpts){
+            	//obtem a referencia ao combo de tipoMedida
+            	var comboTipoMedida = Ext.getCmp('tipoMedida');
+            	comboTipoMedida.setDisabled(false);
+            	comboTipoMedida.setValue('');
+            	
+            	var comboTipoMedidaStore = Ext.getStore('TipoMedidas');
+            	var lista = [];
+            	
+            	//altera o combo de tipodemedida quando uma nova subcaracteristica é selecionada
+            	comboTipoMedidaStore.on('load',function (store, records, successful, eOpts ){
+            		store.each(function(field){
+            			if(field.data.subcaracteristica == combo.getValue() && field.data.pai != null && field.data.pai.length > 1){
+            				lista.push([field.data.nome, 'nome']);
+            			}
+            		});
+            		
+            		comboTipoMedida.store.loadData(lista);
+            	});
+            	
+            	comboTipoMedidaStore.load();
+            }
+       }
     },{
     	xtype: 'combo',
     	fieldLabel: 'Tipo da Medida',
@@ -77,15 +102,12 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
     	id: 'tipoMedida',
     	displayField: 'nome' ,
     	valueField: 'nome',
-        store: Ext.create('Arche2.store.TipoMedidas',  {
-        	filters: [function(record, id){
-        		return (record.data.pai != null && record.data.pai.length > 1);
-        	}]
-        }),
         queryMode: 'remote',
+        store: [],
         typeAhead:true,
         forceSelection: true,
         allowBlank: false,
+        disabled: true,
         emptyText: 'Tipo de Medidas...',
         margin: '10 0 10 0 0',
     	

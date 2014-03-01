@@ -9,6 +9,16 @@ public class TipoMedida {
 	private String nome;
 	
 	private String pai;
+	
+	private String subcaracteristica;
+
+	public String getSubcaracteristica() {
+		return subcaracteristica;
+	}
+
+	public void setSubcaracteristica(String subcaracteristica) {
+		this.subcaracteristica = subcaracteristica;
+	}
 
 	public String getId() {
 		return id;

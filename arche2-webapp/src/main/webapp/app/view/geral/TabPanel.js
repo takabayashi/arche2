@@ -13,18 +13,6 @@ Ext.define('Arche2.view.geral.TabPanel' ,{
 	activeTab: 0,
 
     items: [{
-        title: 'Entidades de medidas',
-        items: [{
-        	xtype: 'entidadegrid',
-        	itemId: 'entidadegrid'
-        }]
-    },{
-        title: 'Métodos de medidas',
-        items: [{
-        	xtype: 'metodogrid',
-        	itemId: 'metodogrid'
-        }]
-    },{
         title: 'Caracteristicas',
         items: [{
         	xtype: 'caracteristicagrid',
@@ -37,16 +25,28 @@ Ext.define('Arche2.view.geral.TabPanel' ,{
         	itemId: 'subcaracteristicagrid'
         }]
     },{
+        title: 'Tipos de Medidas',
+        items: [{
+        	xtype: 'tipomedidagrid',
+        	itemId: 'tipomedidagrid'
+        }]
+    },{
         title: 'Funções de Medição',
         items: [{
         	xtype: 'funcaogrid',
         	itemId: 'funcaogrid'
         }]
     },{
-        title: 'Tipos de Medidas',
+        title: 'Entidades de medidas',
         items: [{
-        	xtype: 'tipomedidagrid',
-        	itemId: 'tipomedidagrid'
+        	xtype: 'entidadegrid',
+        	itemId: 'entidadegrid'
+        }]
+    },{
+        title: 'Métodos de medidas',
+        items: [{
+        	xtype: 'metodogrid',
+        	itemId: 'metodogrid'
         }]
     },{
         title: 'Pesos de Similaridade',
