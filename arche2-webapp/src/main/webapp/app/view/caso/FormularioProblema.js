@@ -72,6 +72,25 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
         margin: '10 0 10 0 0'
     },{
     	xtype: 'combo',
+    	fieldLabel: 'Tipo da Medida',
+    	name: 'tipoMedida',
+    	id: 'tipoMedida',
+    	displayField: 'nome' ,
+    	valueField: 'nome',
+        store: Ext.create('Arche2.store.TipoMedidas',  {
+        	filters: [function(record, id){
+        		return (record.data.pai != null && record.data.pai.length > 1);
+        	}]
+        }),
+        queryMode: 'remote',
+        typeAhead:true,
+        forceSelection: true,
+        allowBlank: false,
+        emptyText: 'Tipo de Medidas...',
+        margin: '10 0 10 0 0',
+    	
+    }, {
+    	xtype: 'combo',
     	fieldLabel: 'Função:',
     	name: 'funcao',
     	id: 'funcao',

@@ -2,13 +2,9 @@ package br.com.ipt.arche2.ornfm.entity;
 
 import org.springframework.data.annotation.Id;
 
-import br.com.ipt.arche2.util.JsonUtils;
-
 public class Medida {
 	@Id
 	private String id;
-	
-	private String tipo;
 	
 	private String entidade;
 	
@@ -22,14 +18,6 @@ public class Medida {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 
 	public String getEntidade() {
@@ -58,7 +46,7 @@ public class Medida {
 
 	@Override
 	public String toString() {
-		return JsonUtils.object2JsonString(this);
+		return this.getEntidade() + " " + this.getMetodo() + " " + this.getValor();
 	}
 
 }

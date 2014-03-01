@@ -17,14 +17,22 @@ Ext.define('Arche2.store.Medidas', {
     	var htmlTexto = getMessage('arche2.default.resumo');
     	
     	if(medidas.length > 0){
-    		htmlTexto = "<h1>" + Ext.getCmp('caracteristica').getValue() + "</h1>";
-    		htmlTexto += "<h2>" + Ext.getCmp('subcaracteristica').getValue() + "</h2>";
+    		htmlTexto = "<h3> O nível de " + Ext.getCmp('caracteristica').getValue() + " do sistema em relação a " + Ext.getCmp('subcaracteristica').getValue() + " deve ser:</h3>";
     		
-    		var funcao = Ext.getCmp('funcao').getValue();
+    		htmlTexto += "<p>" + getMessage('arche2.template.resumo', [Ext.getCmp('tipoMedida').getValue()])  + "</p>";
+    		
+    		htmlTexto += "<p>";
     		
     		for(var i=0; i<medidas.length; i++){
-    			htmlTexto += '<p>' + getMessage('arche2.template.resumo',[medidas[i].data.tipo, medidas[i].data.valor, medidas[i].data.entidade, funcao, medidas[i].data.metodo] ) + '</p>';
+    			
+    			if(i>0 && i<medidas.length){
+    				htmlTexto += " " + Ext.getCmp('funcao').getValue() + " ";
+    			}
+    			
+    			htmlTexto += getMessage('arche2.template.resumo.medidas',[medidas[i].data.entidade, medidas[i].data.metodo, medidas[i].data.valor] );
     		}
+    		
+    		htmlTexto += "</p>";
     	}
     	
 		Ext.getCmp('resumo').update(htmlTexto);

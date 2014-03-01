@@ -224,11 +224,19 @@ Ext.define('Arche2.controller.Casos', {
     	
     	//prepara o text descritivo
     	var rnf = window.listaSugestoes[record.data.casoId].rnf;
-    	var htmlTexto = "<h1>" + rnf.nome + "</h1>";
-		htmlTexto += "<h2>" + rnf.subcaracteristica + "</h2>";
+    	
+		var htmlTexto = "<h3> O nível de " + rnf.nome + " do sistema em relação a " + rnf.subcaracteristica + " deve ser:</h3>";
+		
+		htmlTexto += "<p>" + getMessage('arche2.template.resumo', [rnf.tipoMedida])  + "</p>";
+		
+		var funcao = "";
 		
     	for(var i=0; i<rnf.medidas.length; i++){
-    		var texto = getMessage("arche2.template.resumo", [rnf.medidas[i].tipo, rnf.medidas[i].valor, rnf.medidas[i].entidade, rnf.funcao.nome, rnf.medidas[i].metodo]);
+    		if(i > 0 == 0){
+    			funcao = rnf.funcao.nome;
+    		}
+    		
+    		var texto = getMessage("arche2.template.resumo.medidas", [rnf.medidas[i].entidade, rnf.medidas[i].metodo, rnf.medidas[i].valor, funcao ]);
     		htmlTexto += "<p>" + texto + "</p>";
     	}
     	
@@ -243,16 +251,19 @@ Ext.define('Arche2.controller.Casos', {
 		var caracteristica = Ext.getCmp('caracteristica').getValue();
         var subcaracteristica = Ext.getCmp('subcaracteristica').getValue();
         var funcao = Ext.getCmp('funcao').getValue();
+        var tipoMedida = Ext.getCmp('tipoMedida').getValue();
         
     	var rnf = {};
         rnf.nome = caracteristica;
         rnf.subcaracteristica = rnf.subcaracteristica = {}, rnf.subcaracteristica = subcaracteristica;
         rnf.funcao = {}, rnf.funcao.nome = funcao;
+        rnf.tipoMedida = tipoMedida;
+        
         //rnf.resumo = Ext.getCmp('resumo').html;
         
         var lista = [];
 		for(var i=0; i<medidas.length; i++){
-			lista.push({tipo : medidas[i].data.tipo, valor: medidas[i].data.valor, entidade: medidas[i].data.entidade, metodo: medidas[i].data.metodo});
+			lista.push({valor: medidas[i].data.valor, entidade: medidas[i].data.entidade, metodo: medidas[i].data.metodo});
 		}
 		rnf.medidas = lista;
         

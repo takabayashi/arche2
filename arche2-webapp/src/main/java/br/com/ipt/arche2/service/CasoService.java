@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import br.com.ipt.arche2.entity.Caso;
 import br.com.ipt.arche2.entity.Peso;
 import br.com.ipt.arche2.entity.Sugestao;
+import br.com.ipt.arche2.ornfm.entity.Medida;
 import br.com.ipt.arche2.ornfm.entity.RNFMensuravel;
 import br.com.ipt.arche2.repository.CasoRepository;
 import br.com.ipt.arche2.repository.EntidadeRepository;
@@ -93,10 +94,7 @@ public class CasoService {
 		///aplica a lógica para devolver apenas os casos similares
 		for (Caso caso : listaCasos) {
 			
-			System.out.println("Dados do caso armazenado");
-			System.out.println("\tCaso: [" + caso.getId() + "] ");
-			System.out.println("\tProblema: [" + (caso.getDecisao().getResumo().length() > 100 ? caso.getDecisao().getResumo().substring(0, 100): caso.getDecisao().getResumo().substring(0, caso.getDecisao().getResumo().length())) + "] ");
-			System.out.println("\tSolucao: [" + caso.getRnf().getNome() + " - >" + caso.getRnf().getSubcaracteristica() +  "]\n ");
+			printCaso(caso);
 			
 			/**
 			 *  Aqui inicia a lógica para calculo de similaridades
@@ -122,10 +120,32 @@ public class CasoService {
 			
 		}
 		
-		System.out.println("Finalisando calculo de similaridade **************************************\n\n");
+		System.out.println("Finalizando calculo de similaridade **************************************\n\n");
 		
 		
 		return Response.status(200).entity(nearestNeighbourAlgorithm.getCasosIndexados()).build();
+	}
+
+	private void printCaso(Caso caso) {
+		System.out.println("Dados do caso armazenado");
+		System.out.println("\tCaso: [" + caso.getId() + "] ");
+		System.out.println("\tSolucao: [" + (caso.getDecisao().getResumo().length() > 100 ? caso.getDecisao().getResumo().substring(0, 100): caso.getDecisao().getResumo().substring(0, caso.getDecisao().getResumo().length())) + "] ");
+		System.out.println("\tProblema: [" + caso.getRnf().getNome() + " - >" + caso.getRnf().getSubcaracteristica() + "] ");
+		
+		System.out.print("\t" + caso.getRnf().getTipoMedida() + ": [");
+		int x = 0;
+		
+		for (Medida medida : caso.getRnf().getMedidas()) {
+			if(x > 0 && x < caso.getRnf().getMedidas().size()){
+				System.out.print(" " + caso.getRnf().getFuncao().getNome() + " ");
+			}
+			
+			System.out.print(medida);
+			
+			x++;
+		}
+		
+		System.out.print("]\n");
 	}
 
 	private void ajustarPesos() {

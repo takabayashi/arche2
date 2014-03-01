@@ -1,5 +1,6 @@
 var MESSAGES = {
-	'arche2.template.resumo':'{0} do sistema deverá ser {4} {1} ({2}) {3}',
+	'arche2.template.resumo.medidas':'{0} {1} {2}',
+	'arche2.template.resumo':'{0}',
 	'arche2.default.resumo': '<p>Nenhuma medida foi indicada...</p>',
 	'arche2.default.username': arquiteto,
 	'arche2.tooltip.sugerirsolucao': 'O sistema especialista tentará sugerir soluções arquiteturais para o RNF (Requisito não funcional) apresentado. O sistema utiliza uma base de soluções arquiteturais utilizadas no passado e incluídos por profissionais especializados em arquitetura de software. <br><br>Todas as soluções sugeridas são apresentadas com um nível de similaridade calculado, a similaridade é calculada utilizando como base o RNF apresentado. <br><br>Para obter um resultado aceitável seja bem claro nas medidas desejadas.',

@@ -20,26 +20,8 @@ Ext.define('Arche2.view.medida.Grid' ,{
     plugins: [medidaRowEditing],
     
     columns: [{
-        text: 'Tipo',
-        flex: 1,
-        sortable: true,
-        dataIndex: 'tipo',
-        field: {
-            xtype: 'combo',
-            store: Ext.create('Arche2.store.TipoMedidas', {
-            	filters: [function(record, id){
-            		return (record.data.pai != null && record.data.pai.length > 1);
-            	}]
-            }),
-            queryMode: 'remote',
-            typeAhead:true,
-            forceSelection: true,
-            displayField: 'nome',
-            valueField: 'nome'
-        }
-    }, {
         header: 'Entidade',
-        width: 150,
+        flex: 1,
         sortable: true,
         dataIndex: 'entidade',
         field: {
