@@ -224,22 +224,22 @@ Ext.define('Arche2.controller.Casos', {
     	
     	//prepara o text descritivo
     	var rnf = window.listaSugestoes[record.data.casoId].rnf;
-    	
-		var htmlTexto = "<h3> O nível de " + rnf.nome + " do sistema em relação a " + rnf.subcaracteristica + " deve ser:</h3>";
+
+    	var htmlTexto = getMessage('arche2.template.resumo', [rnf.nome, rnf.subcaracteristica, rnf.tipoMedida]);
 		
-		htmlTexto += "<p>" + getMessage('arche2.template.resumo', [rnf.tipoMedida])  + "</p>";
+		htmlTexto += "<p>";
 		
-		var funcao = "";
+		for(var i=0; i<rnf.medidas.length; i++){
+			
+			if(i>0 && i<rnf.medidas.length){
+				htmlTexto += " " + rnf.funcao.nome + " ";
+			}
+			
+			htmlTexto += getMessage('arche2.template.resumo.medidas', [(i+1), rnf.medidas[i].entidade, rnf.medidas[i].metodo, rnf.medidas[i].valor]);
+		}
 		
-    	for(var i=0; i<rnf.medidas.length; i++){
-    		if(i > 0 == 0){
-    			funcao = rnf.funcao.nome;
-    		}
-    		
-    		var texto = getMessage("arche2.template.resumo.medidas", [rnf.medidas[i].entidade, rnf.medidas[i].metodo, rnf.medidas[i].valor, funcao ]);
-    		htmlTexto += "<p>" + texto + "</p>";
-    	}
-    	
+		htmlTexto += "</p>";
+		
     	Ext.getCmp('resumoFormDecisao').update(htmlTexto);
     	
     	//habilita botao de exclusao

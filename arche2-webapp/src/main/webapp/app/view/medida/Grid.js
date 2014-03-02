@@ -31,7 +31,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
             		return (record.data.pai != null);
             	}]
             }),
-            queryMode: 'remote',
+            queryMode: 'local',
             typeAhead:true,
             forceSelection: true,
             displayField: 'nome',
@@ -56,7 +56,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
         field: {
             xtype: 'combo',
             store: Ext.create('Arche2.store.Metodos'),
-            queryMode: 'remote',
+            queryMode: 'local',
             typeAhead:true,
             forceSelection: true,
             displayField: 'nome',

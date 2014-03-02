@@ -8,7 +8,7 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
                ],
     bodyPadding: 50,
     url: '',
-    title: 'Requisitos não Funcionais Mensuraveis (Problema)', 
+    title: 'Requisitos Não Funcionais Mensuráveis (Problema)', 
     layout: 'anchor',
     id: 'problemaform',
     
@@ -102,7 +102,7 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
     	id: 'tipoMedida',
     	displayField: 'nome' ,
     	valueField: 'nome',
-        queryMode: 'remote',
+        queryMode: 'local',
         store: [],
         typeAhead:true,
         forceSelection: true,
