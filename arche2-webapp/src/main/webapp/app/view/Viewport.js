@@ -20,7 +20,7 @@ Ext.define('Arche2.view.Viewport', {
                 border: false,
                 margins: '10 10 10 10',
                 items: [{
-                	html: MESSAGES['arche2.name'] + '<h3>' + MESSAGES['arche2.welcome'] + MESSAGES['arche2.default.username'] + (!isAdmin? '' : ' (admin)') + '</h3>' 
+                	html: MESSAGES['arche2.name'] + '<h3>' + MESSAGES['arche2.welcome'] + MESSAGES['arche2.default.username'] + (!isAdmin? '' : ' (admin)') + '</h3>'
                 }]
             }, {
                 region: 'west',
@@ -43,8 +43,10 @@ Ext.define('Arche2.view.Viewport', {
                   }]
             },{
                 region: 'south',
-                html: '<p>Desenvolvido por Daniel Martins Takabayashi para o Instituto de Pesquisas Tecnológicas de São Paulo - IPT (05/2014)</p>',
-                minHeight: 40
+                html: MESSAGES['arche2.about'],
+                minHeight: 15,
+                margins: '1 10 1 10'
+                
             }, {
                 region: 'center',
                 xtype: 'panel',

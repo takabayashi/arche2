@@ -7,8 +7,9 @@ var MESSAGES = {
 	'arche2.tooltip.inserirsolucao': 'Para possibilitar a evolução e aprendizado do sistema especialista, novas soluções arquiteturais podem ser incluídas livremente por arquitetos. Por tanto caso não seja sugerido nenhuma solução adequado, fique a vontade para incluir uma nova solução e compartilhar com outros arquitetos.',
 	'arche2.tooltip.excluirsolucao': 'A exclusão da silução faz parte da manutenção do sistema especialista, e irá exlcuir para sempre a solução da base de casos resolvidos.',
 	'arche2.tooltip.funcao': 'Para alcançar o requisito informado é necessário ter sucesso em todas as medidas ou apenas uma delas ?',
-	'arche2.name':'<h1>Arquiteto Julia v.001 - Sistema Especialista em Soluções Arquiteturais</h1>',
+	'arche2.name':'<h1>Sou o Arquiteto Julia</h1>',
 	'arche2.welcome':'Bem vindo Sr. Arquiteto ',
+	'arche2.about':'<p style="font-size: 10px; margin-left: 10px; margin-right: 5px;">Arquiteto Julia é um protótipo de ferramenta, que utiliza técnicas da IA, especializada em reuso de decisões arquiteturais (táticas), a partir de requisitos de desempenho e confiabilidade para auxiliar a tomada de decisão de arquitetos em projetos de arquitetura de software, desenvolvido por Daniel Martins Takabayashi (daniel.takabayashi@gmail.com) para o Instituto de Pesquisas Tecnológicas de São Paulo - IPT (2014).</p>',
 	
 	
 	'arche2.help.decisao.existencia': '<p>Decisões de Existência estabelecem elementos ou artefatos que devem obrigatoriamente aparecer na arquitetura. A estrutural diz respeito a subsistemas, camadas, partições e componentes gerais da visão arquitetural. A comportamental diz respeito a forma (protocolos) como componentes da arquitetura se comunicam (conectores).</p><p>Exemplo 1: “é obrigatório o uso de HTML para camada de apresentação”</p><p>Exemplo 2: “é obrigatório o uso de uma API customizada para comunicação com o mainframe”</p>',
