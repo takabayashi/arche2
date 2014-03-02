@@ -184,7 +184,7 @@ Ext.define('Arche2.controller.Casos', {
     					var sugestao = Ext.create('Arche2.model.Sugestao', {
     						casoId: sugestoes[i].caso.id,
     						casoResumo: sugestoes[i].caso.decisao.resumo,
-    						similaridade: sugestoes[i].similaridade,
+    						similaridade: sugestoes[i].similaridade.toFixed(2),
     						casoDataCadastro: sugestoes[i].caso.dataCadastro,
     					});
     					
