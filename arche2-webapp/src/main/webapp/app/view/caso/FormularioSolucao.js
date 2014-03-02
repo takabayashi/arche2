@@ -11,16 +11,16 @@ var tiposEstados = Ext.create('Ext.data.Store', {
 var tiposDecisoes = Ext.create('Ext.data.Store', {
     fields: ['nome', 'help'],
     data : [
-        {"nome":"Decisão Estrutural de Arquitetura", "help": MESSAGES['arche2.help.decisao.estrutural']},
-        {"nome":"Decisão Comportamental de Arquitetura", "help": MESSAGES['arche2.help.decisao.comportamental']},
-        {"nome":"Decisão BAN", "help": MESSAGES['arche2.help.decisao.ban']},
-        {"nome":"Diretriz", "help": MESSAGES['arche2.help.decisao.diretriz']},
-        {"nome":"Restrição", "help": MESSAGES['arche2.help.decisao.restricao']},
-        {"nome":"Regra de Projeto", "help": MESSAGES['arche2.help.decisao.regra']},
-        {"nome":"Decisão de Processo", "help": MESSAGES['arche2.help.decisao.processo']},
-        {"nome":"Decisão de Organização", "help": MESSAGES['arche2.help.decisao.organizacao']},
-        {"nome":"Decisão de Tecnologia", "help": MESSAGES['arche2.help.decisao.tecnologia']},
-        {"nome":"Decisão de Ferramenta", "help": MESSAGES['arche2.help.decisao.ferramenta']}
+        {"nome":"Estrutura da Arquitetura (Decisão Existêncial)", "help": MESSAGES['arche2.help.decisao.existencia']},
+        {"nome":"Comportamento da Arquitetura (Decisão Existêncial)", "help": MESSAGES['arche2.help.decisao.existencia']},
+        {"nome":"BAN (Decisão Existêncial)", "help": MESSAGES['arche2.help.decisao.ban']},
+        {"nome":"Diretriz (Decisão de Propriedade)", "help": MESSAGES['arche2.help.decisao.propriedade']},
+        {"nome":"Restrição  (Decisão de Propriedade)", "help": MESSAGES['arche2.help.decisao.propriedade']},
+        {"nome":"Regra de Projeto  (Decisão de Propriedade)", "help": MESSAGES['arche2.help.decisao.propriedade']},
+        {"nome":"Processo (Decisão Executiva)", "help": MESSAGES['arche2.help.decisao.executivas']},
+        {"nome":"Organização (Decisão Executiva)", "help": MESSAGES['arche2.help.decisao.executivas']},
+        {"nome":"Tecnologia (Decisão Executiva)", "help": MESSAGES['arche2.help.decisao.executivas']},
+        {"nome":"Ferramenta (Decisão Executiva)", "help": MESSAGES['arche2.help.decisao.executivas']}
     ]
 });
 
@@ -82,7 +82,7 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 emptyText: 'Escolha o tipo de decisão arquitetural...',
                 listConfig: {
 	            	getInnerTpl: function() {
-	                    return '<div data-qtip="{nome} - {help}">{nome}</div>';
+	            		return '<div data-qtip="{help}">{nome}</div>';
 	                }
                 }
             },

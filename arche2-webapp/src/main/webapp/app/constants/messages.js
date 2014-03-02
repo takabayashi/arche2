@@ -11,16 +11,10 @@ var MESSAGES = {
 	'arche2.welcome':'Bem vindo Sr. Arquiteto ',
 	
 	
-	'arche2.help.decisao.estrutural': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx qwqwqwqwwqqw',
-    'arche2.help.decisao.comportamental': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx qwqwqwqwwqqw',
-    'arche2.help.decisao.ban': 'Ban – decisões que restringem os elementos e artefatos que não podem aparecer na arquitetura, contrário de ExistenceDecision.<br><br>Exemplo 1: “não é permitido o uso de banco de dados relacional”<br>Exemplo 2: “não é permitido a duplicação de código java”',
-    'arche2.help.decisao.diretriz': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx qwqwqwqwwqqw',
-    'arche2.help.decisao.restricao': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx qwqwqwqwwqqw',
-    'arche2.help.decisao.regra': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx qwqwqwqwwqqw',
-    'arche2.help.decisao.processo': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx qwqwqwqwwqqw',
-    'arche2.help.decisao.organizacao': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx qwqwqwqwwqqw',
-    'arche2.help.decisao.tecnologia': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx qwqwqwqwwqqw',
-    'arche2.help.decisao.ferramenta': 'xxxxxxxxxxxxxxxxxxxxxxxxxxx qwqwqwqwwqqw'
+	'arche2.help.decisao.existencia': '<p>Decisões de Existência estabelecem elementos ou artefatos que devem obrigatoriamente aparecer na arquitetura. A estrutural diz respeito a subsistemas, camadas, partições e componentes gerais da visão arquitetural. A comportamental diz respeito a forma (protocolos) como componentes da arquitetura se comunicam (conectores).</p><p>Exemplo 1: “é obrigatório o uso de HTML para camada de apresentação”</p><p>Exemplo 2: “é obrigatório o uso de uma API customizada para comunicação com o mainframe”</p>',
+    'arche2.help.decisao.ban': '<p>Ban são decisões que restringem os elementos e artefatos que não podem aparecer na arquitetura, contrário de Decisões de Existência.</p><br><p>Exemplo 1: “não é permitido o uso de banco de dados relacional”</p><p>Exemplo 2: “não é permitido a duplicação de código java”</p>',
+    'arche2.help.decisao.propriedade': '<p>Decisões de propriedade são características que abrangem todo o sistema, influenciando ou restringindo regras para modelagem. É dividida em Diretriz, Restrição e Regra de projeto.</p><br><p>Exemplo 1: “todas as classes de domínio devem ficar na camada de negócio”</p><p>Exemplo 2: “não utilizar produtos de código aberto”</p>',
+    'arche2.help.decisao.executivas': '<p>Decisões executivas são induzidas pela área de negócio e influenciam a equipe e o processo de desenvolvimento, a organização, tecnologias e ferramentas. São divididas em Organização, Processo, Tecnologia e Ferramenta.</p><br><p>Exemplo 1: “o código deve ser desenvolvido em java”</p><p>Exemplo 2: “a ferramenta para desenvolvimento deve ser o Eclipse”</p><p>Exemplo 3: “o processo RUP dever ser utilizado”</p>'
 	
 };
 
