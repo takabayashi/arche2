@@ -35,7 +35,18 @@ Ext.define('Arche2.view.medida.Grid' ,{
             typeAhead:true,
             forceSelection: true,
             displayField: 'nome',
-            valueField: 'nome'
+            valueField: 'nome',
+        	 listeners:{
+                 scope: this,
+                 'select': function(combo, records, eOpts){
+                 	
+                	var valor = Ext.getCmp('valor');
+                	valor.setDisabled(false);
+                	valor.setValue(records[0].data.limiteValorInferior);
+                	valor.setMinValue(records[0].data.limiteValorInferior);
+                 	valor.setMaxValue(records[0].data.limiteValorSuperior);
+                 }
+            }
         }
     },{
         header: 'Método',
@@ -58,6 +69,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
         dataIndex: 'valor',
         field: {
             xtype: 'numberfield',
+            id: 'valor',
             minValue: 0,
             maxValue: 1000000000, 
             value: 0
@@ -68,7 +80,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
     dockedItems: [{
         xtype: 'toolbar',
         items: [{
-            text: 'Adcionar',
+            text: 'Adicionar',
             iconCls: 'icon-add',
             action: 'add'
             

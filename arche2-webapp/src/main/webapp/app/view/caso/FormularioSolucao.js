@@ -9,18 +9,18 @@ var tiposEstados = Ext.create('Ext.data.Store', {
 });
 
 var tiposDecisoes = Ext.create('Ext.data.Store', {
-    fields: ['nome'],
+    fields: ['nome', 'help'],
     data : [
-        {"nome":"Decisão Estrutural de Arquitetura"},
-        {"nome":"Decisão Comportamental de Arquitetura"},
-        {"nome":"Decisão BAN"},
-        {"nome":"Diretriz"},
-        {"nome":"Restrição"},
-        {"nome":"Regra de Projeto"},
-        {"nome":"Decisão de Processo"},
-        {"nome":"Decisão de Organização"},
-        {"nome":"Decisão de Tecnologia"},
-        {"nome":"Decisão de Ferramenta"}
+        {"nome":"Decisão Estrutural de Arquitetura", "help": MESSAGES['arche2.help.decisao.estrutural']},
+        {"nome":"Decisão Comportamental de Arquitetura", "help": MESSAGES['arche2.help.decisao.comportamental']},
+        {"nome":"Decisão BAN", "help": MESSAGES['arche2.help.decisao.ban']},
+        {"nome":"Diretriz", "help": MESSAGES['arche2.help.decisao.diretriz']},
+        {"nome":"Restrição", "help": MESSAGES['arche2.help.decisao.restricao']},
+        {"nome":"Regra de Projeto", "help": MESSAGES['arche2.help.decisao.regra']},
+        {"nome":"Decisão de Processo", "help": MESSAGES['arche2.help.decisao.processo']},
+        {"nome":"Decisão de Organização", "help": MESSAGES['arche2.help.decisao.organizacao']},
+        {"nome":"Decisão de Tecnologia", "help": MESSAGES['arche2.help.decisao.tecnologia']},
+        {"nome":"Decisão de Ferramenta", "help": MESSAGES['arche2.help.decisao.ferramenta']}
     ]
 });
 
@@ -79,7 +79,12 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 allowBlank: false,
                 displayField: 'nome',
                 valueField: 'nome',
-                emptyText: 'Escolha o tipo de decisão arquitetural...'
+                emptyText: 'Escolha o tipo de decisão arquitetural...',
+                listConfig: {
+	            	getInnerTpl: function() {
+	                    return '<div data-qtip="{nome} - {help}">{nome}</div>';
+	                }
+                }
             },
             {
                 xtype: 'textarea',
@@ -128,13 +133,14 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 allowBlank: true,
                 rows: 2,
                 fieldLabel: 'Escopo',
-                emptyText: 'Faça uma breve descrição do escopo que envolve essa decisão...'
+                emptyText: 'Faça uma breve descrição do escopo que envolve essa decisão...Por que apenas propor soluções relacionadas a padrões de projeto se a infraestrutura de servidores também faz parte da arquitetura? Resp: A infraestrutura não faz parte do escopo.'
             },
             {
                 xtype: 'numberfield',
                 name : 'custo',
                 id : 'custo',
                 value: 0,
+                hidden: true,
                 fieldLabel: 'Custo $'
             },
             {
@@ -143,7 +149,7 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 readOnly: true,
                 allowBlank: true,
                 id : 'historico',
-                rows: 2,
+                rows: 4,
                 fieldLabel: 'Histórico'
             }
         ]
