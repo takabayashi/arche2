@@ -110,6 +110,12 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
         disabled: true,
         emptyText: 'Tipo de Medidas...',
         margin: '10 0 10 0 0',
+        listeners:{
+            scope: this,
+            'select': function(combo, records, eOpts){
+            	Ext.getCmp('medidagrid').setDisabled(false);
+            }
+        }
     	
     }, {
     	xtype: 'combo',
@@ -125,12 +131,7 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
         allowBlank: false,
         emptyText: 'Função de Medição...',
         margin: '10 0 10 0 0',
-        listeners:{
-            scope: this,
-            'select': function(combo, records, eOpts){
-            	Ext.getCmp('medidagrid').setDisabled(false);
-            }
-        }
+        value: "e" //valor padrão para facilitar o preenchimento
         
     },{
         

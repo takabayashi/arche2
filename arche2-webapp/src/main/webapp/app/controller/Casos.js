@@ -1,3 +1,5 @@
+var loading = {};
+
 Ext.define('Arche2.controller.Casos', {
     extend: 'Ext.app.Controller',
  
@@ -51,6 +53,10 @@ Ext.define('Arche2.controller.Casos', {
  
     addNovoCaso: function(button) {
     	if(Ext.getCmp('medidagrid').getStore().data.items.length > 0){
+			
+    		loading = new Ext.LoadMask(Ext.getBody(), {msg:"Por favor aguarde ...."});
+    		loading.show();
+			
 	    	var decisao = {};
 	    	decisao.tipo = Ext.getCmp('tipo').getValue();
 	    	decisao.resumo = Ext.getCmp('resumoDecisao').getValue();
@@ -91,6 +97,8 @@ Ext.define('Arche2.controller.Casos', {
 	    	    },
 	    	    failure: function(response, opts) {
 	    	        console.log('server-side failure with status code ' + response.status);
+	    	        
+	    	    	loading.destroy();
 	    	        Ext.Msg.alert('Erro', 'Olhe o log, pois lagum erro ocorreu!!!');
 	    	    }
 	    	});
@@ -98,13 +106,16 @@ Ext.define('Arche2.controller.Casos', {
     },
     
     sugerirSolucao: function(button){
-    	if(Ext.getCmp('medidagrid').getStore().data.items.length > 0){
+    	
+    	if(Ext.getCmp('medidagrid').getStore().data.items.length > 0 && Ext.getCmp('medidagrid').getStore().data.items[0].data.entidade != ""){
     		
-            this.updateRNF();
+    		this.updateRNF();
             
     		//busca os casos similares e caso nao encontre nenhum, permite o cadastro de 
     		this.buscarCasosSimilares();
             
+        }else{
+        	Ext.Msg.alert('Medidas', 'Ao menos uma medida deve ser informada');
         }
     },
     
@@ -155,6 +166,9 @@ Ext.define('Arche2.controller.Casos', {
     },
     
     buscarCasosSimilares : function(){
+    	loading = new Ext.LoadMask(Ext.getBody(), {msg:"Por favor aguarde ...."});
+    	loading.show();
+    	
     	var novoProblema = {};
     	novoProblema = window.rnf;
     	
@@ -201,11 +215,15 @@ Ext.define('Arche2.controller.Casos', {
     				
     				//abre o painel de sugestoes encontradas
     				Ext.getCmp('sugestaogrid').expand();
+    				
+    				loading.destroy();
     			}
 
     	    },
     	    failure: function(response, opts) {
     	        console.log('server-side failure with status code ' + response.status);
+				loading.destroy();
+				
     	        Ext.Msg.alert('Erro', 'Olhe o log, pois lagum erro ocorreu!!!');
     	    }
     	});
