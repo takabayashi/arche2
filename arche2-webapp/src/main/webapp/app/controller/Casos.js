@@ -143,6 +143,9 @@ Ext.define('Arche2.controller.Casos', {
 	        //desbloqueia o proximo formulario
 	        Ext.getCmp('wizardPanel').getLayout().setActiveItem('solucaoform');
 	        
+	        //altera o nome do button
+	        Ext.getCmp('addNovoCasoButton').setText('Salvar Solução');
+	        
 	    	//desabilita botao de exclusao
 	    	Ext.getCmp('deleteCasoButton').disable();
 	        
@@ -186,6 +189,8 @@ Ext.define('Arche2.controller.Casos', {
     						casoResumo: sugestoes[i].caso.decisao.resumo,
     						similaridade: sugestoes[i].similaridade.toFixed(3),
     						casoDataCadastro: sugestoes[i].caso.dataCadastro,
+    						tipoSolucao: sugestoes[i].caso.decisao.tipo,
+    						estadoSolucao: sugestoes[i].caso.decisao.estado,
     					});
     					
     					//guarda as sugestoes em memória para acessar facilmente
@@ -209,6 +214,8 @@ Ext.define('Arche2.controller.Casos', {
     abrirSugestao : function(grid, record){
     	//abre o formulario da solucao com os dados preenchidos
     	Ext.getCmp('wizardPanel').getLayout().setActiveItem('solucaoform');
+        //altera o nome do button
+        Ext.getCmp('addNovoCasoButton').setText('Reutilizar Solução');
         
     	var decisao = window.listaSugestoes[record.data.casoId].decisao;
     	

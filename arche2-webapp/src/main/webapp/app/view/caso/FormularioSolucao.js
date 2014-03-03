@@ -4,6 +4,7 @@ var tiposEstados = Ext.create('Ext.data.Store', {
         {"nome":"Decisão Implementada"},
         {"nome":"Prova de Conceito"},
         {"nome":"Tentativa"},
+        {"nome":"Apenas uma Idéia"},
         {"nome":"Solução Rejeitada"}
     ]
 });
@@ -30,7 +31,7 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
 
     bodyPadding: 50,
     url: '',
-    title: 'Decisao Arquitetural (Solução)', 
+    title: 'Decisão Arquitetural (Solução)', 
     layout: 'anchor',
     id: 'solucaoform',
     
@@ -168,7 +169,8 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
         disabled: true,
         tooltip: MESSAGES['arche2.tooltip.excluirsolucao']
     },{
-    	text: 'Salvar Nova Solução',
+    	text: 'Reutilizar Solução',
+    	id: 'addNovoCasoButton',
         formBind: true,
         disabled: true,
         action: 'addNovoCaso'
