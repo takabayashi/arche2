@@ -23,6 +23,7 @@ import br.com.ipt.arche2.ornfm.entity.Medida;
 import br.com.ipt.arche2.ornfm.entity.RNFMensuravel;
 import br.com.ipt.arche2.repository.CasoRepository;
 import br.com.ipt.arche2.repository.EntidadeRepository;
+import br.com.ipt.arche2.repository.MetodoRepository;
 import br.com.ipt.arche2.repository.PesoRepository;
 import br.com.ipt.arche2.similarity.Constantes;
 import br.com.ipt.arche2.similarity.InstanceSimilarityAlgorithm;
@@ -41,6 +42,9 @@ public class CasoService {
 	
 	@Autowired
 	protected EntidadeRepository entidadeRepository;
+	
+	@Autowired
+	protected MetodoRepository metodoRepository;
 	
 	@Autowired
 	protected InstanceSimilarityAlgorithm instanceSimilarityAlgorithm;
@@ -168,8 +172,12 @@ public class CasoService {
 		i = pesos.indexOf(new Peso(Constantes.SIMILARIDADE_LOCAL_MEDIDAS_W2));
 		w2 = i < 0 ? new Peso().getValor() : pesos.get(i).getValor();
 		
+		i = pesos.indexOf(new Peso(Constantes.SIMILARIDADE_LOCAL_MEDIDAS_W3));
+		float w3 = i < 0 ? new Peso().getValor() : pesos.get(i).getValor();
+		
 		measureSimilarityAlgorithm.w1 = w1;
 		measureSimilarityAlgorithm.w2 = w2;
+		measureSimilarityAlgorithm.w3 = w3;
 		
 		//AJUSTA pesos de similaridade global 
 		i = pesos.indexOf(new Peso(Constantes.SIMILARIDADE_GLOBAL_W1));
@@ -195,6 +203,7 @@ public class CasoService {
 		measureSimilarityAlgorithm.setInstanceSimilarityAlgorithm(instanceSimilarityAlgorithm);
 		measureSimilarityAlgorithm.setNumericSimilarityAlgorithm(numericSimilarityAlgorithm);
 		measureSimilarityAlgorithm.setEntidadesMedida(entidadeRepository.findAll());
+		measureSimilarityAlgorithm.setMetodosMedida(metodoRepository.findAll());
 		
 		//seta uma nova base indexada
 		nearestNeighbourAlgorithm.setCasosIndexados(new ArrayList<Sugestao>());

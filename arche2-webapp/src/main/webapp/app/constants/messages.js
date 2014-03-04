@@ -1,6 +1,6 @@
 var MESSAGES = {
-	'arche2.template.resumo.medidas':'Medida {0}:  <i>{1} {2} {3}</i>',
-	'arche2.template.resumo':'<p>O seguinte requisito não funcional de <b>{0}</b> deve ser atendido:</p><p>A arquitetura proposta deverá prever um nível de <b>{1}</b> tal que, a (o) <b>{2}</b> será:</p>',
+	'arche2.template.resumo.medidas':'<b>Medida</b> {0}:  <i>{1} {2} {3}</i>',
+	'arche2.template.resumo':'<p>O seguinte requisito não funcional de <b>{0}</b> deve ser atendido:</p><p>A arquitetura proposta deverá prever um nível de <b>{1}</b>, tal que o (a) <b>{2}</b> será:</p>',
 	'arche2.default.resumo': '<p>Nenhuma medida foi indicada...</p>',
 	'arche2.default.username': arquiteto,
 	'arche2.tooltip.sugerirsolucao': 'O sistema especialista tentará sugerir soluções arquiteturais para o RNF (Requisito não funcional) apresentado. O sistema utiliza uma base de soluções arquiteturais utilizadas no passado e incluídos por profissionais especializados em arquitetura de software. <br><br>Todas as soluções sugeridas são apresentadas com um nível de similaridade calculado, a similaridade é calculada utilizando como base o RNF apresentado. <br><br>Para obter um resultado aceitável seja bem claro nas medidas desejadas.',

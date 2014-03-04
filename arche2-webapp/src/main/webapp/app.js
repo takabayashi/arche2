@@ -19,5 +19,9 @@ Ext.application({
         'Arquitetos'
     ],
  
-    autoCreateViewport: true
+    autoCreateViewport: true,
+    
+    launch : function(){
+    	_app = this;
+    }
 });

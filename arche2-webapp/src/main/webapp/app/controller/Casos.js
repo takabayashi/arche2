@@ -88,6 +88,9 @@ Ext.define('Arche2.controller.Casos', {
 	            method: 'POST',
 	            
 	    	    success: function(response, opts) {
+	    	    	
+	    	    	loading.destroy();
+	    	    	
 	    	    	Ext.Msg.alert('Sucesso', 'Novo Caso registrado com sucesso!!!');
 	    	    	
 	    	    	that.cancelarFormularioSolucao(button);
@@ -107,7 +110,7 @@ Ext.define('Arche2.controller.Casos', {
     
     sugerirSolucao: function(button){
     	
-    	if(Ext.getCmp('medidagrid').getStore().data.items.length > 0 && Ext.getCmp('medidagrid').getStore().data.items[0].data.entidade != ""){
+    	if(Ext.getCmp('medidagrid').getStore().data.items.length > 0 && Ext.getCmp('medidagrid').getStore().data.items[0].data.entidade != "" && Ext.getCmp('medidagrid').getStore().data.items[0].data.metodo != ""){
     		
     		this.updateRNF();
             
@@ -126,6 +129,11 @@ Ext.define('Arche2.controller.Casos', {
         comboSubcaracteristica.setDisabled(true);
         
         //reseta o grid
+        this.limparMedidas();
+    },
+    
+    limparMedidas : function(){
+    	//reseta o grid
         var medidasGrid = Ext.getCmp('medidagrid');
         medidasGrid.getStore().removeAll();
         medidasGrid.getStore().sync();
@@ -201,7 +209,7 @@ Ext.define('Arche2.controller.Casos', {
     					var sugestao = Ext.create('Arche2.model.Sugestao', {
     						casoId: sugestoes[i].caso.id,
     						casoResumo: sugestoes[i].caso.decisao.resumo,
-    						similaridade: sugestoes[i].similaridade.toFixed(3),
+    						similaridade: '<b>' + ((sugestoes[i].similaridade.toFixed(4)) * 100).toFixed(2) + ' %</b>',
     						casoDataCadastro: sugestoes[i].caso.dataCadastro,
     						tipoSolucao: sugestoes[i].caso.decisao.tipo,
     						estadoSolucao: sugestoes[i].caso.decisao.estado,
@@ -247,28 +255,62 @@ Ext.define('Arche2.controller.Casos', {
     	Ext.getCmp('custo').setValue(decisao.custo);
     	Ext.getCmp('historico').setValue(decisao.historico);
     	
-    	//prepara o text descritivo
-    	var rnf = window.listaSugestoes[record.data.casoId].rnf;
-
-    	var htmlTexto = getMessage('arche2.template.resumo', [rnf.nome, rnf.subcaracteristica, rnf.tipoMedida]);
-		
-		htmlTexto += "<p>";
-		
-		for(var i=0; i<rnf.medidas.length; i++){
-			
-			if(i>0 && i<rnf.medidas.length){
-				htmlTexto += " " + rnf.funcao.nome + " ";
-			}
-			
-			htmlTexto += getMessage('arche2.template.resumo.medidas', [(i+1), rnf.medidas[i].entidade, rnf.medidas[i].metodo, rnf.medidas[i].valor]);
-		}
-		
-		htmlTexto += "</p>";
-		
-    	Ext.getCmp('resumoFormDecisao').update(htmlTexto);
+    	Ext.getCmp('resumoFormDecisao').update(this.prepareResumo(window.listaSugestoes[record.data.casoId].rnf));
     	
     	//habilita botao de exclusao
     	Ext.getCmp('deleteCasoButton').enable();
+    },
+    
+    prepareResumo : function(rnf){
+    	//prepara o text descritivo
+    	
+    	if(rnf.medidas.length <= 0){
+    		return getMessage('arche2.default.resumo');
+    		
+    	}else{
+    		
+        	var htmlTexto = getMessage('arche2.template.resumo', [rnf.nome, rnf.subcaracteristica, rnf.tipoMedida]);
+    		
+    		htmlTexto += "<p>";
+    		
+    		for(var i=0; i<rnf.medidas.length; i++){
+    			
+    			if(i>0 && i<rnf.medidas.length){
+    				htmlTexto += " " + rnf.funcao.nome + " ";
+    			}
+    			
+    			htmlTexto += getMessage('arche2.template.resumo.medidas', [(i+1), rnf.medidas[i].entidade, rnf.medidas[i].metodo, rnf.medidas[i].valor]);
+    		}
+    		
+    		htmlTexto += "</p>";
+    		
+        	return htmlTexto;
+    	}
+    	
+    },
+    
+    prepareResumoFromMedidasGrid : function(medidas){
+    	var htmlTexto = getMessage('arche2.default.resumo');
+    	
+    	if(medidas.length > 0){
+    		
+    		htmlTexto = getMessage('arche2.template.resumo', [Ext.getCmp('caracteristica').getValue(), Ext.getCmp('subcaracteristica').getValue(), Ext.getCmp('tipoMedida').getValue()]);
+    		
+    		htmlTexto += "<p>";
+    		
+    		for(var i=0; i<medidas.length; i++){
+    			
+    			if(i>0 && i<medidas.length){
+    				htmlTexto += " " + Ext.getCmp('funcao').getValue() + " ";
+    			}
+    			
+    			htmlTexto += getMessage('arche2.template.resumo.medidas', [(i+1), medidas[i].data.entidade, medidas[i].data.metodo, medidas[i].data.valor]);
+    		}
+    		
+    		htmlTexto += "</p>";
+    	}
+    	
+    	return htmlTexto;
     },
     
     updateRNF : function(){

@@ -52,6 +52,9 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
             	});
             	
             	subCaracteristicasStore.load();
+            	
+            	//atualiza o texto do resumo
+            	Ext.getCmp('resumo').update(_app.getController("Casos").prepareResumoFromMedidasGrid(Ext.getCmp('medidagrid').store.data.items));
             }
        }
         
@@ -93,6 +96,9 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
             	});
             	
             	comboTipoMedidaStore.load();
+            	
+            	//atualiza o texto do resumo
+            	Ext.getCmp('resumo').update(_app.getController("Casos").prepareResumoFromMedidasGrid(Ext.getCmp('medidagrid').store.data.items));
             }
        }
     },{
@@ -114,6 +120,9 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
             scope: this,
             'select': function(combo, records, eOpts){
             	Ext.getCmp('medidagrid').setDisabled(false);
+            	
+            	//atualiza o texto do resumo
+            	Ext.getCmp('resumo').update(_app.getController("Casos").prepareResumoFromMedidasGrid(Ext.getCmp('medidagrid').store.data.items));
             }
         }
     	
@@ -131,8 +140,15 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
         allowBlank: false,
         emptyText: 'Função de Medição...',
         margin: '10 0 10 0 0',
-        value: "e" //valor padrão para facilitar o preenchimento
-        
+        value: "e", //valor padrão para facilitar o preenchimento
+        listeners:{
+            scope: this,
+            'select': function(combo, records, eOpts){
+            	
+            	//atualiza o texto do resumo
+            	Ext.getCmp('resumo').update(_app.getController("Casos").prepareResumoFromMedidasGrid(Ext.getCmp('medidagrid').store.data.items));
+            }
+        }
     },{
         
     	xtype: 'medidagrid',

@@ -15,4 +15,5 @@
 	  <user username="adriano.tavares" password="04d8f33f88873b1b97246b7cfc0cc98e6d8b8b76" roles="architect"/>
 	  <user username="pangea.arquitetos" password="d92f55d087bf1eacdf4a0302f0b7b4b30b69d3eb" roles="architect"/>
 	  <user username="fernando.giorno" password="79c8124fe3b54cd0db0890ec4a43925bd77587d2" roles="architect"/>
+	  <user username="marcelo.nascimento" password="9e8ca39fa20cde6edef8a23524e752aa58e3d16a" roles="architect"/>
 </tomcat-users>
