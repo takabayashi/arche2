@@ -3,17 +3,29 @@
 	  <role rolename="admin"/>
 	  
 	  <user username="daniel.takabayashi" password="qazwsx" roles="architect,admin"/>
-	  <user username="juliana.myaki" password="923edd49507b21f8eda9ffae5b486a189273c423" roles="architect,admin"/>
+	  
+	  <user username="fabio.queiroz" password="3465a9603fee4ce853c6e1fefab953fad1f5d4d5" roles="architect"/>
+	  <user username="mike.moreira" password="05c3478a3e21e0fc2b3c2dadbfd875625156c3c7" roles="architect"/>
+	  <user username="alexandre.pereira" password="3d5c10e9cdaa353740cf6bdb3297d48d6f493977" roles="architect"/>
+	  <user username="paulo.asterio" password="7924dbe48d57c6a7f62c4ddde0ea52f85cb3e194" roles="architect"/>
+	  <user username="pangea.arquitetos" password="d92f55d087bf1eacdf4a0302f0b7b4b30b69d3eb" roles="architect"/>
+	  <user username="fernando.giorno" password="79c8124fe3b54cd0db0890ec4a43925bd77587d2" roles="architect"/>
+	  
+	  <user username="adriano.tavares" password="04d8f33f88873b1b97246b7cfc0cc98e6d8b8b76" roles="architect"/>
+	  <user username="pedro.busko" password="78fcd8de51348040efb23b788b8a0675823bee40" roles="architect"/>
+	  <user username="juliana.myaki" password="923edd49507b21f8eda9ffae5b486a189273c423" roles="architect"/>
 	  <user username="willian.leite" password="7e9ea03ffd87c8b82cd6c278cceb2e3ccdd76726" roles="architect"/>
 	  <user username="mauricio.takabayashi" password="1a6fc6560df81cd02645ebfea3ae1d448780e622" roles="architect"/>
 	  <user username="ricardo.cury" password="3208c90e8c650a4f7f0281c96cbe0dec0a19b7d6" roles="architect"/>
-	  <user username="fabio.queiroz" password="3465a9603fee4ce853c6e1fefab953fad1f5d4d5" roles="architect"/>
-	  <user username="mike.moreira" password="05c3478a3e21e0fc2b3c2dadbfd875625156c3c7" roles="architect"/>
-	  <user username="pedro.busko" password="78fcd8de51348040efb23b788b8a0675823bee40" roles="architect"/>
-	  <user username="alexandre.pereira" password="3d5c10e9cdaa353740cf6bdb3297d48d6f493977" roles="architect"/>
-	  <user username="paulo.asterio" password="7924dbe48d57c6a7f62c4ddde0ea52f85cb3e194" roles="architect"/>
-	  <user username="adriano.tavares" password="04d8f33f88873b1b97246b7cfc0cc98e6d8b8b76" roles="architect"/>
-	  <user username="pangea.arquitetos" password="d92f55d087bf1eacdf4a0302f0b7b4b30b69d3eb" roles="architect"/>
-	  <user username="fernando.giorno" password="79c8124fe3b54cd0db0890ec4a43925bd77587d2" roles="architect"/>
+	  
 	  <user username="marcelo.nascimento" password="9e8ca39fa20cde6edef8a23524e752aa58e3d16a" roles="architect"/>
+	  <user username="Rodrigo Mendonça" password="98ccfbd57577ec6ab2a1184e7ac7f233b417ec35" roles="architect"/>
+	  <user username="Wellington Ricardo Pinheiro" password="44e272b12ae0b228e79f2ddedbc967754ba8a76f" roles="architect"/>
+	  <user username="Roberto Santacroce Martins" password="65c635ea4385b7c69e8fa512a2d6715239d6f4d8" roles="architect"/>
+	  
+	  <user username="Claudio Teixeira" password="b2cd2701f2754d407d0961238759116f3a65349e" roles="architect"/>
+	  <user username="Jairo Francisco da Silva" password="ee21acc879a167db3e0ed03e5ee0f9c1883c15f9" roles="architect"/>
+	  <user username="Anderson Alves Teixeira" password="720a4def1177bcc12a2ef5036d95c74d4ad28610" roles="architect"/>
+	  <user username="Jaguaraci Silva" password="14047c0a7400a52d8efdd26e173b4d359ddaa67c" roles="architect"/>
+	  
 </tomcat-users>
