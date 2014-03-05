@@ -1,4 +1,4 @@
 Ext.define('Arche2.model.Sugestao', {
     extend: 'Ext.data.Model',
-    fields: ['casoId', 'casoResumo', 'similaridade', 'casoDataCadastro']
+    fields: ['casoId', 'casoResumo', 'similaridade', 'casoDataCadastro', 'tipoSolucao', 'estadoSolucao']
 });

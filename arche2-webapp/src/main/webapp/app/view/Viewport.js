@@ -7,7 +7,8 @@ Ext.define('Arche2.view.Viewport', {
         'Arche2.view.geral.TabPanel',
         'Arche2.view.caso.SugestaoGrid',
         'Arche2.view.caso.FormularioProblema',
-        'Arche2.view.caso.FormularioSolucao'
+        'Arche2.view.caso.FormularioSolucao',
+        'Arche2.view.geral.FormularioFeedBack'
     ],
  
     initComponent: function() {
@@ -20,21 +21,13 @@ Ext.define('Arche2.view.Viewport', {
                 border: false,
                 margins: '10 10 10 10',
                 items: [{
-                	html: MESSAGES['arche2.name'] + '<h3>' + MESSAGES['arche2.welcome'] + MESSAGES['arche2.default.username'] + (!isAdmin? '' : ' (admin)') + '</h3>' 
+                	html: MESSAGES['arche2.name'] + '<h3>' + MESSAGES['arche2.welcome'] + MESSAGES['arche2.default.username'] + (!isAdmin? '' : ' (admin)') + '</h3>'
                 }]
-            }, {
-                region: 'west',
-                collapsible: true,
-                title: 'Requisitos Não Funcionais',
-                width: '20%',
-                resizable: true,
-                collapsed: true,
-                items: []
             }, {
                 region: 'east',
                 collapsible: true,
                 title: 'Cadastros de Apoio',
-                width: '50%',
+                width: '70%',
                 resizable: true,
                	collapsed: true,
                	hidden: !isAdmin,
@@ -42,9 +35,22 @@ Ext.define('Arche2.view.Viewport', {
                    	xtype: 'geraltabpanel'
                   }]
             },{
+                region: 'east',
+                collapsible: true,
+                title: 'Registro de Feedback',
+                width: '50%',
+                resizable: true,
+                collapsed: true,
+                id: "feedbackformPanel",
+                items: [{
+                	xtype: 'feedbackform'
+                }]
+            }, {
                 region: 'south',
-                html: '<p>Desenvolvido por Daniel Martins Takabayashi para o Instituto de Pesquisas Tecnológicas de São Paulo - IPT (05/2014)</p>',
-                minHeight: 40
+                html: MESSAGES['arche2.about'],
+                minHeight: 15,
+                margins: '1 10 1 10'
+                
             }, {
                 region: 'center',
                 xtype: 'panel',

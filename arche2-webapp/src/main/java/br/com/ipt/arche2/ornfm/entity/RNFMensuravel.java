@@ -12,6 +12,16 @@ public class RNFMensuravel {
 	
 	public String subcaracteristica;
 	
+	public String tipoMedida;
+	
+	public String getTipoMedida() {
+		return tipoMedida;
+	}
+
+	public void setTipoMedida(String tipoMedida) {
+		this.tipoMedida = tipoMedida;
+	}
+
 	public String getSubcaracteristica() {
 		return subcaracteristica;
 	}

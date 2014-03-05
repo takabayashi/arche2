@@ -19,9 +19,11 @@ import org.springframework.stereotype.Component;
 import br.com.ipt.arche2.entity.Caso;
 import br.com.ipt.arche2.entity.Peso;
 import br.com.ipt.arche2.entity.Sugestao;
+import br.com.ipt.arche2.ornfm.entity.Medida;
 import br.com.ipt.arche2.ornfm.entity.RNFMensuravel;
 import br.com.ipt.arche2.repository.CasoRepository;
 import br.com.ipt.arche2.repository.EntidadeRepository;
+import br.com.ipt.arche2.repository.MetodoRepository;
 import br.com.ipt.arche2.repository.PesoRepository;
 import br.com.ipt.arche2.similarity.Constantes;
 import br.com.ipt.arche2.similarity.InstanceSimilarityAlgorithm;
@@ -40,6 +42,9 @@ public class CasoService {
 	
 	@Autowired
 	protected EntidadeRepository entidadeRepository;
+	
+	@Autowired
+	protected MetodoRepository metodoRepository;
 	
 	@Autowired
 	protected InstanceSimilarityAlgorithm instanceSimilarityAlgorithm;
@@ -93,10 +98,7 @@ public class CasoService {
 		///aplica a lógica para devolver apenas os casos similares
 		for (Caso caso : listaCasos) {
 			
-			System.out.println("Dados do caso armazenado");
-			System.out.println("\tCaso: [" + caso.getId() + "] ");
-			System.out.println("\tProblema: [" + (caso.getDecisao().getResumo().length() > 100 ? caso.getDecisao().getResumo().substring(0, 100): caso.getDecisao().getResumo().substring(0, caso.getDecisao().getResumo().length())) + "] ");
-			System.out.println("\tSolucao: [" + caso.getRnf().getNome() + " - >" + caso.getRnf().getSubcaracteristica() +  "]\n ");
+			printCaso(caso);
 			
 			/**
 			 *  Aqui inicia a lógica para calculo de similaridades
@@ -122,10 +124,32 @@ public class CasoService {
 			
 		}
 		
-		System.out.println("Finalisando calculo de similaridade **************************************\n\n");
+		System.out.println("Finalizando calculo de similaridade **************************************\n\n");
 		
 		
 		return Response.status(200).entity(nearestNeighbourAlgorithm.getCasosIndexados()).build();
+	}
+
+	private void printCaso(Caso caso) {
+		System.out.println("Dados do caso armazenado");
+		System.out.println("\tCaso: [" + caso.getId() + "] ");
+		System.out.println("\tSolucao: [" + (caso.getDecisao().getResumo().length() > 100 ? caso.getDecisao().getResumo().substring(0, 100): caso.getDecisao().getResumo().substring(0, caso.getDecisao().getResumo().length())) + "] ");
+		System.out.println("\tProblema: [" + caso.getRnf().getNome() + " - >" + caso.getRnf().getSubcaracteristica() + "] ");
+		
+		System.out.print("\t" + caso.getRnf().getTipoMedida() + ": [");
+		int x = 0;
+		
+		for (Medida medida : caso.getRnf().getMedidas()) {
+			if(x > 0 && x < caso.getRnf().getMedidas().size()){
+				System.out.print(" " + caso.getRnf().getFuncao().getNome() + " ");
+			}
+			
+			System.out.print(medida);
+			
+			x++;
+		}
+		
+		System.out.print("]\n");
 	}
 
 	private void ajustarPesos() {
@@ -148,8 +172,12 @@ public class CasoService {
 		i = pesos.indexOf(new Peso(Constantes.SIMILARIDADE_LOCAL_MEDIDAS_W2));
 		w2 = i < 0 ? new Peso().getValor() : pesos.get(i).getValor();
 		
+		i = pesos.indexOf(new Peso(Constantes.SIMILARIDADE_LOCAL_MEDIDAS_W3));
+		float w3 = i < 0 ? new Peso().getValor() : pesos.get(i).getValor();
+		
 		measureSimilarityAlgorithm.w1 = w1;
 		measureSimilarityAlgorithm.w2 = w2;
+		measureSimilarityAlgorithm.w3 = w3;
 		
 		//AJUSTA pesos de similaridade global 
 		i = pesos.indexOf(new Peso(Constantes.SIMILARIDADE_GLOBAL_W1));
@@ -175,6 +203,7 @@ public class CasoService {
 		measureSimilarityAlgorithm.setInstanceSimilarityAlgorithm(instanceSimilarityAlgorithm);
 		measureSimilarityAlgorithm.setNumericSimilarityAlgorithm(numericSimilarityAlgorithm);
 		measureSimilarityAlgorithm.setEntidadesMedida(entidadeRepository.findAll());
+		measureSimilarityAlgorithm.setMetodosMedida(metodoRepository.findAll());
 		
 		//seta uma nova base indexada
 		nearestNeighbourAlgorithm.setCasosIndexados(new ArrayList<Sugestao>());

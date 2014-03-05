@@ -3,5 +3,5 @@ Ext.define('Arche2.model.TipoMedida', {
     fields: [{
         name: 'id',
         useNull: true
-    }, 'nome', 'pai']
+    }, 'nome', 'pai', 'subcaracteristica']
 });

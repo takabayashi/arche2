@@ -1,5 +1,7 @@
 Ext.Loader.setConfig({enabled: true});
- 
+
+Ext.tip.QuickTipManager.init(true, {showDelay : 1000, dismissDelay: 20000});
+
 Ext.application({
     name: 'Arche2',
  
@@ -17,5 +19,9 @@ Ext.application({
         'Arquitetos'
     ],
  
-    autoCreateViewport: true
+    autoCreateViewport: true,
+    
+    launch : function(){
+    	_app = this;
+    }
 });

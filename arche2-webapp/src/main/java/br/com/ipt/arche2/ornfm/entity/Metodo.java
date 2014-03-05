@@ -2,15 +2,22 @@ package br.com.ipt.arche2.ornfm.entity;
 
 import org.springframework.data.annotation.Id;
 
-import br.com.ipt.arche2.util.JsonUtils;
-
 public class Metodo {
 	@Id
-	private String id;
+	public String id;
 	
-	private String nome;
+	public String nome;
 	
-	private String algoritmo;
+	public String algoritmo;
+
+	public Metodo() {
+		super();
+	}
+
+	public Metodo(String nome) {
+		super();
+		this.nome = nome;
+	}
 
 	public String getId() {
 		return id;
@@ -38,7 +45,32 @@ public class Metodo {
 	
 	@Override
 	public String toString() {
-		return JsonUtils.object2JsonString(this);
+		return this.getNome();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Metodo other = (Metodo) obj;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
 	}
 
 }

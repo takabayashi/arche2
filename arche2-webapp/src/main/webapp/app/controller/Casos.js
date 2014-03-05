@@ -1,3 +1,5 @@
+var loading = {};
+
 Ext.define('Arche2.controller.Casos', {
     extend: 'Ext.app.Controller',
  
@@ -51,6 +53,10 @@ Ext.define('Arche2.controller.Casos', {
  
     addNovoCaso: function(button) {
     	if(Ext.getCmp('medidagrid').getStore().data.items.length > 0){
+			
+    		loading = new Ext.LoadMask(Ext.getBody(), {msg:"Por favor aguarde ...."});
+    		loading.show();
+			
 	    	var decisao = {};
 	    	decisao.tipo = Ext.getCmp('tipo').getValue();
 	    	decisao.resumo = Ext.getCmp('resumoDecisao').getValue();
@@ -82,6 +88,9 @@ Ext.define('Arche2.controller.Casos', {
 	            method: 'POST',
 	            
 	    	    success: function(response, opts) {
+	    	    	
+	    	    	loading.destroy();
+	    	    	
 	    	    	Ext.Msg.alert('Sucesso', 'Novo Caso registrado com sucesso!!!');
 	    	    	
 	    	    	that.cancelarFormularioSolucao(button);
@@ -91,6 +100,8 @@ Ext.define('Arche2.controller.Casos', {
 	    	    },
 	    	    failure: function(response, opts) {
 	    	        console.log('server-side failure with status code ' + response.status);
+	    	        
+	    	    	loading.destroy();
 	    	        Ext.Msg.alert('Erro', 'Olhe o log, pois lagum erro ocorreu!!!');
 	    	    }
 	    	});
@@ -98,13 +109,16 @@ Ext.define('Arche2.controller.Casos', {
     },
     
     sugerirSolucao: function(button){
-    	if(Ext.getCmp('medidagrid').getStore().data.items.length > 0){
+    	
+    	if(Ext.getCmp('medidagrid').getStore().data.items.length > 0 && Ext.getCmp('medidagrid').getStore().data.items[0].data.entidade != "" && Ext.getCmp('medidagrid').getStore().data.items[0].data.metodo != ""){
     		
-            this.updateRNF();
+    		this.updateRNF();
             
     		//busca os casos similares e caso nao encontre nenhum, permite o cadastro de 
     		this.buscarCasosSimilares();
             
+        }else{
+        	Ext.Msg.alert('Medidas', 'Ao menos uma medida deve ser informada');
         }
     },
     
@@ -115,6 +129,11 @@ Ext.define('Arche2.controller.Casos', {
         comboSubcaracteristica.setDisabled(true);
         
         //reseta o grid
+        this.limparMedidas();
+    },
+    
+    limparMedidas : function(){
+    	//reseta o grid
         var medidasGrid = Ext.getCmp('medidagrid');
         medidasGrid.getStore().removeAll();
         medidasGrid.getStore().sync();
@@ -143,6 +162,9 @@ Ext.define('Arche2.controller.Casos', {
 	        //desbloqueia o proximo formulario
 	        Ext.getCmp('wizardPanel').getLayout().setActiveItem('solucaoform');
 	        
+	        //altera o nome do button
+	        Ext.getCmp('addNovoCasoButton').setText('Salvar Solução');
+	        
 	    	//desabilita botao de exclusao
 	    	Ext.getCmp('deleteCasoButton').disable();
 	        
@@ -152,6 +174,9 @@ Ext.define('Arche2.controller.Casos', {
     },
     
     buscarCasosSimilares : function(){
+    	loading = new Ext.LoadMask(Ext.getBody(), {msg:"Por favor aguarde ...."});
+    	loading.show();
+    	
     	var novoProblema = {};
     	novoProblema = window.rnf;
     	
@@ -184,8 +209,10 @@ Ext.define('Arche2.controller.Casos', {
     					var sugestao = Ext.create('Arche2.model.Sugestao', {
     						casoId: sugestoes[i].caso.id,
     						casoResumo: sugestoes[i].caso.decisao.resumo,
-    						similaridade: sugestoes[i].similaridade,
+    						similaridade: '<b>' + ((sugestoes[i].similaridade.toFixed(4)) * 100).toFixed(2) + ' %</b>',
     						casoDataCadastro: sugestoes[i].caso.dataCadastro,
+    						tipoSolucao: sugestoes[i].caso.decisao.tipo,
+    						estadoSolucao: sugestoes[i].caso.decisao.estado,
     					});
     					
     					//guarda as sugestoes em memória para acessar facilmente
@@ -196,11 +223,15 @@ Ext.define('Arche2.controller.Casos', {
     				
     				//abre o painel de sugestoes encontradas
     				Ext.getCmp('sugestaogrid').expand();
+    				
+    				loading.destroy();
     			}
 
     	    },
     	    failure: function(response, opts) {
     	        console.log('server-side failure with status code ' + response.status);
+				loading.destroy();
+				
     	        Ext.Msg.alert('Erro', 'Olhe o log, pois lagum erro ocorreu!!!');
     	    }
     	});
@@ -209,6 +240,8 @@ Ext.define('Arche2.controller.Casos', {
     abrirSugestao : function(grid, record){
     	//abre o formulario da solucao com os dados preenchidos
     	Ext.getCmp('wizardPanel').getLayout().setActiveItem('solucaoform');
+        //altera o nome do button
+        Ext.getCmp('addNovoCasoButton').setText('Reutilizar Solução');
         
     	var decisao = window.listaSugestoes[record.data.casoId].decisao;
     	
@@ -222,20 +255,62 @@ Ext.define('Arche2.controller.Casos', {
     	Ext.getCmp('custo').setValue(decisao.custo);
     	Ext.getCmp('historico').setValue(decisao.historico);
     	
-    	//prepara o text descritivo
-    	var rnf = window.listaSugestoes[record.data.casoId].rnf;
-    	var htmlTexto = "<h1>" + rnf.nome + "</h1>";
-		htmlTexto += "<h2>" + rnf.subcaracteristica + "</h2>";
-		
-    	for(var i=0; i<rnf.medidas.length; i++){
-    		var texto = getMessage("arche2.template.resumo", [rnf.medidas[i].tipo, rnf.medidas[i].valor, rnf.medidas[i].entidade, rnf.funcao.nome, rnf.medidas[i].metodo]);
-    		htmlTexto += "<p>" + texto + "</p>";
-    	}
-    	
-    	Ext.getCmp('resumoFormDecisao').update(htmlTexto);
+    	Ext.getCmp('resumoFormDecisao').update(this.prepareResumo(window.listaSugestoes[record.data.casoId].rnf));
     	
     	//habilita botao de exclusao
     	Ext.getCmp('deleteCasoButton').enable();
+    },
+    
+    prepareResumo : function(rnf){
+    	//prepara o text descritivo
+    	
+    	if(rnf.medidas.length <= 0){
+    		return getMessage('arche2.default.resumo');
+    		
+    	}else{
+    		
+        	var htmlTexto = getMessage('arche2.template.resumo', [rnf.nome, rnf.subcaracteristica, rnf.tipoMedida]);
+    		
+    		htmlTexto += "<p>";
+    		
+    		for(var i=0; i<rnf.medidas.length; i++){
+    			
+    			if(i>0 && i<rnf.medidas.length){
+    				htmlTexto += " " + rnf.funcao.nome + " ";
+    			}
+    			
+    			htmlTexto += getMessage('arche2.template.resumo.medidas', [(i+1), rnf.medidas[i].entidade, rnf.medidas[i].metodo, rnf.medidas[i].valor]);
+    		}
+    		
+    		htmlTexto += "</p>";
+    		
+        	return htmlTexto;
+    	}
+    	
+    },
+    
+    prepareResumoFromMedidasGrid : function(medidas){
+    	var htmlTexto = getMessage('arche2.default.resumo');
+    	
+    	if(medidas.length > 0){
+    		
+    		htmlTexto = getMessage('arche2.template.resumo', [Ext.getCmp('caracteristica').getValue(), Ext.getCmp('subcaracteristica').getValue(), Ext.getCmp('tipoMedida').getValue()]);
+    		
+    		htmlTexto += "<p>";
+    		
+    		for(var i=0; i<medidas.length; i++){
+    			
+    			if(i>0 && i<medidas.length){
+    				htmlTexto += " " + Ext.getCmp('funcao').getValue() + " ";
+    			}
+    			
+    			htmlTexto += getMessage('arche2.template.resumo.medidas', [(i+1), medidas[i].data.entidade, medidas[i].data.metodo, medidas[i].data.valor]);
+    		}
+    		
+    		htmlTexto += "</p>";
+    	}
+    	
+    	return htmlTexto;
     },
     
     updateRNF : function(){
@@ -243,16 +318,19 @@ Ext.define('Arche2.controller.Casos', {
 		var caracteristica = Ext.getCmp('caracteristica').getValue();
         var subcaracteristica = Ext.getCmp('subcaracteristica').getValue();
         var funcao = Ext.getCmp('funcao').getValue();
+        var tipoMedida = Ext.getCmp('tipoMedida').getValue();
         
     	var rnf = {};
         rnf.nome = caracteristica;
         rnf.subcaracteristica = rnf.subcaracteristica = {}, rnf.subcaracteristica = subcaracteristica;
         rnf.funcao = {}, rnf.funcao.nome = funcao;
+        rnf.tipoMedida = tipoMedida;
+        
         //rnf.resumo = Ext.getCmp('resumo').html;
         
         var lista = [];
 		for(var i=0; i<medidas.length; i++){
-			lista.push({tipo : medidas[i].data.tipo, valor: medidas[i].data.valor, entidade: medidas[i].data.entidade, metodo: medidas[i].data.metodo});
+			lista.push({valor: medidas[i].data.valor, entidade: medidas[i].data.entidade, metodo: medidas[i].data.metodo});
 		}
 		rnf.medidas = lista;
         

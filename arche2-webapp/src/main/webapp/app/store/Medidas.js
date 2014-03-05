@@ -13,20 +13,6 @@ Ext.define('Arche2.store.Medidas', {
         }
     },
     createResumoText: function(medidas){
-    	
-    	var htmlTexto = getMessage('arche2.default.resumo');
-    	
-    	if(medidas.length > 0){
-    		htmlTexto = "<h1>" + Ext.getCmp('caracteristica').getValue() + "</h1>";
-    		htmlTexto += "<h2>" + Ext.getCmp('subcaracteristica').getValue() + "</h2>";
-    		
-    		var funcao = Ext.getCmp('funcao').getValue();
-    		
-    		for(var i=0; i<medidas.length; i++){
-    			htmlTexto += '<p>' + getMessage('arche2.template.resumo',[medidas[i].data.tipo, medidas[i].data.valor, medidas[i].data.entidade, funcao, medidas[i].data.metodo] ) + '</p>';
-    		}
-    	}
-    	
-		Ext.getCmp('resumo').update(htmlTexto);
+    	Ext.getCmp('resumo').update(_app.getController("Casos").prepareResumoFromMedidasGrid(medidas));
     }
 });

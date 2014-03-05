@@ -20,26 +20,8 @@ Ext.define('Arche2.view.medida.Grid' ,{
     plugins: [medidaRowEditing],
     
     columns: [{
-        text: 'Tipo',
-        flex: 1,
-        sortable: true,
-        dataIndex: 'tipo',
-        field: {
-            xtype: 'combo',
-            store: Ext.create('Arche2.store.TipoMedidas', {
-            	filters: [function(record, id){
-            		return (record.data.pai != null && record.data.pai.length > 1);
-            	}]
-            }),
-            queryMode: 'remote',
-            typeAhead:true,
-            forceSelection: true,
-            displayField: 'nome',
-            valueField: 'nome'
-        }
-    }, {
         header: 'Entidade',
-        width: 150,
+        flex: 1,
         sortable: true,
         dataIndex: 'entidade',
         field: {
@@ -49,11 +31,22 @@ Ext.define('Arche2.view.medida.Grid' ,{
             		return (record.data.pai != null);
             	}]
             }),
-            queryMode: 'remote',
+            queryMode: 'local',
             typeAhead:true,
             forceSelection: true,
             displayField: 'nome',
-            valueField: 'nome'
+            valueField: 'nome',
+        	 listeners:{
+                 scope: this,
+                 'select': function(combo, records, eOpts){
+                 	
+                	var valor = Ext.getCmp('valor');
+                	valor.setDisabled(false);
+                	valor.setValue(records[0].data.limiteValorInferior);
+                	valor.setMinValue(records[0].data.limiteValorInferior);
+                 	valor.setMaxValue(records[0].data.limiteValorSuperior);
+                 }
+            }
         }
     },{
         header: 'Método',
@@ -63,7 +56,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
         field: {
             xtype: 'combo',
             store: Ext.create('Arche2.store.Metodos'),
-            queryMode: 'remote',
+            queryMode: 'local',
             typeAhead:true,
             forceSelection: true,
             displayField: 'nome',
@@ -76,6 +69,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
         dataIndex: 'valor',
         field: {
             xtype: 'numberfield',
+            id: 'valor',
             minValue: 0,
             maxValue: 1000000000, 
             value: 0
@@ -86,7 +80,7 @@ Ext.define('Arche2.view.medida.Grid' ,{
     dockedItems: [{
         xtype: 'toolbar',
         items: [{
-            text: 'Adcionar',
+            text: 'Adicionar',
             iconCls: 'icon-add',
             action: 'add'
             

@@ -8,7 +8,7 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
                ],
     bodyPadding: 50,
     url: '',
-    title: 'Requisitos não Funcionais Mensuraveis (Problema)', 
+    title: 'Requisitos Não Funcionais Mensuráveis (Problema)', 
     layout: 'anchor',
     id: 'problemaform',
     
@@ -18,7 +18,7 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
 
     items: [{
     	xtype: 'combo',
-    	fieldLabel: 'Caracteristica:',
+    	fieldLabel: 'Característica:',
     	name: 'caracteristica',
     	id: 'caracteristica',
     	displayField: 'nome',
@@ -52,12 +52,15 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
             	});
             	
             	subCaracteristicasStore.load();
+            	
+            	//atualiza o texto do resumo
+            	Ext.getCmp('resumo').update(_app.getController("Casos").prepareResumoFromMedidasGrid(Ext.getCmp('medidagrid').store.data.items));
             }
        }
         
     },{
     	xtype: 'combo',
-    	fieldLabel: 'SubCaracteristica:',
+    	fieldLabel: 'Sub-Característica:',
     	name: 'subcaracteristica',
     	id: 'subcaracteristica',
     	displayField: 'nome',
@@ -69,10 +72,63 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
         disabled: true,
         emptyText: 'Subcaracteristicas...',
         store: [],
-        margin: '10 0 10 0 0'
+        margin: '10 0 10 0 0',
+        listeners:{
+            scope: this,
+            'select': function(combo, records, eOpts){
+            	//obtem a referencia ao combo de tipoMedida
+            	var comboTipoMedida = Ext.getCmp('tipoMedida');
+            	comboTipoMedida.setDisabled(false);
+            	comboTipoMedida.setValue('');
+            	
+            	var comboTipoMedidaStore = Ext.getStore('TipoMedidas');
+            	var lista = [];
+            	
+            	//altera o combo de tipodemedida quando uma nova subcaracteristica é selecionada
+            	comboTipoMedidaStore.on('load',function (store, records, successful, eOpts ){
+            		store.each(function(field){
+            			if(field.data.subcaracteristica == combo.getValue() && field.data.pai != null && field.data.pai.length > 1){
+            				lista.push([field.data.nome, 'nome']);
+            			}
+            		});
+            		
+            		comboTipoMedida.store.loadData(lista);
+            	});
+            	
+            	comboTipoMedidaStore.load();
+            	
+            	//atualiza o texto do resumo
+            	Ext.getCmp('resumo').update(_app.getController("Casos").prepareResumoFromMedidasGrid(Ext.getCmp('medidagrid').store.data.items));
+            }
+       }
     },{
     	xtype: 'combo',
-    	fieldLabel: 'Função:',
+    	fieldLabel: 'Tipo da Medida',
+    	name: 'tipoMedida',
+    	id: 'tipoMedida',
+    	displayField: 'nome' ,
+    	valueField: 'nome',
+        queryMode: 'local',
+        store: [],
+        typeAhead:true,
+        forceSelection: true,
+        allowBlank: false,
+        disabled: true,
+        emptyText: 'Tipo de Medidas...',
+        margin: '10 0 10 0 0',
+        listeners:{
+            scope: this,
+            'select': function(combo, records, eOpts){
+            	Ext.getCmp('medidagrid').setDisabled(false);
+            	
+            	//atualiza o texto do resumo
+            	Ext.getCmp('resumo').update(_app.getController("Casos").prepareResumoFromMedidasGrid(Ext.getCmp('medidagrid').store.data.items));
+            }
+        }
+    	
+    }, {
+    	xtype: 'combo',
+    	fieldLabel: 'Função da Medida',
     	name: 'funcao',
     	id: 'funcao',
     	displayField: 'nome' ,
@@ -84,13 +140,15 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
         allowBlank: false,
         emptyText: 'Função de Medição...',
         margin: '10 0 10 0 0',
+        value: "e", //valor padrão para facilitar o preenchimento
         listeners:{
             scope: this,
             'select': function(combo, records, eOpts){
-            	Ext.getCmp('medidagrid').setDisabled(false);
+            	
+            	//atualiza o texto do resumo
+            	Ext.getCmp('resumo').update(_app.getController("Casos").prepareResumoFromMedidasGrid(Ext.getCmp('medidagrid').store.data.items));
             }
         }
-        
     },{
         
     	xtype: 'medidagrid',
@@ -117,7 +175,7 @@ Ext.define('Arche2.view.caso.FormularioProblema', {
         action: 'sugerirSolucao',
         tooltip: MESSAGES['arche2.tooltip.sugerirsolucao']
     }, {
-        text: 'Inserir Novo Solução',
+        text: 'Inserir Nova Solução',
         formBind: true,
         disabled: true,
         action: 'startNovoCaso',

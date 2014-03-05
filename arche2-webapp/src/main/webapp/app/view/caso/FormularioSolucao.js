@@ -4,23 +4,24 @@ var tiposEstados = Ext.create('Ext.data.Store', {
         {"nome":"Decisão Implementada"},
         {"nome":"Prova de Conceito"},
         {"nome":"Tentativa"},
+        {"nome":"Apenas uma Idéia"},
         {"nome":"Solução Rejeitada"}
     ]
 });
 
 var tiposDecisoes = Ext.create('Ext.data.Store', {
-    fields: ['nome'],
+    fields: ['nome', 'help'],
     data : [
-        {"nome":"Decisão Estrutural de Arquitetura"},
-        {"nome":"Decisão Comportamental de Arquitetura"},
-        {"nome":"Decisão BAN"},
-        {"nome":"Diretriz"},
-        {"nome":"Restrição"},
-        {"nome":"Regra de Projeto"},
-        {"nome":"Decisão de Processo"},
-        {"nome":"Decisão de Organização"},
-        {"nome":"Decisão de Tecnologia"},
-        {"nome":"Decisão de Ferramenta"}
+        {"nome":"Estrutura da Arquitetura (Decisão Existêncial)", "help": MESSAGES['arche2.help.decisao.existencia']},
+        {"nome":"Comportamento da Arquitetura (Decisão Existêncial)", "help": MESSAGES['arche2.help.decisao.existencia']},
+        {"nome":"BAN (Decisão Existêncial)", "help": MESSAGES['arche2.help.decisao.ban']},
+        {"nome":"Diretriz (Decisão de Propriedade)", "help": MESSAGES['arche2.help.decisao.propriedade']},
+        {"nome":"Restrição  (Decisão de Propriedade)", "help": MESSAGES['arche2.help.decisao.propriedade']},
+        {"nome":"Regra de Projeto  (Decisão de Propriedade)", "help": MESSAGES['arche2.help.decisao.propriedade']},
+        {"nome":"Processo (Decisão Executiva)", "help": MESSAGES['arche2.help.decisao.executivas']},
+        {"nome":"Organização (Decisão Executiva)", "help": MESSAGES['arche2.help.decisao.executivas']},
+        {"nome":"Tecnologia (Decisão Executiva)", "help": MESSAGES['arche2.help.decisao.executivas']},
+        {"nome":"Ferramenta (Decisão Executiva)", "help": MESSAGES['arche2.help.decisao.executivas']}
     ]
 });
 
@@ -30,7 +31,7 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
 
     bodyPadding: 50,
     url: '',
-    title: 'Decisao Arquitetural (Solução)', 
+    title: 'Decisão Arquitetural (Solução)', 
     layout: 'anchor',
     id: 'solucaoform',
     
@@ -79,7 +80,12 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 allowBlank: false,
                 displayField: 'nome',
                 valueField: 'nome',
-                emptyText: 'Escolha o tipo de decisão arquitetural...'
+                emptyText: 'Escolha o tipo de decisão arquitetural...',
+                listConfig: {
+	            	getInnerTpl: function() {
+	            		return '<div data-qtip="{help}">{nome}</div>';
+	                }
+                }
             },
             {
                 xtype: 'textarea',
@@ -128,13 +134,14 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 allowBlank: true,
                 rows: 2,
                 fieldLabel: 'Escopo',
-                emptyText: 'Faça uma breve descrição do escopo que envolve essa decisão...'
+                emptyText: 'Faça uma breve descrição do escopo que envolve essa decisão...Por que apenas propor soluções relacionadas a padrões de projeto se a infraestrutura de servidores também faz parte da arquitetura? Resp: A infraestrutura não faz parte do escopo.'
             },
             {
                 xtype: 'numberfield',
                 name : 'custo',
                 id : 'custo',
                 value: 0,
+                hidden: true,
                 fieldLabel: 'Custo $'
             },
             {
@@ -143,7 +150,7 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
                 readOnly: true,
                 allowBlank: true,
                 id : 'historico',
-                rows: 2,
+                rows: 4,
                 fieldLabel: 'Histórico'
             }
         ]
@@ -162,7 +169,8 @@ Ext.define('Arche2.view.caso.FormularioSolucao', {
         disabled: true,
         tooltip: MESSAGES['arche2.tooltip.excluirsolucao']
     },{
-    	text: 'Salvar Nova Solução',
+    	text: 'Reutilizar Solução',
+    	id: 'addNovoCasoButton',
         formBind: true,
         disabled: true,
         action: 'addNovoCaso'

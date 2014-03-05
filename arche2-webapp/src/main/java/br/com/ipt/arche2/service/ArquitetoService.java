@@ -14,13 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.ipt.arche2.entity.Arquiteto;
+import br.com.ipt.arche2.entity.Feedback;
 import br.com.ipt.arche2.repository.ArquitetoRepository;
+import br.com.ipt.arche2.repository.FeedbackRepository;
 
 @Component
 @Path("/rest/arquiteto")
 public class ArquitetoService {
 	@Autowired
 	protected ArquitetoRepository repository;
+	
+	@Autowired
+	protected FeedbackRepository feedbackRepository;
 	
 	@POST
 	@Path("/create")
@@ -59,5 +64,13 @@ public class ArquitetoService {
 		return Response.status(200).build();
 	}
 
+	@POST
+	@Path("/feedback")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response feedback(Feedback f){
+		feedbackRepository.save(f);
+		
+		return Response.status(200).build();
+	}
 	
 }

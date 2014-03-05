@@ -3,5 +3,5 @@ Ext.define('Arche2.model.Decisao', {
     fields: [{
         name: 'id',
         useNull: true
-    }, 'tipo', 'resumoDecisao', 'estado', 'estado', 'racional', 'riscos', 'escopo', 'custo']
+    }, 'tipo', 'resumoDecisao', 'estado', 'racional', 'riscos', 'escopo', 'custo']
 });

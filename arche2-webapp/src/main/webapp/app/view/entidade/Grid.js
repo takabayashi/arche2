@@ -58,7 +58,7 @@ Ext.define('Arche2.view.entidade.Grid' ,{
     dockedItems: [{
         xtype: 'toolbar',
         items: [{
-            text: 'Adcionar',
+            text: 'Adicionar',
             iconCls: 'icon-add',
             action: 'adicionar'
         }, '-', {
