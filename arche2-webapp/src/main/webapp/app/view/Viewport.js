@@ -21,7 +21,7 @@ Ext.define('Arche2.view.Viewport', {
                 border: false,
                 margins: '10 10 10 10',
                 items: [{
-                	html: MESSAGES['arche2.name'] + '<h3>' + MESSAGES['arche2.welcome'] + MESSAGES['arche2.default.username'] + (!isAdmin? '' : ' (admin)') + '</h3>'
+                	html: MESSAGES['arche2.name'] + '<h3>' + MESSAGES['arche2.welcome'] + MESSAGES['arche2.default.username'] + (!x63? '' : ' (admin)') + '</h3>'
                 }]
             }, {
                 region: 'east',
@@ -30,7 +30,7 @@ Ext.define('Arche2.view.Viewport', {
                 width: '70%',
                 resizable: true,
                	collapsed: true,
-               	hidden: !isAdmin,
+               	hidden: !x63,
                 items: [{
                    	xtype: 'geraltabpanel'
                   }]

@@ -28,4 +28,10 @@
 	  <user username="Anderson Alves Teixeira" password="720a4def1177bcc12a2ef5036d95c74d4ad28610" roles="architect"/>
 	  <user username="Jaguaraci Silva" password="14047c0a7400a52d8efdd26e173b4d359ddaa67c" roles="architect"/>
 	  
+	  <user username="Petterson Henrique de Andrade" password="9485a717d461ac2850b671b7c72470b367268270" roles="architect"/>
+	  <user username="Marcelo Antonio Alves" password="660c601ef927637f99f1bfa65fdcc9b1237c3594" roles="architect"/>
+	  <user username="Ricardo Marques Augusto" password="3481c6f9c23f575b8a379e5dc08e2ffbf100e5fa" roles="architect"/>
+	  
+	  <user username="Fabio Queiroz Barbosa" password="9925e1e14808781db387dbe3d4ee0933c8567082" roles="architect"/>
+	  
 </tomcat-users>

@@ -13,7 +13,7 @@
 		
 		<script type="text/javascript" >
 			var arquiteto = '<%=request.getUserPrincipal().getName() %>';
-			var isAdmin = <%=request.isUserInRole("admin") %>;
+			var x63 = <%=request.isUserInRole("admin") %>;
 		</script>
 		
 		<script type="text/javascript" src="app.js"></script>

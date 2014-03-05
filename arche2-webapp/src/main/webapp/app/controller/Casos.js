@@ -338,7 +338,7 @@ Ext.define('Arche2.controller.Casos', {
     },
     
     deleteCaso : function(){
-    	if(!isAdmin){
+    	if(!x63){
     		Ext.Msg.show({
     			title:':-(',
     			msg: 'Essa versão da aplicação não exclui casos...',
