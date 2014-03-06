@@ -33,5 +33,6 @@
 	  <user username="Ricardo Marques Augusto" password="3481c6f9c23f575b8a379e5dc08e2ffbf100e5fa" roles="architect"/>
 	  
 	  <user username="Fabio Queiroz Barbosa" password="9925e1e14808781db387dbe3d4ee0933c8567082" roles="architect"/>
+	  <user username="Wanderley Wang" password="cafc8fc3ed790e3861bd877b222d8d129915c5c2" roles="architect"/>
 	  
 </tomcat-users>
