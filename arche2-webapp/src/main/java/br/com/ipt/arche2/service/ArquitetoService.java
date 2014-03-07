@@ -13,8 +13,8 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.ipt.arche2.entity.Arquiteto;
 import br.com.ipt.arche2.entity.Feedback;
+import br.com.ipt.arche2.orda.entity.Arquiteto;
 import br.com.ipt.arche2.repository.ArquitetoRepository;
 import br.com.ipt.arche2.repository.FeedbackRepository;
 

@@ -1,4 +1,4 @@
-package br.com.ipt.arche2.entity;
+package br.com.ipt.arche2.orda.entity;
 
 import org.springframework.data.annotation.Id;
 

@@ -10,7 +10,7 @@ var MESSAGES = {
 	'arche2.name':'<h1>Olá! Sou o Arquiteto Julia, um sistema especialista em decisões arquiteturais.</h1>',
 	'arche2.welcome':'Bem vindo Sr. Arquiteto ',
 	'arche2.about':'<p style="font-size: 10px; margin-left: 10px; margin-right: 5px;">Arquiteto Julia é um protótipo de ferramenta, que utiliza técnicas da IA, especializada em reuso de decisões arquiteturais (táticas), a partir de requisitos de desempenho e confiabilidade para auxiliar a tomada de decisão de arquitetos em projetos de arquitetura de software, desenvolvido por Daniel Martins Takabayashi (daniel.takabayashi@gmail.com) para o Instituto de Pesquisas Tecnológicas de São Paulo - IPT (2014).</p>',
-	
+	//'arche2.name':'',
 	
 	'arche2.help.decisao.existencia': '<p>Decisões de Existência estabelecem elementos ou artefatos que devem obrigatoriamente aparecer na arquitetura. A estrutural diz respeito a subsistemas, camadas, partições e componentes gerais da visão arquitetural. A comportamental diz respeito a forma (protocolos) como componentes da arquitetura se comunicam (conectores).</p><p>Exemplo 1: “é obrigatório o uso de HTML para camada de apresentação”</p><p>Exemplo 2: “é obrigatório o uso de uma API customizada para comunicação com o mainframe”</p>',
     'arche2.help.decisao.ban': '<p>Ban são decisões que restringem os elementos e artefatos que não podem aparecer na arquitetura, contrário de Decisões de Existência.</p><br><p>Exemplo 1: “não é permitido o uso de banco de dados relacional”</p><p>Exemplo 2: “não é permitido a duplicação de código java”</p>',
