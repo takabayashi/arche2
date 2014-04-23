@@ -22,9 +22,13 @@ public class InstanceSimilarityAlgorithm extends GenericAlgorithm implements Loc
 		float quantidadeAtributosObjeto1 = getQuantidadeAtributos(o1);
 		float quantidadeAtributosObjeto2 = getQuantidadeAtributos(o2);
 		
-		float similaridade = (	w1 * (atributosCompartilhados/Math.max(quantidadeAtributosObjeto1, quantidadeAtributosObjeto2)) + 
+		/**float similaridade = (	w1 * (atributosCompartilhados/Math.max(quantidadeAtributosObjeto1, quantidadeAtributosObjeto2)) + 
 								w2 * (atributosCompartilhados/Math.min(quantidadeAtributosObjeto1, quantidadeAtributosObjeto2))
-							);
+							); */// Utiliza o simMAx
+		
+		float similaridade = (	w1 * (atributosCompartilhados/(quantidadeAtributosObjeto1 + quantidadeAtributosObjeto2)) + 
+				w2 * (atributosCompartilhados/Math.min(quantidadeAtributosObjeto1, quantidadeAtributosObjeto2))
+			); ///utiliz o simMin
 		
 		return similaridade;
 		

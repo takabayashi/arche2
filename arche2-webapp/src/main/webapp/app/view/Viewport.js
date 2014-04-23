@@ -20,6 +20,7 @@ Ext.define('Arche2.view.Viewport', {
                 autoHeight: true,
                 border: false,
                 margins: '10 10 10 10',
+                hidden: true,
                 items: [{
                 	html: MESSAGES['arche2.name'] + '<h3>' + MESSAGES['arche2.welcome'] + MESSAGES['arche2.default.username'] + (!x63? '' : ' (admin)') + '</h3>'
                 }]

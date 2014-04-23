@@ -26,7 +26,8 @@ public class NumericSimilarityAlgorithm extends GenericAlgorithm implements Loca
 				
 		//efetua o calculo de similaridade
 		float sim = linearFunctionNormalizado(v1, v2, ub1, lb1, ub2, lb2);
-			
+		
+		//System.out.print(" simNum: [" + sim + "]");
 		return sim;
 	}
 	

@@ -73,6 +73,10 @@ public class NearestNeighbourAlgorithm extends GenericAlgorithm implements Globa
 		
 		System.out.println("Iniciando calculo de similaridade **************************************");
 		
+		System.out.println("Problema Indicado:");
+		printRNF(rnf);
+		System.out.println("\n\n");
+		
 		///aplica a lógica para devolver apenas os casos similares
 		for (Caso caso : listaCasos) {
 			
@@ -81,13 +85,15 @@ public class NearestNeighbourAlgorithm extends GenericAlgorithm implements Globa
 			/**
 			 *  Aqui inicia a lógica para calculo de similaridades
 			 */
+			System.out.println("Resultado dos cálculos de similaridade:");
+			
 			//calcula a similaridade semantica
 			float simInstancia = instanceSimilarityAlgorithm.calculate(rnf, caso.getRnf());
-			System.out.println("\t\tsimInstancia: [" + simInstancia + "] ");
+			System.out.println(" simMin: [" + simInstancia + "] ");
 			
 			//calcula a similaridade entre medidas
 			float simMeasure = measureSimilarityAlgorithm.calculate(rnf, caso.getRnf());
-			System.out.println("\t\tsimMeasure: [" + simMeasure + "] ");
+			System.out.println(" simMedidas: [" + simMeasure + "] ");
 			
 			calculateGlobal(caso, simInstancia, simMeasure);
 			/*********************************************************/
@@ -99,11 +105,13 @@ public class NearestNeighbourAlgorithm extends GenericAlgorithm implements Globa
 	private void calculateGlobal(Caso caso, float simInstancia, float simMeasure) {
 		//calcula e indexa similaridade global
 		float similaridade = (simInstancia * this.w1) + (simMeasure * this.w2);
-		System.out.println("\t\tsimilaridadeGlobal: [" + similaridade + "]\n ");
+		System.out.print(" simGlobal: [" + similaridade + "] ");
 		
 		//verifica se a similaridade é maior que o indicado
 		if(similaridade >= similaridadeMinimaCasos){
 			//encontrou um caso similar manda indexar
+			System.out.print(" -> caso sugerido **");
+			
 			this.index(similaridade, caso);
 		}
 	}
@@ -129,12 +137,8 @@ public class NearestNeighbourAlgorithm extends GenericAlgorithm implements Globa
 		i = pesos.indexOf(new Peso(Constantes.SIMILARIDADE_LOCAL_MEDIDAS_W2));
 		w2 = i < 0 ? new Peso().getValor() : pesos.get(i).getValor();
 		
-		i = pesos.indexOf(new Peso(Constantes.SIMILARIDADE_LOCAL_MEDIDAS_W3));
-		float w3 = i < 0 ? new Peso().getValor() : pesos.get(i).getValor();
-		
 		measureSimilarityAlgorithm.w1 = w1;
 		measureSimilarityAlgorithm.w2 = w2;
-		measureSimilarityAlgorithm.w3 = w3;
 		
 		//AJUSTA pesos de similaridade global 
 		i = pesos.indexOf(new Peso(Constantes.SIMILARIDADE_GLOBAL_W1));
@@ -166,17 +170,27 @@ public class NearestNeighbourAlgorithm extends GenericAlgorithm implements Globa
 	}
 	
 	private void printCaso(Caso caso) {
-		System.out.println("Dados do caso armazenado");
-		System.out.println("\tCaso: [" + caso.getId() + "] ");
-		System.out.println("\tSolucao: [" + (caso.getDecisao().getResumo().length() > 100 ? caso.getDecisao().getResumo().substring(0, 100): caso.getDecisao().getResumo().substring(0, caso.getDecisao().getResumo().length())) + "] ");
-		System.out.println("\tProblema: [" + caso.getRnf().getNome() + " - >" + caso.getRnf().getSubcaracteristica() + "] ");
+		//System.out.println("Dados do caso armazenado");
+		System.out.println("\n********************************************************************************");
+		System.out.println("\nId do Caso: [" + caso.getId() + "]\n ");
 		
-		System.out.print("\t" + caso.getRnf().getTipoMedida() + ": [");
+		System.out.println("Descrição do Problema:");
+		printRNF(caso.getRnf());
+		
+		System.out.println("\nDescrição da Solução:");
+		//System.out.println(" Resumo da Decisão: [" + (caso.getDecisao().getResumo().length() > 100 ? caso.getDecisao().getResumo().substring(0, 100) + "...": caso.getDecisao().getResumo().substring(0, caso.getDecisao().getResumo().length())) + "]\n ");
+		System.out.println(" Resumo da Decisão: [" + caso.getDecisao().getResumo() + "]\n ");
+	}
+
+	private void printRNF(RNFMensuravel rnf) {
+		System.out.println(" RNF: [" + rnf.getNome() + " -> " + rnf.getSubcaracteristica() + "] ");
+		
+		System.out.print(" Medidas: [" + rnf.getTipoMedida() + " -> ");
 		int x = 0;
 		
-		for (Medida medida : caso.getRnf().getMedidas()) {
-			if(x > 0 && x < caso.getRnf().getMedidas().size()){
-				System.out.print(" " + caso.getRnf().getFuncao().getNome() + " ");
+		for (Medida medida : rnf.getMedidas()) {
+			if(x > 0 && x < rnf.getMedidas().size()){
+				System.out.print(" " + rnf.getFuncao().getNome() + " ");
 			}
 			
 			System.out.print(medida);

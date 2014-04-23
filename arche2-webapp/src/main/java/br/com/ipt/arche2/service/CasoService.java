@@ -65,6 +65,15 @@ public class CasoService {
 	private List<Sugestao> obterCasosSimilares(RNFMensuravel rnf) {
 		List<Caso> listaCasos = repository.findAll();
 		
+		/*for (Caso caso : listaCasos) {
+			if(!caso.getRnf().getFuncao().getNome().equals("e")){
+				System.out.println(caso.getId() + " - " + caso.getRnf().getFuncao() + " qtd: " + caso.getRnf().getMedidas().size());
+				
+				caso.getRnf().getFuncao().setNome("e");
+				this.update(caso);
+			}
+		}*/
+		
 		//executa oos calculo de similaridade
 		nearestNeighbourAlgorithm.calculate(rnf, listaCasos);
 		
